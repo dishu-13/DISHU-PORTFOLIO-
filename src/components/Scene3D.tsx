@@ -29,12 +29,12 @@ function FloatingShapes() {
       <Float speed={2} rotationIntensity={1} floatIntensity={2}>
         <Sphere ref={meshRef} args={[1, 64, 64]} position={[-3, 1, -2]}>
           <MeshDistortMaterial
-            color="#22d3ee"
+            color="#3b82f6"
             attach="material"
             distort={0.4}
             speed={2}
-            roughness={0.2}
-            metalness={0.8}
+            roughness={0.3}
+            metalness={0.6}
           />
         </Sphere>
       </Float>
@@ -42,9 +42,9 @@ function FloatingShapes() {
       <Float speed={1.5} rotationIntensity={2} floatIntensity={1.5}>
         <Torus ref={torusRef} args={[1, 0.3, 16, 32]} position={[3, -1, -3]}>
           <meshStandardMaterial
-            color="#a855f7"
-            roughness={0.3}
-            metalness={0.9}
+            color="#0ea5e9"
+            roughness={0.4}
+            metalness={0.7}
           />
         </Torus>
       </Float>
@@ -52,9 +52,9 @@ function FloatingShapes() {
       <Float speed={2.5} rotationIntensity={1.5} floatIntensity={2}>
         <Box ref={boxRef} args={[0.8, 0.8, 0.8]} position={[2, 2, -4]}>
           <meshStandardMaterial
-            color="#38bdf8"
-            roughness={0.2}
-            metalness={0.7}
+            color="#6366f1"
+            roughness={0.3}
+            metalness={0.6}
           />
         </Box>
       </Float>
@@ -62,9 +62,9 @@ function FloatingShapes() {
       <Float speed={1.8} rotationIntensity={1} floatIntensity={1.8}>
         <Sphere args={[0.5, 32, 32]} position={[-2, -2, -3]}>
           <meshStandardMaterial
-            color="#c084fc"
+            color="#8b5cf6"
             roughness={0.4}
-            metalness={0.6}
+            metalness={0.5}
           />
         </Sphere>
       </Float>
@@ -76,10 +76,10 @@ export default function Scene3D() {
   return (
     <div className="absolute inset-0 -z-10">
       <Canvas camera={{ position: [0, 0, 6], fov: 50 }}>
-        <ambientLight intensity={0.3} />
-        <directionalLight position={[5, 5, 5]} intensity={1} />
-        <pointLight position={[-5, -5, 5]} intensity={0.5} color="#22d3ee" />
-        <pointLight position={[5, 5, 5]} intensity={0.5} color="#a855f7" />
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[5, 5, 5]} intensity={1.2} />
+        <pointLight position={[-5, -5, 5]} intensity={0.4} color="#3b82f6" />
+        <pointLight position={[5, 5, 5]} intensity={0.4} color="#0ea5e9" />
         <FloatingShapes />
       </Canvas>
     </div>
