@@ -1,4 +1,3 @@
-import { Suspense, lazy } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -6,16 +5,13 @@ import Skills from '@/components/Skills';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-
-const Scene3D = lazy(() => import('@/components/Scene3D'));
+import AnimatedBackground from '@/components/AnimatedBackground';
 
 const Index = () => {
   return (
     <main className="relative min-h-screen overflow-x-hidden">
-      {/* 3D Background */}
-      <Suspense fallback={null}>
-        <Scene3D />
-      </Suspense>
+      {/* Animated Background */}
+      <AnimatedBackground />
       
       {/* Navigation */}
       <Navbar />
