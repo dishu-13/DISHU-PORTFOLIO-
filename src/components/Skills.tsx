@@ -1,37 +1,57 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Database, FileSpreadsheet, BarChart3, Code, LineChart, GitBranch, FlaskConical, PieChart } from 'lucide-react';
 
 const skills = [
   { 
     name: 'Python', 
-    level: 90,
-    color: 'from-[#3776AB] to-[#FFD43B]',
-    icon: '🐍'
+    description: 'Data analysis & automation',
+    icon: Code,
+    color: 'bg-blue-500/10 text-blue-600'
   },
   { 
     name: 'Excel', 
-    level: 95,
-    color: 'from-[#217346] to-[#33C481]',
-    icon: '📊'
+    description: 'Advanced formulas & VBA',
+    icon: FileSpreadsheet,
+    color: 'bg-green-500/10 text-green-600'
   },
   { 
     name: 'Power BI', 
-    level: 88,
-    color: 'from-[#F2C811] to-[#E9A627]',
-    icon: '📈'
+    description: 'Interactive dashboards',
+    icon: BarChart3,
+    color: 'bg-amber-500/10 text-amber-600'
   },
   { 
     name: 'SQL', 
-    level: 92,
-    color: 'from-[#00758F] to-[#F29111]',
-    icon: '🗄️'
+    description: 'Database management',
+    icon: Database,
+    color: 'bg-orange-500/10 text-orange-600'
   },
-];
-
-const tools = [
-  'Pandas', 'NumPy', 'Scikit-learn', 'Matplotlib', 
-  'Seaborn', 'Jupyter', 'Git', 'Statistical Analysis'
+  { 
+    name: 'Statistical Analysis', 
+    description: 'Data-driven insights',
+    icon: LineChart,
+    color: 'bg-purple-500/10 text-purple-600'
+  },
+  { 
+    name: 'Data Visualization', 
+    description: 'Charts & reports',
+    icon: PieChart,
+    color: 'bg-pink-500/10 text-pink-600'
+  },
+  { 
+    name: 'Git', 
+    description: 'Version control',
+    icon: GitBranch,
+    color: 'bg-red-500/10 text-red-600'
+  },
+  { 
+    name: 'Machine Learning', 
+    description: 'Predictive models',
+    icon: FlaskConical,
+    color: 'bg-cyan-500/10 text-cyan-600'
+  },
 ];
 
 export default function Skills() {
@@ -39,76 +59,42 @@ export default function Skills() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="skills" className="py-32 px-4 relative">
+    <section id="skills" className="py-24 px-4 relative">
       <div className="container mx-auto max-w-6xl" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-            My <span className="text-gradient">Skills</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
-        </motion.div>
-
-        {/* Main Skills */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
-          {skills.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-              className="group p-6 rounded-2xl card-glass hover-lift"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl">{skill.icon}</span>
-                  <h3 className="font-display text-xl font-semibold text-foreground">{skill.name}</h3>
-                </div>
-                <span className="text-lg font-medium text-primary">{skill.level}%</span>
-              </div>
-              
-              {/* Progress bar */}
-              <div className="h-3 rounded-full bg-secondary overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={isInView ? { width: `${skill.level}%` } : {}}
-                  transition={{ duration: 1.2, delay: 0.5 + index * 0.1, ease: "easeOut" }}
-                  className={`h-full rounded-full bg-gradient-to-r ${skill.color}`}
-                />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Additional Tools */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          <h3 className="font-display text-2xl font-semibold text-foreground mb-8">
-            Additional Tools & Technologies
-          </h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {tools.map((tool, index) => (
-              <motion.span
-                key={tool}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.4, delay: 0.8 + index * 0.05 }}
-                whileHover={{ scale: 1.1, y: -5 }}
-                className="px-5 py-3 rounded-full bg-secondary/60 border border-border text-foreground font-medium cursor-default hover:border-primary hover:bg-primary/10 transition-all duration-300"
-              >
-                {tool}
-              </motion.span>
-            ))}
-          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+            Skills & Expertise
+          </h2>
+          <p className="text-muted-foreground">Technologies I work with</p>
         </motion.div>
+
+        {/* Skills Cards Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          {skills.map((skill, index) => {
+            const Icon = skill.icon;
+            return (
+              <motion.div
+                key={skill.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="group p-5 rounded-xl bg-card border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
+              >
+                <div className={`w-12 h-12 rounded-lg ${skill.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                  <Icon className="w-6 h-6" />
+                </div>
+                <h3 className="font-semibold text-foreground mb-1">{skill.name}</h3>
+                <p className="text-sm text-muted-foreground">{skill.description}</p>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
