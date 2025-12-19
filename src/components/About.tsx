@@ -45,16 +45,16 @@ export default function About() {
             
             <div className="flex items-center gap-4">
               <div className="p-4 rounded-xl bg-secondary/50 border border-border">
-                <p className="text-3xl font-display font-bold text-gradient">4+</p>
+                <p className="text-3xl font-display font-bold text-gradient">5+</p>
                 <p className="text-sm text-muted-foreground">Projects</p>
               </div>
               <div className="p-4 rounded-xl bg-secondary/50 border border-border">
-                <p className="text-3xl font-display font-bold text-gradient">2</p>
+                <p className="text-3xl font-display font-bold text-gradient">4</p>
                 <p className="text-sm text-muted-foreground">Certifications</p>
               </div>
               <div className="p-4 rounded-xl bg-secondary/50 border border-border">
-                <p className="text-3xl font-display font-bold text-gradient">5+</p>
-                <p className="text-sm text-muted-foreground">Tools Mastered</p>
+                <p className="text-3xl font-display font-bold text-gradient">4</p>
+                <p className="text-sm text-muted-foreground">Internships</p>
               </div>
             </div>
           </motion.div>
