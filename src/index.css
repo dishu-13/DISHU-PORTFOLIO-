@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+/* Fonts loaded via index.html */
 
 @layer base {
   :root {
@@ -47,8 +47,8 @@
     --shadow-glow: 0 0 40px hsl(220 70% 50% / 0.15);
     --shadow-card: 0 4px 20px hsl(220 15% 20% / 0.08);
     
-    --font-display: 'Space Grotesk', sans-serif;
-    --font-body: 'Outfit', sans-serif;
+    --font-display: 'DM Serif Display', serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
   }
 }
 
