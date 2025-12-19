@@ -99,7 +99,7 @@ export default function Hero() {
                 <Github className="w-5 h-5" />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/in/dishu-daksh-a52572240/" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-full border border-border bg-card/30 text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 transition-all duration-300"
@@ -134,23 +134,6 @@ export default function Hero() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              
-              {/* Floating badge */}
-              <motion.div 
-                className="absolute -right-4 top-1/4 px-4 py-2 rounded-full bg-card border border-primary/50 backdrop-blur-sm"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                <span className="text-sm font-medium text-primary">Google Certified</span>
-              </motion.div>
-              
-              <motion.div 
-                className="absolute -left-4 bottom-1/4 px-4 py-2 rounded-full bg-card border border-accent/50 backdrop-blur-sm"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
-              >
-                <span className="text-sm font-medium text-accent">Microsoft Certified</span>
-              </motion.div>
             </div>
           </motion.div>
         </div>
