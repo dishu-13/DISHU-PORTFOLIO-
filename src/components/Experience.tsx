@@ -69,7 +69,7 @@ export default function Experience() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-medium mb-4">
             Work <span className="text-gradient">Experience</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
@@ -101,7 +101,7 @@ export default function Experience() {
                       {exp.type}
                     </div>
                     
-                    <h3 className="text-xl font-display font-bold text-foreground mb-1">
+                    <h3 className="text-xl font-display font-medium text-foreground mb-1">
                       {exp.title}
                     </h3>
                     <p className="text-primary font-medium mb-3">{exp.company}</p>

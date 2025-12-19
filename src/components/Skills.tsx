@@ -67,10 +67,10 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+          <h2 className="text-3xl md:text-4xl font-medium text-foreground mb-3">
             Skills & Expertise
           </h2>
-          <p className="text-muted-foreground">Technologies I work with</p>
+          <p className="text-muted-foreground font-light">Technologies I work with</p>
         </motion.div>
 
         {/* Skills Cards Grid */}
@@ -89,7 +89,7 @@ export default function Skills() {
                 <div className={`w-12 h-12 rounded-lg ${skill.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                   <Icon className="w-6 h-6" />
                 </div>
-                <h3 className="font-semibold text-foreground mb-1">{skill.name}</h3>
+                <h3 className="font-medium text-foreground mb-1">{skill.name}</h3>
                 <p className="text-sm text-muted-foreground">{skill.description}</p>
               </motion.div>
             );
