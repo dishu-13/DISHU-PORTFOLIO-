@@ -54,11 +54,11 @@ export default function Projects() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-medium mb-4">
             My <span className="text-gradient">Projects</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6" />
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground font-light max-w-2xl mx-auto">
             Explore my data analysis and machine learning projects that demonstrate my ability to extract insights and build predictive models.
           </p>
         </motion.div>
@@ -84,7 +84,7 @@ export default function Projects() {
               </div>
               
               {/* Content */}
-              <h3 className="font-display text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+              <h3 className="font-display text-2xl font-medium text-foreground mb-3 group-hover:text-primary transition-colors">
                 {project.title}
               </h3>
               <p className="text-muted-foreground mb-6 line-clamp-3">
@@ -104,7 +104,7 @@ export default function Projects() {
               </div>
               
               {/* Link indicator */}
-              <div className="flex items-center gap-2 text-primary font-medium">
+              <div className="flex items-center gap-2 text-primary font-normal">
                 <span>View on GitHub</span>
                 <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </div>

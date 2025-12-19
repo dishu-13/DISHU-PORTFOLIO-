@@ -23,7 +23,7 @@ export default function About() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-medium mb-4">
             About <span className="text-gradient">Me</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
@@ -45,15 +45,15 @@ export default function About() {
             
             <div className="flex items-center gap-4">
               <div className="p-4 rounded-xl bg-secondary/50 border border-border">
-                <p className="text-3xl font-display font-bold text-gradient">5+</p>
+                <p className="text-3xl font-display font-medium text-gradient">5+</p>
                 <p className="text-sm text-muted-foreground">Projects</p>
               </div>
               <div className="p-4 rounded-xl bg-secondary/50 border border-border">
-                <p className="text-3xl font-display font-bold text-gradient">4</p>
+                <p className="text-3xl font-display font-medium text-gradient">4</p>
                 <p className="text-sm text-muted-foreground">Certifications</p>
               </div>
               <div className="p-4 rounded-xl bg-secondary/50 border border-border">
-                <p className="text-3xl font-display font-bold text-gradient">4</p>
+                <p className="text-3xl font-display font-medium text-gradient">4</p>
                 <p className="text-sm text-muted-foreground">Internships</p>
               </div>
             </div>
@@ -77,7 +77,7 @@ export default function About() {
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <item.icon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="font-display font-semibold text-foreground mb-1">{item.label}</h3>
+                <h3 className="font-display font-medium text-foreground mb-1">{item.label}</h3>
                 <p className="text-sm text-muted-foreground">{item.description}</p>
               </motion.div>
             ))}

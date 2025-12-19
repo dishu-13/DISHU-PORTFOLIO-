@@ -30,11 +30,11 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-medium mb-4">
             Get In <span className="text-gradient">Touch</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6" />
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground font-light max-w-2xl mx-auto">
             Have a project in mind or want to discuss data analytics opportunities? I'd love to hear from you!
           </p>
         </motion.div>
@@ -48,7 +48,7 @@ export default function Contact() {
             className="space-y-8"
           >
             <div>
-              <h3 className="font-display text-2xl font-semibold text-foreground mb-6">
+              <h3 className="font-display text-2xl font-medium text-foreground mb-6">
                 Let's Connect
               </h3>
               <p className="text-muted-foreground mb-8">
@@ -71,7 +71,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">{item.label}</p>
-                    <p className="text-foreground font-medium">{item.value}</p>
+                    <p className="text-foreground font-normal">{item.value}</p>
                   </div>
                 </motion.a>
               ))}
@@ -154,7 +154,7 @@ export default function Contact() {
               
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-accent text-primary-foreground font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02]"
+                className="w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02]"
               >
                 <Send className="w-5 h-5" />
                 Send Message

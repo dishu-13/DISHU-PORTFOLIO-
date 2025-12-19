@@ -19,7 +19,7 @@ export default function Hero() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.p 
-              className="text-primary font-medium text-lg mb-4 tracking-wide"
+              className="text-primary font-normal text-lg mb-4 tracking-wide"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
@@ -28,7 +28,7 @@ export default function Hero() {
             </motion.p>
             
             <motion.h1 
-              className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
+              className="font-display text-5xl md:text-7xl lg:text-8xl font-medium mb-6"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
@@ -70,14 +70,14 @@ export default function Hero() {
                 href="https://dishu-13.github.io/portfolio/Dishu%20Daksh%20Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:scale-105"
+                className="group flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:scale-105"
               >
                 <Download className="w-5 h-5 group-hover:animate-bounce" />
                 Download CV
               </a>
               <a 
                 href="#contact"
-                className="flex items-center gap-2 px-8 py-4 rounded-full border border-border bg-card/50 backdrop-blur-sm text-foreground font-semibold transition-all duration-300 hover:border-primary hover:bg-primary/10 hover:scale-105"
+                className="flex items-center gap-2 px-8 py-4 rounded-full border border-border bg-card/50 backdrop-blur-sm text-foreground font-medium transition-all duration-300 hover:border-primary hover:bg-primary/10 hover:scale-105"
               >
                 Contact Me
               </a>
