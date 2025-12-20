@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown, Download, Github, Linkedin, Mail } from 'lucide-react';
 import profileImage from '@/assets/profile.png';
 export default function Hero() {
-  return <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden px-4">
+  return <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 pt-20">
       {/* Gradient orbs */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-pulse-glow" style={{
