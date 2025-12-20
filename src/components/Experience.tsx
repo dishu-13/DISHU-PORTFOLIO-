@@ -44,6 +44,19 @@ const experiences = [
   },
   {
     title: 'Campus Ambassador',
+    company: 'eDC IIT Delhi',
+    type: 'Internship',
+    period: 'Dec 2025 - Jan 2026',
+    location: 'Remote',
+    description: [
+      'Selected as Campus Ambassador for Entrepreneurship Development Cell, IIT Delhi',
+      'Leading promotional campaigns and outreach activities for 45 days',
+      'Developing project management and leadership skills'
+    ],
+    color: 'from-red-500 to-rose-500'
+  },
+  {
+    title: 'Campus Ambassador',
     company: 'TRYST, IIT Delhi',
     type: 'Internship',
     period: 'Jan 2023 - Feb 2023',
@@ -58,16 +71,31 @@ const experiences = [
 
 export default function Experience() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  const itemVariants = {
+    hidden: (index: number) => ({ 
+      opacity: 0, 
+      x: index % 2 === 0 ? -30 : 30 
+    }),
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
+  };
 
   return (
-    <section id="experience" className="py-32 px-4 relative">
+    <section id="experience" className="py-20 md:py-32 px-4 relative">
       <div className="container mx-auto max-w-6xl" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="text-center mb-12 md:mb-16"
         >
           <h2 className="font-display text-4xl md:text-5xl font-medium mb-4">
             Work <span className="text-gradient">Experience</span>
@@ -79,13 +107,15 @@ export default function Experience() {
           {/* Timeline line */}
           <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-accent to-primary hidden md:block" />
 
-          <div className="space-y-12">
+          <div className="space-y-8 md:space-y-12">
             {experiences.map((exp, index) => (
               <motion.div
                 key={exp.title + exp.company}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
+                custom={index}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+                variants={itemVariants}
+                transition={{ delay: index * 0.1 }}
                 className={`relative flex flex-col md:flex-row ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 } items-center gap-8`}

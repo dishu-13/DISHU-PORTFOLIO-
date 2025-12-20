@@ -72,7 +72,7 @@ export default function Hero() {
           }} transition={{
             delay: 0.7
           }}>
-              <a href="https://dishu-13.github.io/portfolio/Dishu%20Daksh%20Resume.pdf" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:scale-105">
+              <a href="/DISHU_DAKSH_Resume.pdf" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:scale-105">
                 <Download className="w-5 h-5 group-hover:animate-bounce" />
                 Download CV
               </a>
