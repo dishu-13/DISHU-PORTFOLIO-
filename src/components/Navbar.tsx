@@ -24,14 +24,14 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4">
       <nav
-        className={`flex items-center justify-between px-6 py-3 rounded-full bg-gradient-to-r from-violet-500 via-purple-500 to-cyan-400 shadow-lg transition-all duration-300 ${
+        className={`flex items-center justify-between px-6 py-3 rounded-full bg-card/90 backdrop-blur-md border border-border shadow-lg transition-all duration-300 ${
           isScrolled ? 'shadow-xl' : ''
         }`}
         style={{ minWidth: '320px', maxWidth: '500px', width: '100%' }}
       >
         {/* Logo */}
-        <a href="#home" className="text-white text-lg font-medium tracking-wider">
-          <span className="text-cyan-200">D</span>AKSH
+        <a href="#home" className="text-foreground text-lg font-medium tracking-wider">
+          <span className="text-primary">D</span>AKSH
         </a>
 
         {/* Desktop Navigation - Icons */}
@@ -40,7 +40,7 @@ export default function Navbar() {
             <a
               key={item.label}
               href={item.href}
-              className="text-white/90 hover:text-white hover:scale-110 transition-all duration-200"
+              className="text-muted-foreground hover:text-primary hover:scale-110 transition-all duration-200"
               title={item.label}
             >
               <item.icon className="w-5 h-5" />
@@ -51,7 +51,7 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-1 text-white"
+          className="md:hidden p-1 text-foreground"
         >
           {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
@@ -59,14 +59,14 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden fixed top-20 left-4 right-4 bg-gradient-to-r from-violet-500 via-purple-500 to-cyan-400 rounded-2xl shadow-xl p-4">
+        <div className="md:hidden fixed top-20 left-4 right-4 bg-card/95 backdrop-blur-md border border-border rounded-2xl shadow-xl p-4">
           <div className="flex flex-col gap-3">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-white hover:text-white/80 transition-colors font-light py-2 flex items-center gap-3"
+                className="text-muted-foreground hover:text-primary transition-colors font-light py-2 flex items-center gap-3"
               >
                 <item.icon className="w-5 h-5" />
                 {item.label}
