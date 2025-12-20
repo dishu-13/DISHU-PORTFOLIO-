@@ -1,27 +1,18 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-const navItems = [{
-  label: 'Home',
-  href: '#home'
-}, {
-  label: 'About',
-  href: '#about'
-}, {
-  label: 'Experience',
-  href: '#experience'
-}, {
-  label: 'Skills',
-  href: '#skills'
-}, {
-  label: 'Projects',
-  href: '#projects'
-}, {
-  label: 'Contact',
-  href: '#contact'
-}];
+import { Home, User, Folder, Trophy, Mail, Menu, X } from 'lucide-react';
+
+const navItems = [
+  { icon: Home, href: '#home', label: 'Home' },
+  { icon: User, href: '#about', label: 'About' },
+  { icon: Folder, href: '#projects', label: 'Projects' },
+  { icon: Trophy, href: '#skills', label: 'Skills' },
+  { icon: Mail, href: '#contact', label: 'Contact' },
+];
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -29,33 +20,61 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/95 backdrop-blur-sm shadow-sm' : 'bg-transparent'}`}>
-      <nav className="container mx-auto max-w-6xl px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <a href="#home" className="text-xl font-bold text-foreground">D A K S H</a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map(item => <a key={item.label} href={item.href} className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">
-                {item.label}
-              </a>)}
-          </div>
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4">
+      <nav
+        className={`flex items-center justify-between px-6 py-3 rounded-full bg-gradient-to-r from-violet-500 via-purple-500 to-cyan-400 shadow-lg transition-all duration-300 ${
+          isScrolled ? 'shadow-xl' : ''
+        }`}
+        style={{ minWidth: '320px', maxWidth: '500px', width: '100%' }}
+      >
+        {/* Logo */}
+        <a href="#home" className="text-white text-lg font-medium tracking-wider">
+          <span className="text-cyan-200">D</span>AKSH
+        </a>
 
-          {/* Mobile Menu Button */}
-          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden p-2 text-foreground">
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+        {/* Desktop Navigation - Icons */}
+        <div className="hidden md:flex items-center gap-4">
+          {navItems.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="text-white/90 hover:text-white hover:scale-110 transition-all duration-200"
+              title={item.label}
+            >
+              <item.icon className="w-5 h-5" />
+            </a>
+          ))}
         </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && <div className="md:hidden mt-4 py-4 border-t border-border">
-            <div className="flex flex-col gap-3">
-              {navItems.map(item => <a key={item.label} href={item.href} onClick={() => setIsMobileMenuOpen(false)} className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium py-2">
-                  {item.label}
-                </a>)}
-            </div>
-          </div>}
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden p-1 text-white"
+        >
+          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
       </nav>
-    </header>;
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden fixed top-20 left-4 right-4 bg-gradient-to-r from-violet-500 via-purple-500 to-cyan-400 rounded-2xl shadow-xl p-4">
+          <div className="flex flex-col gap-3">
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-white hover:text-white/80 transition-colors font-light py-2 flex items-center gap-3"
+              >
+                <item.icon className="w-5 h-5" />
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </header>
+  );
 }
