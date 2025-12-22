@@ -36,10 +36,10 @@ export default function About() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6 text-justify">
               I'm a <span className="text-foreground font-medium">detail-oriented Data Analyst</span> with a strong foundation in data analysis, data visualization, and database management. Proficient in Python, SQL and Power BI, with hands-on experience in cleaning, modeling, and analyzing large datasets.
             </p>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8 text-justify">
               Adept at designing interactive dashboards, conducting statistical analyses, and deriving actionable insights to support data-driven decision-making. <span className="text-primary">Certified by Google and Microsoft</span> in data analytics. Passionate about leveraging data to solve real-world problems and delivering impactful solutions.
             </p>
             
