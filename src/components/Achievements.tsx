@@ -75,11 +75,11 @@ export default function Achievements() {
         <motion.div variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {certificates.map((cert, index) => <motion.div key={index} variants={itemVariants} className="group relative rounded-2xl overflow-hidden card-glass hover-lift">
               <div className="aspect-[4/3] overflow-hidden">
-                <img src={cert.image} alt={cert.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 border-primary-foreground" />
+                <img src={cert.image} alt={cert.title} className="w-full h-full group-hover:scale-105 transition-transform duration-500 border-primary-foreground object-scale-down" />
               </div>
               <div className="p-4 bg-card/80 backdrop-blur-sm">
                 
-                <h3 className="font-display font-medium text-foreground">{cert.title}</h3>
+                
               </div>
               <a href={cert.image} target="_blank" rel="noopener noreferrer" className="absolute top-3 right-3 p-2 rounded-full bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-primary hover:text-primary-foreground">
                 <ExternalLink className="w-4 h-4" />
