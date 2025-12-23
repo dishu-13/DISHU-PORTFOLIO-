@@ -93,10 +93,6 @@ export default function Achievements() {
                 />
               </div>
               <div className="p-4 bg-card/80 backdrop-blur-sm">
-                <div className="flex items-center gap-2 mb-2">
-                  <Award className="w-5 h-5 text-primary" />
-                  <span className="text-sm text-muted-foreground">{cert.issuer}</span>
-                </div>
                 <h3 className="font-display font-medium text-foreground">{cert.title}</h3>
               </div>
               <a
