@@ -14,14 +14,21 @@ export default function Contact() {
     email: '',
     message: ''
   });
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast.success('Message sent successfully! I will get back to you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      message: ''
-    });
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      await fetch('/', {
+        method: 'POST',
+        body: data
+      });
+      toast.success('Message sent successfully! I will get back to you soon.');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      toast.error('Failed to send message. Please try again.');
+    }
   };
   const contactInfo = [{
     icon: Mail,
