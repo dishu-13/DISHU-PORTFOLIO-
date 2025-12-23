@@ -3,7 +3,7 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Award, ExternalLink } from 'lucide-react';
 const certificates = [{
-  title: 'Microsoft Excel Certificate',
+  title: '',
   issuer: 'Microsoft',
   image: 'https://dishu-13.github.io/portfolio/certificate1.png'
 }, {
