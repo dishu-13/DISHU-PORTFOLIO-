@@ -14,7 +14,7 @@ const navItems = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
   const activeSection = useActiveSection(navItems.map(item => item.id));
 
   useEffect(() => {
@@ -62,9 +62,6 @@ export default function Navbar() {
               title={item.label}
             >
               <item.icon className="w-4 h-4 sm:w-5 sm:h-5" />
-              {activeSection === item.id && (
-                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary" />
-              )}
             </a>
           ))}
           

@@ -39,8 +39,11 @@ export default function About() {
             <p className="text-lg text-muted-foreground leading-relaxed mb-6 text-justify">
               I'm a <span className="text-foreground font-medium">detail-oriented Data Analyst</span> with a strong foundation in data analysis, data visualization, and database management. Proficient in Python, SQL and Power BI, with hands-on experience in cleaning, modeling, and analyzing large datasets.
             </p>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8 text-justify">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6 text-justify">
               Adept at designing interactive dashboards, conducting statistical analyses, and deriving actionable insights to support data-driven decision-making. <span className="text-primary">Certified by Google and Microsoft</span> in data analytics. Passionate about leveraging data to solve real-world problems and delivering impactful solutions.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8 text-justify">
+              I have completed <span className="text-foreground font-medium">5+ projects</span> showcasing my data analysis skills, earned <span className="text-foreground font-medium">5 certifications</span> from Google, Microsoft and HP, and gained practical experience through <span className="text-foreground font-medium">4 remote internships</span> in data analytics and business intelligence.
             </p>
             
             <div className="flex items-center gap-4">
@@ -49,12 +52,12 @@ export default function About() {
                 <p className="text-sm text-muted-foreground">Projects</p>
               </div>
               <div className="p-4 rounded-xl bg-secondary/50 border border-border">
-                <p className="text-3xl font-display font-medium text-gradient">4</p>
+                <p className="text-3xl font-display font-medium text-gradient">5</p>
                 <p className="text-sm text-muted-foreground">Certifications</p>
               </div>
               <div className="p-4 rounded-xl bg-secondary/50 border border-border">
                 <p className="text-3xl font-display font-medium text-gradient">4</p>
-                <p className="text-sm text-muted-foreground">Internships</p>
+                <p className="text-sm text-muted-foreground">Remote Internships</p>
               </div>
             </div>
           </motion.div>

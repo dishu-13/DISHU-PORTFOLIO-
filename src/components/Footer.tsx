@@ -8,8 +8,8 @@ export default function Footer() {
         opacity: 1
       }} transition={{
         duration: 0.6
-      }} className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-muted-foreground text-sm">
+      }} className="flex flex-col items-center justify-center gap-4">
+          <p className="text-muted-foreground text-sm text-center">
             © 2024 Dishu Daksh. All rights reserved.
           </p>
           
