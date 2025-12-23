@@ -78,10 +78,7 @@ export default function Achievements() {
                 <img src={cert.image} alt={cert.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 border-primary-foreground" />
               </div>
               <div className="p-4 bg-card/80 backdrop-blur-sm">
-                <div className="flex items-center gap-2 mb-2">
-                  <Award className="w-5 h-5 text-primary" />
-                  <span className="text-sm text-muted-foreground">{cert.issuer}</span>
-                </div>
+                
                 <h3 className="font-display font-medium text-foreground">{cert.title}</h3>
               </div>
               <a href={cert.image} target="_blank" rel="noopener noreferrer" className="absolute top-3 right-3 p-2 rounded-full bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-primary hover:text-primary-foreground">
