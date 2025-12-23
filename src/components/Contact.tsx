@@ -111,22 +111,39 @@ export default function Contact() {
           </motion.div>
 
           {/* Contact Form */}
-          <motion.form onSubmit={handleSubmit} initial={{
-          opacity: 0,
-          x: 50
-        }} animate={isInView ? {
-          opacity: 1,
-          x: 0
-        } : {}} transition={{
-          duration: 0.8,
-          delay: 0.3
-        }} className="p-8 rounded-3xl card-glass">
+          <motion.form 
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            onSubmit={handleSubmit}
+            initial={{
+              opacity: 0,
+              x: 50
+            }} 
+            animate={isInView ? {
+              opacity: 1,
+              x: 0
+            } : {}} 
+            transition={{
+              duration: 0.8,
+              delay: 0.3
+            }} 
+            className="p-8 rounded-3xl card-glass"
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="subject" value="New Contact Form Submission from Portfolio" />
+            <p className="hidden">
+              <label>
+                Don't fill this out if you're human: <input name="bot-field" />
+              </label>
+            </p>
             <div className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                   Your Name
                 </label>
-                <input type="text" id="name" required value={formData.name} onChange={e => setFormData({
+                <input type="text" id="name" name="name" required value={formData.name} onChange={e => setFormData({
                 ...formData,
                 name: e.target.value
               })} className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="John Doe" />
@@ -136,7 +153,7 @@ export default function Contact() {
                 <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                   Your Email
                 </label>
-                <input type="email" id="email" required value={formData.email} onChange={e => setFormData({
+                <input type="email" id="email" name="email" required value={formData.email} onChange={e => setFormData({
                 ...formData,
                 email: e.target.value
               })} className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="john@example.com" />
@@ -146,7 +163,7 @@ export default function Contact() {
                 <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
                   Message
                 </label>
-                <textarea id="message" required rows={5} value={formData.message} onChange={e => setFormData({
+                <textarea id="message" name="message" required rows={5} value={formData.message} onChange={e => setFormData({
                 ...formData,
                 message: e.target.value
               })} className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none" placeholder="Tell me about your project..." />
