@@ -108,7 +108,7 @@ export default {
   					height: '0'
   				}
   			},
-  			'float': {
+  			float: {
   				'0%, 100%': {
   					transform: 'translateY(0px) rotate(0deg)'
   				},
@@ -156,7 +156,7 @@ export default {
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
-  			'float': 'float 6s ease-in-out infinite',
+  			float: 'float 6s ease-in-out infinite',
   			'float-reverse': 'float-reverse 7s ease-in-out infinite',
   			'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
   			'spin-slow': 'spin-slow 20s linear infinite',
