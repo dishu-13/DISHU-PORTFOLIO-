@@ -18,14 +18,17 @@ export default function Contact() {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
-
     try {
       await fetch('/', {
         method: 'POST',
         body: data
       });
       toast.success('Message sent successfully! I will get back to you soon.');
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
     } catch (error) {
       toast.error('Failed to send message. Please try again.');
     }
@@ -110,34 +113,22 @@ export default function Contact() {
 
             {/* Social Links */}
             <div className="flex gap-4 pt-6">
-              <a href="https://github.com/dishu-13" target="_blank" rel="noopener noreferrer" className="p-4 rounded-xl bg-secondary/40 border border-border text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 transition-all duration-300">
-                
-              </a>
+              
               
             </div>
           </motion.div>
 
           {/* Contact Form */}
-          <motion.form 
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
-            onSubmit={handleSubmit}
-            initial={{
-              opacity: 0,
-              x: 50
-            }} 
-            animate={isInView ? {
-              opacity: 1,
-              x: 0
-            } : {}} 
-            transition={{
-              duration: 0.8,
-              delay: 0.3
-            }} 
-            className="p-8 rounded-3xl card-glass"
-          >
+          <motion.form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onSubmit={handleSubmit} initial={{
+          opacity: 0,
+          x: 50
+        }} animate={isInView ? {
+          opacity: 1,
+          x: 0
+        } : {}} transition={{
+          duration: 0.8,
+          delay: 0.3
+        }} className="p-8 rounded-3xl card-glass">
             <input type="hidden" name="form-name" value="contact" />
             <input type="hidden" name="subject" value="New Contact Form Submission from Portfolio" />
             <p className="hidden">
