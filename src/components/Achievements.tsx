@@ -95,8 +95,16 @@ export default function Achievements() {
                 
               </div>
               <div className="p-4 bg-card/80 backdrop-blur-sm">
-                
-                
+                <h3 className="font-display font-medium text-foreground text-sm mb-1 line-clamp-1">
+                  {cert.title}
+                </h3>
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                  <span>{cert.issuer}</span>
+                  <span className="flex items-center gap-1">
+                    <Calendar className="w-3 h-3" />
+                    {cert.date}
+                  </span>
+                </div>
               </div>
               <a href={cert.image} target="_blank" rel="noopener noreferrer" className="absolute top-3 right-3 p-2 rounded-full bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-primary hover:text-primary-foreground">
                 <ExternalLink className="w-4 h-4" />
