@@ -2,27 +2,40 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { TrendingUp, Database, BarChart3, Brain } from 'lucide-react';
-
-const highlights = [
-  { icon: TrendingUp, label: 'Data Analysis', description: 'Transform raw data into insights' },
-  { icon: Database, label: 'Database Management', description: 'SQL & data modeling expertise' },
-  { icon: BarChart3, label: 'Visualization', description: 'Power BI & dashboard design' },
-  { icon: Brain, label: 'Machine Learning', description: 'Predictive modeling with Python' },
-];
-
+const highlights = [{
+  icon: TrendingUp,
+  label: 'Data Analysis',
+  description: 'Transform raw data into insights'
+}, {
+  icon: Database,
+  label: 'Database Management',
+  description: 'SQL & data modeling expertise'
+}, {
+  icon: BarChart3,
+  label: 'Visualization',
+  description: 'Power BI & dashboard design'
+}, {
+  icon: Brain,
+  label: 'Machine Learning',
+  description: 'Predictive modeling with Python'
+}];
 export default function About() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  return (
-    <section id="about" className="py-20 md:py-32 px-4 md:px-6 relative">
+  const isInView = useInView(ref, {
+    once: true,
+    margin: "-100px"
+  });
+  return <section id="about" className="py-20 md:py-32 px-4 md:px-6 relative">
       <div className="container mx-auto max-w-6xl mr-4 md:mr-auto" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12 md:mb-16"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 50
+      }} animate={isInView ? {
+        opacity: 1,
+        y: 0
+      } : {}} transition={{
+        duration: 0.8
+      }} className="text-center mb-12 md:mb-16">
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-medium mb-4">
             About <span className="text-gradient">Me</span>
           </h2>
@@ -31,20 +44,23 @@ export default function About() {
 
         <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
           {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
+          <motion.div initial={{
+          opacity: 0,
+          x: -50
+        }} animate={isInView ? {
+          opacity: 1,
+          x: 0
+        } : {}} transition={{
+          duration: 0.8,
+          delay: 0.2
+        }}>
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4 md:mb-6 text-justify">
               I'm a <span className="text-foreground font-medium">detail-oriented Data Analyst</span> with a strong foundation in data analysis, data visualization, and database management. Proficient in Python, SQL and Power BI, with hands-on experience in cleaning, modeling, and analyzing large datasets.
             </p>
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4 md:mb-6 text-justify">
               Adept at designing interactive dashboards, conducting statistical analyses, and deriving actionable insights to support data-driven decision-making. <span className="text-primary">Certified by Google and Microsoft</span> in data analytics and Google Ads. Passionate about leveraging data to solve real-world problems and delivering impactful solutions.
             </p>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6 md:mb-8 text-justify">
-              I have completed <span className="text-foreground font-medium">5+ projects</span> showcasing my data analysis skills, earned <span className="text-foreground font-medium">7 certifications</span> from Google, Microsoft and HP, and gained practical experience through <span className="text-foreground font-medium">4 remote internships</span> in data analytics and business intelligence.
-            </p>
+            
             
             <div className="flex flex-wrap items-center gap-3 md:gap-4">
               <div className="p-3 md:p-4 rounded-xl bg-secondary/50 border border-border flex-1 min-w-[80px]">
@@ -52,7 +68,7 @@ export default function About() {
                 <p className="text-xs md:text-sm text-muted-foreground">Projects</p>
               </div>
               <div className="p-3 md:p-4 rounded-xl bg-secondary/50 border border-border flex-1 min-w-[80px]">
-                <p className="text-2xl md:text-3xl font-display font-medium text-gradient">7</p>
+                <p className="text-2xl md:text-3xl font-display font-medium text-gradient">6</p>
                 <p className="text-xs md:text-sm text-muted-foreground">Certifications</p>
               </div>
               <div className="p-3 md:p-4 rounded-xl bg-secondary/50 border border-border flex-1 min-w-[80px]">
@@ -63,30 +79,34 @@ export default function About() {
           </motion.div>
 
           {/* Highlights Grid */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="grid grid-cols-2 gap-3 md:gap-4"
-          >
-            {highlights.map((item, index) => (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                className="group p-4 md:p-6 rounded-2xl card-glass hover-lift cursor-default"
-              >
+          <motion.div initial={{
+          opacity: 0,
+          x: 50
+        }} animate={isInView ? {
+          opacity: 1,
+          x: 0
+        } : {}} transition={{
+          duration: 0.8,
+          delay: 0.4
+        }} className="grid grid-cols-2 gap-3 md:gap-4">
+            {highlights.map((item, index) => <motion.div key={item.label} initial={{
+            opacity: 0,
+            y: 30
+          }} animate={isInView ? {
+            opacity: 1,
+            y: 0
+          } : {}} transition={{
+            duration: 0.5,
+            delay: 0.5 + index * 0.1
+          }} className="group p-4 md:p-6 rounded-2xl card-glass hover-lift cursor-default">
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">
                   <item.icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                 </div>
                 <h3 className="font-display font-medium text-foreground mb-1 text-sm md:text-base">{item.label}</h3>
                 <p className="text-xs md:text-sm text-muted-foreground">{item.description}</p>
-              </motion.div>
-            ))}
+              </motion.div>)}
           </motion.div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 }
