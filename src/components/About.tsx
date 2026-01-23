@@ -72,8 +72,8 @@ export default function About() {
                 <p className="text-xs md:text-sm text-muted-foreground">Certifications</p>
               </div>
               <div className="p-3 md:p-4 rounded-xl bg-secondary/50 border border-border flex-1 min-w-[80px]">
-                <p className="text-2xl md:text-3xl font-display font-medium text-gradient">4</p>
-                <p className="text-xs md:text-sm text-muted-foreground">Remote Internships</p>
+                <p className="text-2xl md:text-3xl font-display font-medium text-gradient">5+</p>
+                <p className="text-xs md:text-sm text-muted-foreground">Work Experience</p>
               </div>
             </div>
           </motion.div>
