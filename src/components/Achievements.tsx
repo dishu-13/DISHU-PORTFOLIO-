@@ -1,18 +1,8 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { ExternalLink, Award, FileText } from 'lucide-react';
+import { ExternalLink, Calendar } from 'lucide-react';
 import googleAiAdsCert from '@/assets/certificates/google-ai-ads.png';
-import nccCCert from '@/assets/certificates/ncc-c-certificate.jpeg';
-
-const achievements = [{
-  title: 'NCC Certificate "C" — BEE Grade',
-  issuer: 'Ministry of Defence, Government of India',
-  date: '2024',
-  description: '78 UK BN NCC Haldwani, Uttarakhand Directorate. Passed Certificate "C" Examination under the authority of Ministry of Defence.',
-  image: nccCCert
-}];
-
 const certificates = [{
   title: 'AI-Powered Performance Ads Certification',
   issuer: 'Google Ads',
@@ -44,100 +34,66 @@ const certificates = [{
   date: '2024',
   image: 'https://dishu-13.github.io/portfolio/certificate4.png'
 }];
-
 const containerVariants = {
-  hidden: { opacity: 0 },
+  hidden: {
+    opacity: 0
+  },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
   }
 };
-
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: {
+    opacity: 0,
+    y: 30
+  },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }
+    transition: {
+      duration: 0.5,
+      ease: [0.25, 0.46, 0.45, 0.94]
+    }
   }
 };
-
 export default function Achievements() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  return (
-    <section id="achievements" className="py-32 px-4 relative">
+  const isInView = useInView(ref, {
+    once: true,
+    margin: "-100px"
+  });
+  return <section id="achievements" className="py-32 px-4 relative">
       <div className="container mx-auto max-w-6xl" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 50
+      }} animate={isInView ? {
+        opacity: 1,
+        y: 0
+      } : {}} transition={{
+        duration: 0.8
+      }} className="text-center mb-16">
           <h2 className="font-display text-4xl md:text-5xl font-medium mb-4">
-            Achievements & <span className="text-gradient">Certificates</span>
+            Awards & <span className="text-gradient">Certificates</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
         </motion.div>
 
-        {/* Achievements Subsection */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-16"
-        >
-          <div className="flex items-center gap-2 mb-8">
-            <Award className="w-5 h-5 text-primary" />
-            <h3 className="font-display text-2xl md:text-3xl font-medium">Achievements</h3>
-          </div>
-
-          <motion.div variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {achievements.map((item, index) => (
-              <motion.div key={index} variants={itemVariants} className="group relative rounded-2xl overflow-hidden card-glass hover-lift flex flex-col sm:flex-row">
-                <div className="sm:w-2/5 aspect-[3/4] sm:aspect-auto overflow-hidden">
-                  <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                </div>
-                <div className="p-5 sm:w-3/5 flex flex-col justify-center">
-                  <h4 className="font-display text-lg font-medium mb-2">{item.title}</h4>
-                  <p className="text-sm text-muted-foreground mb-1">{item.issuer}</p>
-                  <p className="text-xs text-muted-foreground mb-3">{item.date}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-                </div>
-                <a href={item.image} target="_blank" rel="noopener noreferrer" className="absolute top-3 right-3 p-2 rounded-full bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-primary hover:text-primary-foreground">
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        {/* Certificates Subsection */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <div className="flex items-center gap-2 mb-8">
-            <FileText className="w-5 h-5 text-primary" />
-            <h3 className="font-display text-2xl md:text-3xl font-medium">Certificates</h3>
-          </div>
-
-          <motion.div variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {certificates.map((cert, index) => (
-              <motion.div key={index} variants={itemVariants} className="group relative rounded-2xl overflow-hidden card-glass hover-lift">
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img src={cert.image} alt={cert.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                </div>
-                <a href={cert.image} target="_blank" rel="noopener noreferrer" className="absolute top-3 right-3 p-2 rounded-full bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-primary hover:text-primary-foreground">
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </motion.div>
-            ))}
-          </motion.div>
+        <motion.div variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {certificates.map((cert, index) => <motion.div key={index} variants={itemVariants} className="group relative rounded-2xl overflow-hidden card-glass hover-lift">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img src={cert.image} alt={cert.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              
+              <a href={cert.image} target="_blank" rel="noopener noreferrer" className="absolute top-3 right-3 p-2 rounded-full bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-primary hover:text-primary-foreground">
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </motion.div>)}
         </motion.div>
       </div>
-    </section>
-  );
+    </section>;
 }
