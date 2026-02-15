@@ -3,17 +3,16 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ExternalLink, Calendar } from 'lucide-react';
 import googleAiAdsCert from '@/assets/certificates/google-ai-ads.png';
-import nccCertificateC from '@/assets/certificates/ncc-certificate-c.jpeg';
 const certificates = [{
   title: 'AI-Powered Performance Ads Certification',
   issuer: 'Google Ads',
   date: 'December 2025',
   image: googleAiAdsCert
 }, {
-  title: 'NCC Certificate C (BEE Grade)',
-  issuer: 'Ministry of Defence, India',
+  title: 'Data Analytics Certificate',
+  issuer: 'Google',
   date: '2024',
-  image: nccCertificateC
+  image: 'https://dishu-13.github.io/portfolio/certificate5.png'
 }, {
   title: 'SQL Certificate',
   issuer: 'Google',
@@ -84,22 +83,13 @@ export default function Achievements() {
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
         </motion.div>
 
-        <motion.div variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {certificates.map((cert, index) => <motion.div key={index} variants={itemVariants} className="group relative rounded-2xl overflow-hidden card-glass hover-lift flex flex-col">
-              <div className="aspect-[4/3] overflow-hidden bg-secondary/30">
-                <img src={cert.image} alt={cert.title} className="w-full h-full object-contain p-1 group-hover:scale-105 transition-transform duration-500" />
+        <motion.div variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {certificates.map((cert, index) => <motion.div key={index} variants={itemVariants} className="group relative rounded-2xl overflow-hidden card-glass hover-lift">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img src={cert.image} alt={cert.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               
-              <div className="p-4 flex flex-col gap-1 flex-1">
-                <h3 className="font-medium text-sm leading-tight text-foreground">{cert.title}</h3>
-                <div className="flex items-center gap-2 mt-auto pt-2">
-                  <span className="text-xs text-muted-foreground">{cert.issuer}</span>
-                  <span className="text-xs text-muted-foreground/50">•</span>
-                  <span className="text-xs text-muted-foreground flex items-center gap-1"><Calendar className="w-3 h-3" />{cert.date}</span>
-                </div>
-              </div>
-
-              <a href={typeof cert.image === 'string' ? cert.image : '#'} target="_blank" rel="noopener noreferrer" className="absolute top-3 right-3 p-2 rounded-full bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-primary hover:text-primary-foreground">
+              <a href={cert.image} target="_blank" rel="noopener noreferrer" className="absolute top-3 right-3 p-2 rounded-full bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-primary hover:text-primary-foreground">
                 <ExternalLink className="w-4 h-4" />
               </a>
             </motion.div>)}
