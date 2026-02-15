@@ -2,8 +2,14 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ExternalLink, Calendar } from 'lucide-react';
+import googleAnalyticsCert from '@/assets/certificates/google-analytics.png';
 import googleAiAdsCert from '@/assets/certificates/google-ai-ads.png';
 const certificates = [{
+  title: 'Google Analytics Certification',
+  issuer: 'Google',
+  date: 'December 2025',
+  image: googleAnalyticsCert
+}, {
   title: 'AI-Powered Performance Ads Certification',
   issuer: 'Google Ads',
   date: 'December 2025',
