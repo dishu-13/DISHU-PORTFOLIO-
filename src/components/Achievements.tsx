@@ -1,95 +1,55 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { ExternalLink, Award, Shield, Medal } from 'lucide-react';
-import googleAnalyticsCert from '@/assets/certificates/google-analytics.png';
-import googleAiAdsCert from '@/assets/certificates/google-ai-ads.png';
-import nccCert from '@/assets/certificates/ncc-c-certificate.jpeg';
+import { Shield, Medal, Award, Trophy, Star, Target } from 'lucide-react';
 
 const achievements = [
   {
     icon: Shield,
     title: 'NCC Certificate "C" - BEE Grade',
-    description: 'Passed under Ministry of Defence, Government of India. Unit: 78 UK BN NCC Haldwani.',
+    description: 'Passed under Ministry of Defence, Government of India. Unit: 78 UK BN NCC Haldwani, Uttarakhand.',
+    year: '2024',
   },
   {
-    icon: Medal,
-    title: '5+ Professional Internships',
-    description: 'Gained hands-on experience across data analytics, digital marketing, and web development.',
+    icon: Trophy,
+    title: '5+ Professional Experiences',
+    description: 'Worked across data analytics, digital marketing, web development, and insurance at top organizations.',
+    year: '2023–Present',
   },
   {
     icon: Award,
     title: '8+ Industry Certifications',
-    description: 'Certified by Google, Microsoft & HP in Analytics, SQL, Excel, Power BI, and AI Ads.',
-  },
-];
-
-const certificates = [
-  {
-    title: 'Google Analytics Certification',
-    issuer: 'Google',
-    date: 'December 2025',
-    image: googleAnalyticsCert,
+    description: 'Certified by Google, Microsoft & HP in Analytics, SQL, Excel, Power BI, and AI-Powered Ads.',
+    year: '2024–2025',
   },
   {
-    title: 'AI-Powered Performance Ads Certification',
-    issuer: 'Google Ads',
-    date: 'December 2025',
-    image: googleAiAdsCert,
+    icon: Target,
+    title: 'Data-Driven Problem Solver',
+    description: 'Built dashboards and predictive models that delivered actionable business insights across multiple domains.',
+    year: 'Ongoing',
   },
   {
-    title: 'NCC Certificate "C" Examination',
-    issuer: 'Ministry of Defence, India',
-    date: '2024',
-    image: nccCert,
+    icon: Star,
+    title: 'Kotak Mahindra Life Insurance',
+    description: 'Selected as Assistance Partner Apprentice with a 1-year contract for recruitment and training operations.',
+    year: '2025',
   },
   {
-    title: 'Data Analytics Certificate',
-    issuer: 'Google',
-    date: '2024',
-    image: 'https://dishu-13.github.io/portfolio/certificate5.png',
-  },
-  {
-    title: 'SQL Certificate',
-    issuer: 'Google',
-    date: '2024',
-    image: 'https://dishu-13.github.io/portfolio/certificate3.png',
-  },
-  {
-    title: 'Microsoft Excel Certificate',
-    issuer: 'Microsoft',
-    date: '2024',
-    image: 'https://dishu-13.github.io/portfolio/certificate1.png',
-  },
-  {
-    title: 'Power BI Certificate',
-    issuer: 'Microsoft',
-    date: '2024',
-    image: 'https://dishu-13.github.io/portfolio/certificate2.png',
-  },
-  {
-    title: 'HP Life Certificate',
-    issuer: 'HP',
-    date: '2024',
-    image: 'https://dishu-13.github.io/portfolio/certificate4.png',
+    icon: Medal,
+    title: 'IIT Delhi eDC Internship',
+    description: 'Completed a web development internship at the entrepreneurship Development Cell of IIT Delhi.',
+    year: '2024',
   },
 ];
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
 };
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
-  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
 export default function Achievements() {
@@ -99,7 +59,6 @@ export default function Achievements() {
   return (
     <section id="achievements" className="py-32 px-4 relative">
       <div className="container mx-auto max-w-6xl" ref={ref}>
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -107,73 +66,41 @@ export default function Achievements() {
           className="text-center mb-16"
         >
           <h2 className="font-display text-4xl md:text-5xl font-medium mb-4">
-            Achievements & <span className="text-gradient">Certificates</span>
+            Key <span className="text-gradient">Achievements</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
         </motion.div>
 
-        {/* Achievement Highlights */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
         >
           {achievements.map((item, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
-              className="group p-6 rounded-2xl card-glass hover-lift text-center"
+              className="group p-6 rounded-2xl card-glass hover-lift"
             >
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <item.icon className="w-7 h-7 text-primary" />
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <item.icon className="w-6 h-6 text-primary" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <h3 className="font-display font-medium text-foreground text-sm leading-tight">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <span className="inline-block text-xs text-primary/80 bg-primary/10 px-2 py-0.5 rounded-full mb-2">
+                    {item.year}
+                  </span>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
               </div>
-              <h3 className="font-display font-medium text-foreground mb-2 text-base">
-                {item.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {item.description}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Certificates Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
-        >
-          {certificates.map((cert, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="group relative rounded-2xl overflow-hidden card-glass hover-lift"
-            >
-              <div className="aspect-[4/3] overflow-hidden bg-secondary/30">
-                <img
-                  src={cert.image}
-                  alt={cert.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <div className="p-4">
-                <h4 className="text-sm font-medium text-foreground leading-tight mb-1 line-clamp-2">
-                  {cert.title}
-                </h4>
-                <p className="text-xs text-muted-foreground">
-                  {cert.issuer} · {cert.date}
-                </p>
-              </div>
-              <a
-                href={cert.image}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute top-3 right-3 p-2 rounded-full bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-primary hover:text-primary-foreground"
-              >
-                <ExternalLink className="w-4 h-4" />
-              </a>
             </motion.div>
           ))}
         </motion.div>
