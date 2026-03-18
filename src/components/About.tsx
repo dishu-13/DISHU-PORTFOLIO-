@@ -58,7 +58,7 @@ export default function About() {
               I'm a <span className="text-foreground font-medium">detail-oriented Data Analyst</span> with a strong foundation in data analysis, data visualization, and database management. Proficient in Python, SQL and Power BI, with hands-on experience in cleaning, modeling, and analyzing large datasets.
             </p>
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4 md:mb-6 text-justify">
-              Adept at designing interactive dashboards, conducting statistical analyses, and deriving actionable insights to support data-driven decision-making. <span className="text-primary">Certified by Google and Microsoft</span> in data analytics and Google Ads. Passionate about leveraging data to solve real-world problems and delivering impactful solutions.
+              Adept at designing interactive dashboards, conducting statistical analyses, and deriving actionable insights to support data-driven decision-making. <span className="text-primary">Certified by Google and Microsoft</span> in data analytics, Power BI, Azure, AI/ML, and Google Ads. Currently an Intern at Microsoft Elevate. Passionate about leveraging data to solve real-world problems and delivering impactful solutions.
             </p>
             
             
@@ -68,11 +68,11 @@ export default function About() {
                 <p className="text-xs md:text-sm text-muted-foreground">Projects</p>
               </div>
               <div className="p-3 md:p-4 rounded-xl bg-secondary/50 border border-border flex-1 min-w-[80px]">
-                <p className="text-2xl md:text-3xl font-display font-medium text-gradient">6</p>
+             <p className="text-2xl md:text-3xl font-display font-medium text-gradient">13</p>
                 <p className="text-xs md:text-sm text-muted-foreground">Certifications</p>
               </div>
               <div className="p-3 md:p-4 rounded-xl bg-secondary/50 border border-border flex-1 min-w-[80px]">
-                <p className="text-2xl md:text-3xl font-display font-medium text-gradient">5+</p>
+             <p className="text-2xl md:text-3xl font-display font-medium text-gradient">8+</p>
                 <p className="text-xs md:text-sm text-muted-foreground">Work Experience</p>
               </div>
             </div>
