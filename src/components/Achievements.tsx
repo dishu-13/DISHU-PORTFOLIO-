@@ -2,14 +2,9 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ExternalLink } from 'lucide-react';
-import googleAnalyticsCert from '@/assets/certificates/google-analytics.png';
 import googleAiAdsCert from '@/assets/certificates/google-ai-ads.png';
 import msElevatePowerBICourse from '@/assets/certificates/ms-elevate-powerbi-course.png';
 import msElevatePowerBIInternship from '@/assets/certificates/ms-elevate-powerbi-internship.png';
-import msElevateAzure from '@/assets/certificates/ms-elevate-azure.png';
-import msElevateCloud from '@/assets/certificates/ms-elevate-cloud.png';
-import msElevateAIML from '@/assets/certificates/ms-elevate-aiml.png';
-import msElevateCopilot from '@/assets/certificates/ms-elevate-copilot.png';
 
 const certificates = [
   // March 2026
@@ -25,37 +20,7 @@ const certificates = [
     date: 'March 2026',
     image: msElevatePowerBIInternship
   },
-  {
-    title: 'Microsoft Azure - Course Completion',
-    issuer: 'Microsoft Elevate × AICTE',
-    date: 'March 2026',
-    image: msElevateAzure
-  },
-  {
-    title: 'Cloud Administration & Engineering',
-    issuer: 'Microsoft Elevate × AICTE',
-    date: 'March 2026',
-    image: msElevateCloud
-  },
-  {
-    title: 'AI & Machine Learning',
-    issuer: 'Microsoft Elevate × AICTE',
-    date: 'March 2026',
-    image: msElevateAIML
-  },
-  {
-    title: 'Microsoft Copilot',
-    issuer: 'Microsoft Elevate × AICTE',
-    date: 'March 2026',
-    image: msElevateCopilot
-  },
   // December 2025
-  {
-    title: 'Google Analytics Certification',
-    issuer: 'Google',
-    date: 'December 2025',
-    image: googleAnalyticsCert
-  },
   {
     title: 'AI-Powered Performance Ads Certification',
     issuer: 'Google Ads',
