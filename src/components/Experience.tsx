@@ -6,6 +6,20 @@ import { Briefcase, MapPin, Calendar } from 'lucide-react';
 // Sorted by start date (newest first)
 const experiences = [
   {
+    title: 'Microsoft Elevate Intern',
+    company: 'Microsoft',
+    type: 'Internship',
+    period: 'Feb 2026 - Mar 2026',
+    startDate: new Date('2026-02-16'),
+    location: 'Remote',
+    description: [
+      'Completed 4-week internship on Emerging Technologies (Power BI, Azure, AI/ML, Copilot, Cloud)',
+      'Built interactive Power BI dashboards to visualize KPIs, sales trends, and performance metrics',
+      'Earned 6 co-branded certificates from Microsoft & AICTE'
+    ],
+    color: 'from-sky-500 to-blue-600'
+  },
+  {
     title: 'Assistance Partner Apprentice',
     company: 'Kotak Mahindra Life Insurance',
     type: 'Apprenticeship',
@@ -27,9 +41,9 @@ const experiences = [
     startDate: new Date('2025-12-01'),
     location: 'Remote',
     description: [
-      'Selected as Campus Ambassador for Entrepreneurship Development Cell, IIT Delhi',
-      'Leading promotional campaigns and outreach activities for 45 days',
-      'Developing project management and leadership skills'
+      'Represented the organization and promoted events, initiatives, and programs',
+      'Coordinated with students and teams to increase participation and engagement',
+      'Built communication and leadership skills through diverse outreach'
     ],
     color: 'from-red-500 to-rose-500'
   },
@@ -73,6 +87,19 @@ const experiences = [
       'Built and fine-tuned ML models using regression, classification, and clustering'
     ],
     color: 'from-green-500 to-emerald-500'
+  },
+  {
+    title: 'NCC Cadet',
+    company: '78 UK BN NCC Haldwani',
+    type: 'Training',
+    period: 'Mar 2018 - Mar 2023',
+    startDate: new Date('2018-03-01'),
+    location: 'Uttarakhand, India',
+    description: [
+      'Developed strong discipline, leadership, and teamwork through 5 years of training',
+      'Participated in drills, leadership exercises, and organizational events'
+    ],
+    color: 'from-emerald-600 to-green-700'
   },
   {
     title: 'Campus Ambassador',
