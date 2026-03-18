@@ -39,8 +39,8 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4">
       <nav
-        className={`flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 rounded-full bg-card/90 backdrop-blur-md border border-border shadow-lg transition-all duration-300 w-full max-w-[360px] sm:max-w-[520px] md:max-w-[600px] ${
-          isScrolled ? 'shadow-xl' : ''
+        className={`flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 rounded-full bg-card/50 backdrop-blur-2xl border border-border/30 shadow-lg transition-all duration-300 w-full max-w-[360px] sm:max-w-[520px] md:max-w-[600px] ${
+          isScrolled ? 'shadow-xl bg-card/60' : ''
         }`}
       >
         {/* Logo */}
