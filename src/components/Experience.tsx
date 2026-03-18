@@ -20,20 +20,6 @@ const experiences = [
     color: 'from-sky-500 to-blue-600'
   },
   {
-    title: 'Assistance Partner Apprentice',
-    company: 'Kotak Mahindra Life Insurance',
-    type: 'Apprenticeship',
-    period: 'Dec 2025 - Present',
-    startDate: new Date('2025-12-30'),
-    location: 'KLI - Shimla, Hameer House',
-    description: [
-      'Assisting Partners/Employees in recruitment and training of Life Advisors (LA)',
-      'Learning performance review and guidance processes',
-      'Fixed term contract of 1 year with stipend of ₹12,300 + incentives'
-    ],
-    color: 'from-amber-500 to-orange-500'
-  },
-  {
     title: 'Campus Ambassador',
     company: 'eDC IIT Delhi',
     type: 'Internship',
