@@ -44,6 +44,14 @@ const projects = [
     color: 'from-amber-400 to-orange-500',
     link: 'https://github.com/dishu-13/OIBSIP',
   },
+  {
+    title: 'E-Commerce Sales Dashboard',
+    description: 'Interactive Power BI dashboard analyzing e-commerce sales data with dynamic visualizations, KPIs, and filters to track revenue, profit, quantity, and customer trends across regions and categories.',
+    icon: BarChart3,
+    tags: ['Power BI', 'Data Visualization', 'DAX', 'ETL'],
+    color: 'from-violet-400 to-purple-500',
+    link: 'https://github.com/dishu-13/E-Commerce-Sales-PowerBI-Dashboard',
+  },
 ];
 
 export default function Projects() {
