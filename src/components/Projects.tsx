@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { ExternalLink, Github, TrendingUp, Trash2, Home, Wine, ShieldAlert } from 'lucide-react';
+import { ExternalLink, Github, TrendingUp, Trash2, Home, Wine, ShieldAlert, BarChart3 } from 'lucide-react';
 
 const projects = [
   {
