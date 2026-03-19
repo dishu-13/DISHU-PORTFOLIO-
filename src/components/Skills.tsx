@@ -7,107 +7,86 @@ const skillCategories = [
   {
     title: 'Languages',
     icon: Code,
-    color: 'from-blue-500/20 to-blue-600/20 border-blue-500/30',
-    iconColor: 'text-blue-500',
     skills: ['Python', 'SQL', 'HTML', 'CSS']
   },
   {
     title: 'Frameworks & Libraries',
     icon: Layers,
-    color: 'from-purple-500/20 to-purple-600/20 border-purple-500/30',
-    iconColor: 'text-purple-500',
     skills: ['Pandas', 'NumPy', 'Scikit-Learn', 'Matplotlib', 'Seaborn', 'Statistics', 'DAX']
   },
   {
     title: 'Tools',
     icon: Wrench,
-    color: 'from-amber-500/20 to-amber-600/20 border-amber-500/30',
-    iconColor: 'text-amber-500',
     skills: ['Power BI', 'Tableau', 'Microsoft Office']
   }
 ];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94]
-    }
-  }
-};
 
 export default function Skills() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="skills" className="py-24 px-4 md:px-6 relative">
-      <div className="container mx-auto max-w-6xl" ref={ref}>
+    <section id="skills" className="py-24 md:py-32 px-6 md:px-12 relative">
+      <div className="container mx-auto max-w-7xl" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-medium text-foreground mb-3">
-            Skills & Expertise
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-primary mb-4">( Skills )</p>
+          <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight">
+            Tools & <span className="text-primary">Tech</span>
           </h2>
-          <p className="text-muted-foreground font-light">Technologies I work with</p>
         </motion.div>
 
-        {/* Skills Categories */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          {skillCategories.map((category) => {
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {skillCategories.map((category, catIndex) => {
             const Icon = category.icon;
             return (
               <motion.div
                 key={category.title}
-                variants={itemVariants}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className={`p-6 rounded-2xl bg-gradient-to-br ${category.color} border backdrop-blur-sm transition-all duration-300 hover:shadow-lg`}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: catIndex * 0.15 }}
+                className="p-6 md:p-8 border border-border hover:border-primary/30 transition-all duration-300 group"
               >
-                {/* Category Header */}
-                <div className="flex items-center gap-3 mb-5">
-                  <div className={`w-10 h-10 rounded-lg bg-card flex items-center justify-center ${category.iconColor}`}>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 border border-border flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="font-medium text-foreground text-lg">{category.title}</h3>
+                  <h3 className="font-display font-bold text-foreground uppercase text-sm tracking-wider">{category.title}</h3>
                 </div>
 
-                {/* Skills Tags */}
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill) => (
-                    <motion.span
+                    <span
                       key={skill}
-                      whileHover={{ scale: 1.05 }}
-                      className="px-3 py-1.5 rounded-full bg-card/80 text-foreground text-sm font-medium border border-border/50 hover:border-primary/50 hover:bg-primary/10 transition-all duration-200 cursor-default"
+                      className="px-3 py-1.5 text-xs font-medium uppercase tracking-wider border border-border text-muted-foreground hover:border-primary hover:text-primary transition-all duration-200 cursor-default"
                     >
                       {skill}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
               </motion.div>
             );
           })}
+        </div>
+
+        {/* Marquee of skills */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.6 }}
+          className="mt-16 overflow-hidden border-t border-b border-border py-6"
+        >
+          <div className="flex animate-marquee whitespace-nowrap">
+            {[...skillCategories.flatMap(c => c.skills), ...skillCategories.flatMap(c => c.skills)].map((skill, i) => (
+              <span key={i} className="mx-8 text-2xl md:text-4xl font-display font-bold text-secondary uppercase tracking-wider">
+                {skill}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
