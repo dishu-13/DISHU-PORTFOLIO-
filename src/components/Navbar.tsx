@@ -1,93 +1,80 @@
 import { useState, useEffect } from 'react';
+import { Home, User, Briefcase, Code2, Folder, Mail, Award, Moon, Sun } from 'lucide-react';
 import { useActiveSection } from '@/hooks/useActiveSection';
 
 const navItems = [
-  { href: '#home', label: 'Home', id: 'home' },
-  { href: '#about', label: 'About', id: 'about' },
-  { href: '#experience', label: 'Experience', id: 'experience' },
-  { href: '#skills', label: 'Skills', id: 'skills' },
-  { href: '#projects', label: 'Projects', id: 'projects' },
-  { href: '#achievements', label: 'Certificates', id: 'achievements' },
-  { href: '#contact', label: 'Contact', id: 'contact' },
+  { icon: Home, href: '#home', label: 'Home', id: 'home' },
+  { icon: User, href: '#about', label: 'About', id: 'about' },
+  { icon: Briefcase, href: '#experience', label: 'Experience', id: 'experience' },
+  { icon: Code2, href: '#skills', label: 'Skills', id: 'skills' },
+  { icon: Folder, href: '#projects', label: 'Projects', id: 'projects' },
+  { icon: Award, href: '#achievements', label: 'Achievements', id: 'achievements' },
+  { icon: Mail, href: '#contact', label: 'Contact', id: 'contact' },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDark, setIsDark] = useState(false);
   const activeSection = useActiveSection(navItems.map(item => item.id));
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDark) {
+      root.classList.add('dark');
+      root.classList.remove('light');
+    } else {
+      root.classList.add('light');
+      root.classList.remove('dark');
+    }
+  }, [isDark]);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12">
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4">
       <nav
-        className={`flex items-center justify-between py-5 border-b transition-all duration-300 ${
-          isScrolled ? 'border-border/50 bg-background/80 backdrop-blur-xl' : 'border-transparent'
+        className={`flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 rounded-full bg-card/50 backdrop-blur-2xl border border-border/30 shadow-lg transition-all duration-300 w-full max-w-[360px] sm:max-w-[520px] md:max-w-[600px] ${
+          isScrolled ? 'shadow-xl bg-card/60' : ''
         }`}
       >
         {/* Logo */}
-        <a href="#home" className="font-display text-lg font-bold tracking-tight text-foreground uppercase">
-          Dishu Daksh<span className="text-primary">®</span>
+        <a href="#home" className="text-foreground text-base sm:text-xl font-medium tracking-wider">
+          <span className="text-primary">D</span>AKSH
         </a>
 
-        {/* Navigation Links - hidden on mobile */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Navigation - Icons (visible on all screens) */}
+        <div className="flex items-center gap-3 sm:gap-4">
           {navItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
-              className={`text-xs font-medium uppercase tracking-widest transition-colors duration-200 ${
+              className={`relative transition-all duration-200 ${
                 activeSection === item.id
-                  ? 'text-primary'
-                  : 'text-muted-foreground hover:text-foreground'
+                  ? 'text-primary scale-110'
+                  : 'text-muted-foreground hover:text-primary hover:scale-110'
               }`}
+              title={item.label}
             >
-              ( {item.label} )
+              <item.icon className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
           ))}
+          
+          {/* Dark mode toggle */}
+          <button
+            onClick={() => setIsDark(!isDark)}
+            className="text-muted-foreground hover:text-primary hover:scale-110 transition-all duration-200 ml-2"
+            title={isDark ? 'Light mode' : 'Dark mode'}
+          >
+            {isDark ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
+          </button>
         </div>
-
-        {/* CTA */}
-        <a
-          href="#contact"
-          className="hidden md:block px-5 py-2.5 text-xs font-bold uppercase tracking-widest border border-foreground text-foreground hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all duration-300"
-        >
-          Contact Now
-        </a>
-
-        {/* Mobile menu button */}
-        <button className="md:hidden text-foreground" onClick={() => {
-          const el = document.getElementById('mobile-nav');
-          el?.classList.toggle('hidden');
-        }}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
-        </button>
       </nav>
-
-      {/* Mobile menu */}
-      <div id="mobile-nav" className="hidden md:hidden bg-background/95 backdrop-blur-xl border-b border-border">
-        <div className="flex flex-col py-4 gap-3">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={() => document.getElementById('mobile-nav')?.classList.add('hidden')}
-              className={`px-6 py-2 text-sm uppercase tracking-widest transition-colors ${
-                activeSection === item.id ? 'text-primary' : 'text-muted-foreground'
-              }`}
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
-      </div>
     </header>
   );
 }

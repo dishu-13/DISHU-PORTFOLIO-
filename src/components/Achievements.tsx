@@ -7,50 +7,111 @@ import msElevatePowerBICourse from '@/assets/certificates/ms-elevate-powerbi-cou
 import msElevatePowerBIInternship from '@/assets/certificates/ms-elevate-powerbi-internship.png';
 
 const certificates = [
-  { title: 'Power BI - Course Completion', issuer: 'Microsoft Elevate × AICTE', date: 'March 2026', image: msElevatePowerBICourse },
-  { title: 'Power BI - Internship Completion', issuer: 'Microsoft Elevate × AICTE', date: 'March 2026', image: msElevatePowerBIInternship },
-  { title: 'AI-Powered Performance Ads Certification', issuer: 'Google Ads', date: 'December 2025', image: googleAiAdsCert },
-  { title: 'Data Analytics Certificate', issuer: 'Google', date: '2024', image: 'https://dishu-13.github.io/portfolio/certificate5.png' },
-  { title: 'SQL Certificate', issuer: 'Google', date: '2024', image: 'https://dishu-13.github.io/portfolio/certificate3.png' },
-  { title: 'Microsoft Excel Certificate', issuer: 'Microsoft', date: '2024', image: 'https://dishu-13.github.io/portfolio/certificate1.png' },
-  { title: 'Power BI Certificate', issuer: 'Microsoft', date: '2024', image: 'https://dishu-13.github.io/portfolio/certificate2.png' },
-  { title: 'HP Life Certificate', issuer: 'HP', date: '2024', image: 'https://dishu-13.github.io/portfolio/certificate4.png' },
+  // March 2026
+  {
+    title: 'Power BI - Course Completion',
+    issuer: 'Microsoft Elevate × AICTE',
+    date: 'March 2026',
+    image: msElevatePowerBICourse
+  },
+  {
+    title: 'Power BI - Internship Completion',
+    issuer: 'Microsoft Elevate × AICTE',
+    date: 'March 2026',
+    image: msElevatePowerBIInternship
+  },
+  // December 2025
+  {
+    title: 'AI-Powered Performance Ads Certification',
+    issuer: 'Google Ads',
+    date: 'December 2025',
+    image: googleAiAdsCert
+  },
+  // 2024
+  {
+    title: 'Data Analytics Certificate',
+    issuer: 'Google',
+    date: '2024',
+    image: 'https://dishu-13.github.io/portfolio/certificate5.png'
+  },
+  {
+    title: 'SQL Certificate',
+    issuer: 'Google',
+    date: '2024',
+    image: 'https://dishu-13.github.io/portfolio/certificate3.png'
+  },
+  {
+    title: 'Microsoft Excel Certificate',
+    issuer: 'Microsoft',
+    date: '2024',
+    image: 'https://dishu-13.github.io/portfolio/certificate1.png'
+  },
+  {
+    title: 'Power BI Certificate',
+    issuer: 'Microsoft',
+    date: '2024',
+    image: 'https://dishu-13.github.io/portfolio/certificate2.png'
+  },
+  {
+    title: 'HP Life Certificate',
+    issuer: 'HP',
+    date: '2024',
+    image: 'https://dishu-13.github.io/portfolio/certificate4.png'
+  }
 ];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08, delayChildren: 0.2 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }
+  }
+};
 
 export default function Achievements() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="achievements" className="py-24 md:py-32 px-6 md:px-12 relative">
-      <div className="container mx-auto max-w-7xl" ref={ref}>
+    <section id="achievements" className="py-32 px-4 relative">
+      <div className="container mx-auto max-w-6xl" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4"
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
         >
-          <div>
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-primary mb-4">( Certificates )</p>
-            <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight">
-              Awards & <span className="text-primary">Certs</span>
-            </h2>
-          </div>
-          <p className="text-muted-foreground text-sm">
+          <h2 className="font-display text-4xl md:text-5xl font-medium mb-4">
+            Awards & <span className="text-gradient">Certificates</span>
+          </h2>
+          <p className="text-muted-foreground text-lg mb-4">
             {certificates.length} certifications from Google, Microsoft & more
           </p>
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {certificates.map((cert, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: index * 0.06 }}
-              className="group relative border border-border overflow-hidden hover:border-primary/40 transition-all duration-300"
+              variants={itemVariants}
+              className="group relative rounded-2xl overflow-hidden card-glass hover-lift"
             >
-              <div className="aspect-[4/3] overflow-hidden bg-secondary">
+              <div className="aspect-[4/3] overflow-hidden">
                 <img
                   src={cert.image}
                   alt={cert.title}
@@ -59,23 +120,23 @@ export default function Achievements() {
                 />
               </div>
 
-              {/* Info overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
-                <p className="text-foreground font-display font-bold text-sm uppercase">{cert.title}</p>
-                <p className="text-muted-foreground text-xs mt-1">{cert.issuer} · {cert.date}</p>
+              {/* Overlay with info */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                <p className="text-foreground font-medium text-sm">{cert.title}</p>
+                <p className="text-muted-foreground text-xs">{cert.issuer} · {cert.date}</p>
               </div>
 
               <a
                 href={cert.image}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute top-3 right-3 p-2 border border-border bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary"
+                className="absolute top-3 right-3 p-2 rounded-full bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-primary hover:text-primary-foreground"
               >
                 <ExternalLink className="w-4 h-4" />
               </a>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
