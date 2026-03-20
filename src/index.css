@@ -1,54 +1,101 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Fonts loaded via index.html */
+
 @layer base {
-  :root {
-    --background: 220 20% 4%;
-    --foreground: 210 40% 95%;
+  :root,
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 220 15% 20%;
 
-    --card: 220 20% 7%;
-    --card-foreground: 210 40% 95%;
+    --card: 0 0% 98%;
+    --card-foreground: 220 15% 20%;
 
-    --popover: 220 20% 7%;
-    --popover-foreground: 210 40% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 20%;
 
-    --primary: 160 80% 55%;
-    --primary-foreground: 220 20% 4%;
+    --primary: 220 70% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 15% 13%;
-    --secondary-foreground: 210 20% 80%;
+    --secondary: 220 10% 94%;
+    --secondary-foreground: 220 15% 30%;
 
-    --muted: 220 15% 13%;
-    --muted-foreground: 215 15% 55%;
+    --muted: 220 10% 96%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 200 70% 55%;
-    --accent-foreground: 220 20% 4%;
+    --accent: 200 60% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 10% 88%;
+    --input: 220 10% 88%;
+    --ring: 220 70% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom design tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(220 70% 50%) 0%, hsl(200 60% 50%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(220 10% 98%) 100%);
+    --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(220 70% 50% / 0.08) 0%, transparent 50%);
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(220 70% 50% / 0.05) 0%, transparent 50%),
+                     radial-gradient(at 80% 0%, hsl(200 60% 50% / 0.05) 0%, transparent 40%),
+                     radial-gradient(at 0% 50%, hsl(220 50% 60% / 0.05) 0%, transparent 40%);
+
+    --shadow-glow: 0 0 40px hsl(220 70% 50% / 0.15);
+    --shadow-card: 0 4px 20px hsl(220 15% 20% / 0.08);
+
+    --font-display: 'Poppins', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+  }
+
+  .dark {
+    --background: 222 47% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 8%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 200 60% 55%;
+    --accent-foreground: 222 47% 8%;
 
     --destructive: 0 62% 55%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 15% 15%;
-    --input: 220 15% 15%;
-    --ring: 160 80% 55%;
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 217 91% 60%;
 
-    --radius: 0.75rem;
+    /* Custom design tokens - dark mode */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(200 60% 55%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(222 47% 11%) 0%, hsl(222 47% 14%) 100%);
+    --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(217 91% 60% / 0.15) 0%, transparent 50%);
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(217 91% 60% / 0.08) 0%, transparent 50%),
+                     radial-gradient(at 80% 0%, hsl(200 60% 55% / 0.08) 0%, transparent 40%),
+                     radial-gradient(at 0% 50%, hsl(217 70% 60% / 0.08) 0%, transparent 40%);
 
-    --gradient-primary: linear-gradient(135deg, hsl(160 80% 55%) 0%, hsl(200 70% 55%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(220 20% 7%) 0%, hsl(220 20% 10%) 100%);
-    --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(160 80% 55% / 0.08) 0%, transparent 50%);
-    --gradient-mesh: radial-gradient(at 40% 20%, hsl(160 80% 55% / 0.03) 0%, transparent 50%),
-                     radial-gradient(at 80% 0%, hsl(200 70% 55% / 0.03) 0%, transparent 40%),
-                     radial-gradient(at 0% 50%, hsl(160 60% 50% / 0.03) 0%, transparent 40%);
-
-    --shadow-glow: 0 0 40px hsl(160 80% 55% / 0.15);
-    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.4);
-
-    --font-display: 'Space Grotesk', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --shadow-glow: 0 0 40px hsl(217 91% 60% / 0.25);
+    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.3);
+    --font-sans: "Source Sans Pro", ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  }
+  :root {
+    --font-sans: "Source Sans Pro", ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   }
 }
 
@@ -64,8 +111,7 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: var(--font-body);
+    @apply bg-background text-foreground font-body antialiased;
     background-image: var(--gradient-mesh);
     background-attachment: fixed;
     overflow-x: hidden;
@@ -75,10 +121,12 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Mobile performance optimizations */
   @media (max-width: 768px) {
     body {
       background-attachment: scroll;
     }
+    
     .hover-lift:hover {
       transform: none;
     }
@@ -92,8 +140,8 @@
   }
 
   .card-glass {
-    @apply bg-card/60 backdrop-blur-xl border border-border/40;
-    box-shadow: var(--shadow-card);
+    @apply bg-card/40 backdrop-blur-2xl border border-border/30;
+    box-shadow: var(--shadow-card), 0 0 0 1px hsl(var(--border) / 0.1);
   }
 
   .glow-effect {
@@ -105,25 +153,8 @@
   }
 
   .hover-lift:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px hsl(160 80% 55% / 0.08);
-  }
-
-  .code-block {
-    @apply bg-card/80 border border-border/50 rounded-xl p-5 font-mono text-sm overflow-x-auto;
-    box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.03);
-  }
-
-  .badge-glow {
-    @apply px-4 py-2 rounded-full text-sm font-medium border;
-    background: hsl(var(--primary) / 0.08);
-    border-color: hsl(var(--primary) / 0.3);
-    color: hsl(var(--primary));
-  }
-
-  .section-line {
-    @apply w-16 h-0.5 rounded-full;
-    background: var(--gradient-primary);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px hsl(220 70% 50% / 0.12);
   }
 }
 
@@ -134,9 +165,5 @@
 
   .font-body {
     font-family: var(--font-body);
-  }
-
-  .font-mono {
-    font-family: var(--font-mono);
   }
 }
