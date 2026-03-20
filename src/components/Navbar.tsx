@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Home, User, Briefcase, Code2, Folder, Mail, Award, Moon, Sun } from 'lucide-react';
+import { Home, User, Briefcase, Code2, Folder, Mail, Award } from 'lucide-react';
 import { useActiveSection } from '@/hooks/useActiveSection';
 
 const navItems = [
@@ -14,41 +14,26 @@ const navItems = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const activeSection = useActiveSection(navItems.map(item => item.id));
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const root = document.documentElement;
-    if (isDark) {
-      root.classList.add('dark');
-      root.classList.remove('light');
-    } else {
-      root.classList.add('light');
-      root.classList.remove('dark');
-    }
-  }, [isDark]);
-
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4">
       <nav
-        className={`flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 rounded-full bg-card/50 backdrop-blur-2xl border border-border/30 shadow-lg transition-all duration-300 w-full max-w-[360px] sm:max-w-[520px] md:max-w-[600px] ${
-          isScrolled ? 'shadow-xl bg-card/60' : ''
+        className={`flex items-center justify-between px-4 sm:px-6 py-3 rounded-full bg-card/70 backdrop-blur-2xl border border-border/30 transition-all duration-300 w-full max-w-[520px] ${
+          isScrolled ? 'shadow-lg shadow-primary/5 bg-card/80' : ''
         }`}
       >
-        {/* Logo */}
-        <a href="#home" className="text-foreground text-base sm:text-xl font-medium tracking-wider">
-          <span className="text-primary">D</span>AKSH
+        <a href="#home" className="font-display text-base sm:text-lg font-bold tracking-wider">
+          <span className="text-primary">D</span>
+          <span className="text-foreground">AKSH</span>
         </a>
 
-        {/* Navigation - Icons (visible on all screens) */}
         <div className="flex items-center gap-3 sm:gap-4">
           {navItems.map((item) => (
             <a
@@ -61,18 +46,9 @@ export default function Navbar() {
               }`}
               title={item.label}
             >
-              <item.icon className="w-4 h-4 sm:w-5 sm:h-5" />
+              <item.icon className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
             </a>
           ))}
-          
-          {/* Dark mode toggle */}
-          <button
-            onClick={() => setIsDark(!isDark)}
-            className="text-muted-foreground hover:text-primary hover:scale-110 transition-all duration-200 ml-2"
-            title={isDark ? 'Light mode' : 'Dark mode'}
-          >
-            {isDark ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
-          </button>
         </div>
       </nav>
     </header>
