@@ -115,7 +115,7 @@ export default function Projects() {
               target="_blank"
               rel="noopener noreferrer"
               variants={itemVariants}
-              className="group relative p-6 md:p-8 rounded-2xl md:rounded-3xl card-glass overflow-hidden hover-lift cursor-pointer"
+              className="group relative p-6 md:p-8 rounded-2xl md:rounded-3xl card-glass glass-shine overflow-hidden hover-lift cursor-pointer"
             >
               {/* Gradient overlay on hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
