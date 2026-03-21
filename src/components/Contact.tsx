@@ -144,7 +144,7 @@ export default function Contact() {
                 <input type="text" id="name" name="name" required value={formData.name} onChange={e => setFormData({
                 ...formData,
                 name: e.target.value
-              })} className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="John Doe" />
+              })} className="w-full px-4 py-3 rounded-xl bg-card/30 backdrop-blur-sm border border-border/20 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all" placeholder="John Doe" />
               </div>
               
               <div>
