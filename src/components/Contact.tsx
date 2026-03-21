@@ -100,7 +100,7 @@ export default function Contact() {
             } : {}} transition={{
               duration: 0.5,
               delay: 0.4 + index * 0.1
-            }} className="flex items-center gap-4 p-4 rounded-xl bg-secondary/40 border border-border hover:border-primary hover:bg-primary/5 transition-all duration-300 group">
+            }} className="flex items-center gap-4 p-4 rounded-xl card-glass border border-border/20 hover:border-primary/30 transition-all duration-300 group">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <item.icon className="w-5 h-5 text-primary" />
                   </div>
