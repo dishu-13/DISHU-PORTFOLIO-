@@ -100,7 +100,7 @@ export default function Contact() {
             } : {}} transition={{
               duration: 0.5,
               delay: 0.4 + index * 0.1
-            }} className="flex items-center gap-4 p-4 rounded-xl bg-secondary/40 border border-border hover:border-primary hover:bg-primary/5 transition-all duration-300 group">
+            }} className="flex items-center gap-4 p-4 rounded-xl card-glass border border-border/20 hover:border-primary/30 transition-all duration-300 group">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <item.icon className="w-5 h-5 text-primary" />
                   </div>
@@ -128,7 +128,7 @@ export default function Contact() {
         } : {}} transition={{
           duration: 0.8,
           delay: 0.3
-        }} className="p-8 rounded-3xl card-glass">
+        }} className="p-8 rounded-3xl card-glass-strong glass-shine">
             <input type="hidden" name="form-name" value="contact" />
             <input type="hidden" name="subject" value="New Contact Form Submission from Portfolio" />
             <p className="hidden">
@@ -144,7 +144,7 @@ export default function Contact() {
                 <input type="text" id="name" name="name" required value={formData.name} onChange={e => setFormData({
                 ...formData,
                 name: e.target.value
-              })} className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="John Doe" />
+              })} className="w-full px-4 py-3 rounded-xl bg-card/30 backdrop-blur-sm border border-border/20 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all" placeholder="John Doe" />
               </div>
               
               <div>
@@ -154,7 +154,7 @@ export default function Contact() {
                 <input type="email" id="email" name="email" required value={formData.email} onChange={e => setFormData({
                 ...formData,
                 email: e.target.value
-              })} className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="john@example.com" />
+              })} className="w-full px-4 py-3 rounded-xl bg-card/30 backdrop-blur-sm border border-border/20 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all" placeholder="john@example.com" />
               </div>
               
               <div>
@@ -164,7 +164,7 @@ export default function Contact() {
                 <textarea id="message" name="message" required rows={5} value={formData.message} onChange={e => setFormData({
                 ...formData,
                 message: e.target.value
-              })} className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none" placeholder="Tell me about your project..." />
+              })} className="w-full px-4 py-3 rounded-xl bg-card/30 backdrop-blur-sm border border-border/20 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all resize-none" placeholder="Tell me about your project..." />
               </div>
               
               <button type="submit" className="w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02]">

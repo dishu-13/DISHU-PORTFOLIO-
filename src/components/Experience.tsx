@@ -158,7 +158,7 @@ export default function Experience() {
 
                 {/* Content card - offset on mobile for timeline */}
                 <div className={`w-full pl-10 md:pl-0 md:w-[calc(50%-2rem)] ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
-                  <div className="p-4 md:p-6 rounded-2xl card-glass hover-lift">
+                  <div className="p-4 md:p-6 rounded-2xl card-glass glass-shine hover-lift">
                     <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r ${exp.color} text-white text-xs md:text-sm mb-3 md:mb-4`}>
                       <Briefcase className="w-3 h-3 md:w-4 md:h-4" />
                       {exp.type}

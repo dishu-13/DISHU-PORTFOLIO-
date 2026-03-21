@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 export default function Footer() {
-  return <footer className="py-8 px-4 border-t border-border/50">
+  return <footer className="py-8 px-4 border-t border-border/20 backdrop-blur-xl bg-card/20">
       <div className="container mx-auto max-w-6xl">
         <motion.div initial={{
         opacity: 0

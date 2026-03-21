@@ -83,7 +83,8 @@ export default function Skills() {
                 key={category.title}
                 variants={itemVariants}
                 whileHover={{ y: -5, scale: 1.02 }}
-                className={`p-6 rounded-2xl bg-gradient-to-br ${category.color} border backdrop-blur-sm transition-all duration-300 hover:shadow-lg`}
+                className={`p-6 rounded-2xl bg-gradient-to-br ${category.color} border backdrop-blur-xl transition-all duration-300 hover:shadow-lg glass-shine`}
+                style={{ boxShadow: 'var(--shadow-glass)' }}
               >
                 {/* Category Header */}
                 <div className="flex items-center gap-3 mb-5">
@@ -99,7 +100,7 @@ export default function Skills() {
                     <motion.span
                       key={skill}
                       whileHover={{ scale: 1.05 }}
-                      className="px-3 py-1.5 rounded-full bg-card/80 text-foreground text-sm font-medium border border-border/50 hover:border-primary/50 hover:bg-primary/10 transition-all duration-200 cursor-default"
+                      className="px-3 py-1.5 rounded-full bg-card/60 backdrop-blur-sm text-foreground text-sm font-medium border border-border/30 hover:border-primary/50 hover:bg-primary/10 transition-all duration-200 cursor-default"
                     >
                       {skill}
                     </motion.span>

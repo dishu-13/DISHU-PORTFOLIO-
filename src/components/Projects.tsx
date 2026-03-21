@@ -115,7 +115,7 @@ export default function Projects() {
               target="_blank"
               rel="noopener noreferrer"
               variants={itemVariants}
-              className="group relative p-6 md:p-8 rounded-2xl md:rounded-3xl card-glass overflow-hidden hover-lift cursor-pointer"
+              className="group relative p-6 md:p-8 rounded-2xl md:rounded-3xl card-glass glass-shine overflow-hidden hover-lift cursor-pointer"
             >
               {/* Gradient overlay on hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
@@ -138,7 +138,7 @@ export default function Projects() {
                 {project.tags.map((tag) => (
                   <span 
                     key={tag} 
-                    className="px-3 py-1 text-sm rounded-full bg-secondary/80 text-muted-foreground border border-border"
+                    className="px-3 py-1 text-sm rounded-full bg-card/50 backdrop-blur-sm text-muted-foreground border border-border/20"
                   >
                     {tag}
                   </span>
