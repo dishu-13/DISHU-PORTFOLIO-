@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -9,11 +10,18 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import AnimatedBackground from '@/components/AnimatedBackground';
 
+const Background3D = lazy(() => import('@/components/Background3D'));
+
 const Index = () => {
   return (
     <main className="relative min-h-screen overflow-x-hidden w-full">
       {/* Animated Background */}
       <AnimatedBackground />
+      
+      {/* 3D Background */}
+      <Suspense fallback={null}>
+        <Background3D />
+      </Suspense>
       
       {/* Navigation */}
       <Navbar />
