@@ -142,8 +142,51 @@
   }
 
   .card-glass {
-    @apply bg-card/40 backdrop-blur-2xl border border-border/30;
-    box-shadow: var(--shadow-card), 0 0 0 1px hsl(var(--border) / 0.1);
+    @apply backdrop-blur-2xl border border-border/20;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--card) / 0.35) 0%,
+      hsl(var(--card) / 0.15) 100%
+    );
+    box-shadow: var(--shadow-glass), 0 0 0 1px hsl(var(--border) / 0.08);
+  }
+
+  .card-glass-strong {
+    @apply backdrop-blur-3xl border border-border/25;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--card) / 0.5) 0%,
+      hsl(var(--card) / 0.25) 100%
+    );
+    box-shadow: var(--shadow-glass), inset 0 0 20px hsl(var(--primary) / 0.03);
+  }
+
+  .glass-shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-shine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      hsl(var(--primary) / 0.04) 45%,
+      hsl(var(--primary) / 0.08) 50%,
+      hsl(var(--primary) / 0.04) 55%,
+      transparent 60%
+    );
+    pointer-events: none;
+    transition: transform 0.8s ease;
+  }
+
+  .glass-shine:hover::before {
+    transform: translateX(50%);
   }
 
   .glow-effect {
@@ -155,8 +198,8 @@
   }
 
   .hover-lift:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px hsl(220 70% 50% / 0.12);
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: var(--shadow-glass), 0 20px 40px hsl(var(--primary) / 0.1);
   }
 }
 
