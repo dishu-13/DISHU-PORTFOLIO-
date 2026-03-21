@@ -128,7 +128,7 @@ export default function Contact() {
         } : {}} transition={{
           duration: 0.8,
           delay: 0.3
-        }} className="p-8 rounded-3xl card-glass">
+        }} className="p-8 rounded-3xl card-glass-strong glass-shine">
             <input type="hidden" name="form-name" value="contact" />
             <input type="hidden" name="subject" value="New Contact Form Submission from Portfolio" />
             <p className="hidden">
