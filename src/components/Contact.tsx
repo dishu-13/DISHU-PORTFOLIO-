@@ -164,7 +164,7 @@ export default function Contact() {
                 <textarea id="message" name="message" required rows={5} value={formData.message} onChange={e => setFormData({
                 ...formData,
                 message: e.target.value
-              })} className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none" placeholder="Tell me about your project..." />
+              })} className="w-full px-4 py-3 rounded-xl bg-card/30 backdrop-blur-sm border border-border/20 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all resize-none" placeholder="Tell me about your project..." />
               </div>
               
               <button type="submit" className="w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02]">

@@ -109,7 +109,7 @@ export default function Achievements() {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="group relative rounded-2xl overflow-hidden card-glass hover-lift"
+              className="group relative rounded-2xl overflow-hidden card-glass glass-shine hover-lift"
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <img

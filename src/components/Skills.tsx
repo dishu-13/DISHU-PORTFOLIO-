@@ -100,7 +100,7 @@ export default function Skills() {
                     <motion.span
                       key={skill}
                       whileHover={{ scale: 1.05 }}
-                      className="px-3 py-1.5 rounded-full bg-card/80 text-foreground text-sm font-medium border border-border/50 hover:border-primary/50 hover:bg-primary/10 transition-all duration-200 cursor-default"
+                      className="px-3 py-1.5 rounded-full bg-card/60 backdrop-blur-sm text-foreground text-sm font-medium border border-border/30 hover:border-primary/50 hover:bg-primary/10 transition-all duration-200 cursor-default"
                     >
                       {skill}
                     </motion.span>
