@@ -142,21 +142,21 @@
   }
 
   .card-glass {
-    @apply backdrop-blur-2xl border border-border/20;
+    @apply backdrop-blur-2xl border border-border/10;
     background: linear-gradient(
       135deg,
-      hsl(var(--card) / 0.35) 0%,
-      hsl(var(--card) / 0.15) 100%
+      hsl(var(--card) / 0.18) 0%,
+      hsl(var(--card) / 0.08) 100%
     );
-    box-shadow: var(--shadow-glass), 0 0 0 1px hsl(var(--border) / 0.08);
+    box-shadow: var(--shadow-glass), 0 0 0 1px hsl(var(--border) / 0.05);
   }
 
   .card-glass-strong {
-    @apply backdrop-blur-3xl border border-border/25;
+    @apply backdrop-blur-3xl border border-border/15;
     background: linear-gradient(
       135deg,
-      hsl(var(--card) / 0.5) 0%,
-      hsl(var(--card) / 0.25) 100%
+      hsl(var(--card) / 0.3) 0%,
+      hsl(var(--card) / 0.12) 100%
     );
     box-shadow: var(--shadow-glass), inset 0 0 20px hsl(var(--primary) / 0.03);
   }
