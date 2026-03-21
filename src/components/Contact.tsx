@@ -154,7 +154,7 @@ export default function Contact() {
                 <input type="email" id="email" name="email" required value={formData.email} onChange={e => setFormData({
                 ...formData,
                 email: e.target.value
-              })} className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="john@example.com" />
+              })} className="w-full px-4 py-3 rounded-xl bg-card/30 backdrop-blur-sm border border-border/20 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all" placeholder="john@example.com" />
               </div>
               
               <div>
