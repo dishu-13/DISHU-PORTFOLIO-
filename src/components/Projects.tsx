@@ -82,7 +82,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20 md:py-32 px-4 relative">
+    <section id="projects" className="py-20 md:py-32 px-4 relative section-frost">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/30 to-transparent pointer-events-none" />
       

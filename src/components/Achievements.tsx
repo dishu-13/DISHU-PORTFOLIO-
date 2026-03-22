@@ -82,7 +82,7 @@ export default function Achievements() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="achievements" className="py-32 px-4 relative">
+    <section id="achievements" className="py-32 px-4 relative section-frost">
       <div className="container mx-auto max-w-6xl" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
