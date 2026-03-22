@@ -25,7 +25,7 @@ export default function About() {
     once: true,
     margin: "-100px"
   });
-  return <section id="about" className="py-20 md:py-32 px-4 md:px-6 relative">
+  return <section id="about" className="py-20 md:py-32 px-4 md:px-6 relative section-frost">
       <div className="container mx-auto max-w-6xl mr-4 md:mr-auto" ref={ref}>
         <motion.div initial={{
         opacity: 0,

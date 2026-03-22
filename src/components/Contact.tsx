@@ -49,7 +49,7 @@ export default function Contact() {
     value: 'Rudrapur, Uttarakhand, India',
     href: '#'
   }];
-  return <section id="contact" className="py-32 px-4 relative">
+  return <section id="contact" className="py-32 px-4 relative section-frost">
       <div className="container mx-auto max-w-6xl" ref={ref}>
         <motion.div initial={{
         opacity: 0,
