@@ -37,8 +37,8 @@ const certificates = [
     image: 'https://dishu-13.github.io/portfolio/certificate3.png'
   },
   {
-    title: 'Microsoft Excel Certificate',
-    issuer: 'Microsoft',
+    title: 'Google Analytics Certificate',
+    issuer: 'Google',
     date: '2024',
     image: 'https://dishu-13.github.io/portfolio/certificate1.png'
   },
