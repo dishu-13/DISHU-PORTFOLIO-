@@ -26,19 +26,19 @@ const certificates = [
   },
   {
     title: 'Data Analytics Certificate',
-    issuer: 'Google',
+    issuer: 'Infosys',
     date: '2024',
     image: 'https://dishu-13.github.io/portfolio/certificate5.png'
   },
   {
     title: 'Techniques for Big Data Analytics',
-    issuer: 'Google',
+    issuer: 'Infosys',
     date: '2024',
     image: 'https://dishu-13.github.io/portfolio/certificate3.png'
   },
   {
     title: 'Google Analytics Certificate',
-    issuer: 'Google',
+    issuer: 'Infosys',
     date: '2024',
     image: 'https://dishu-13.github.io/portfolio/certificate1.png'
   },
