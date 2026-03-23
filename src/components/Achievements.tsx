@@ -20,25 +20,25 @@ const certificates = [
   },
   {
     title: 'AI-Powered Performance Ads Certification',
-    issuer: 'Google Ads',
+    issuer: 'Infosys Ads',
     date: 'December 2025',
     image: googleAiAdsCert
   },
   {
     title: 'Data Analytics Certificate',
-    issuer: 'Google',
+    issuer: 'Infosys',
     date: '2024',
     image: 'https://dishu-13.github.io/portfolio/certificate5.png'
   },
   {
     title: 'Techniques for Big Data Analytics',
-    issuer: 'Google',
+    issuer: 'Infosys',
     date: '2024',
     image: 'https://dishu-13.github.io/portfolio/certificate3.png'
   },
   {
-    title: 'Google Analytics Certificate',
-    issuer: 'Google',
+    title: 'Infosys Analytics Certificate',
+    issuer: 'Infosys',
     date: '2024',
     image: 'https://dishu-13.github.io/portfolio/certificate1.png'
   },
@@ -84,7 +84,7 @@ export default function Achievements() {
             Awards & <span className="text-gradient">Certificates</span>
           </h2>
           <p className="text-muted-foreground text-lg mb-4">
-            {certificates.length} certifications from Google, Microsoft & more
+            {certificates.length} certifications from Infosys, Microsoft & more
           </p>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
         </motion.div>
