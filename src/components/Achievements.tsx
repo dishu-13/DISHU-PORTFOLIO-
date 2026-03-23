@@ -31,7 +31,7 @@ const certificates = [
     image: 'https://dishu-13.github.io/portfolio/certificate5.png'
   },
   {
-    title: 'SQL Certificate',
+    title: 'Techniques for Big Data Analytics',
     issuer: 'Google',
     date: '2024',
     image: 'https://dishu-13.github.io/portfolio/certificate3.png'
