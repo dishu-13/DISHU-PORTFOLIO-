@@ -49,7 +49,7 @@ const certificates = [
     image: 'https://dishu-13.github.io/portfolio/certificate2.png'
   },
   {
-    title: 'HP Life Certificate',
+    title: 'Data Science and Analytics',
     issuer: 'HP',
     date: '2024',
     image: 'https://dishu-13.github.io/portfolio/certificate4.png'
