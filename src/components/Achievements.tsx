@@ -1,13 +1,11 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { ExternalLink } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import googleAiAdsCert from '@/assets/certificates/google-ai-ads.png';
 import msElevatePowerBICourse from '@/assets/certificates/ms-elevate-powerbi-course.png';
 import msElevatePowerBIInternship from '@/assets/certificates/ms-elevate-powerbi-internship.png';
 
 const certificates = [
-  // March 2026
   {
     title: 'Power BI - Course Completion',
     issuer: 'Microsoft Elevate × AICTE',
@@ -20,14 +18,12 @@ const certificates = [
     date: 'March 2026',
     image: msElevatePowerBIInternship
   },
-  // December 2025
   {
     title: 'AI-Powered Performance Ads Certification',
     issuer: 'Google Ads',
     date: 'December 2025',
     image: googleAiAdsCert
   },
-  // 2024
   {
     title: 'Data Analytics Certificate',
     issuer: 'Google',
@@ -60,26 +56,20 @@ const certificates = [
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08, delayChildren: 0.2 }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }
-  }
-};
-
 export default function Achievements() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [active, setActive] = useState(0);
+
+  const prev = () => setActive((i) => (i - 1 + certificates.length) % certificates.length);
+  const next = () => setActive((i) => (i + 1) % certificates.length);
+
+  const getOffset = (index: number) => {
+    let diff = index - active;
+    if (diff > certificates.length / 2) diff -= certificates.length;
+    if (diff < -certificates.length / 2) diff += certificates.length;
+    return diff;
+  };
 
   return (
     <section id="achievements" className="py-32 px-4 relative section-frost">
@@ -99,44 +89,104 @@ export default function Achievements() {
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {certificates.map((cert, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="group relative rounded-2xl overflow-hidden card-glass glass-shine hover-lift"
-            >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={cert.image}
-                  alt={cert.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-              </div>
+        {/* Carousel */}
+        <div className="relative flex items-center justify-center" style={{ minHeight: '520px' }}>
+          {/* Left Arrow */}
+          <button
+            onClick={prev}
+            className="absolute left-2 md:left-8 z-30 p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border/20 shadow-lg hover:bg-primary hover:text-primary-foreground transition-colors"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
 
-              {/* Overlay with info */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                <p className="text-foreground font-medium text-sm">{cert.title}</p>
-                <p className="text-muted-foreground text-xs">{cert.issuer} · {cert.date}</p>
-              </div>
+          {/* Cards */}
+          <div className="relative w-full flex items-center justify-center" style={{ height: '480px', perspective: '1200px' }}>
+            {certificates.map((cert, index) => {
+              const offset = getOffset(index);
+              const absOffset = Math.abs(offset);
+              const isCenter = offset === 0;
+              const visible = absOffset <= 2;
 
-              <a
-                href={cert.image}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute top-3 right-3 p-2 rounded-full bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-primary hover:text-primary-foreground"
-              >
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            </motion.div>
-          ))}
-        </motion.div>
+              if (!visible) return null;
+
+              return (
+                <motion.div
+                  key={index}
+                  className="absolute cursor-pointer"
+                  style={{
+                    width: isCenter ? '360px' : '280px',
+                    zIndex: 10 - absOffset,
+                  }}
+                  animate={{
+                    x: offset * 220,
+                    scale: isCenter ? 1 : 0.8 - absOffset * 0.05,
+                    rotateY: offset * -8,
+                    opacity: isCenter ? 1 : Math.max(0.3, 0.7 - absOffset * 0.2),
+                  }}
+                  transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  onClick={() => setActive(index)}
+                >
+                  <div
+                    className={`rounded-2xl overflow-hidden transition-all duration-500 ${
+                      isCenter
+                        ? 'card-glass-strong shadow-2xl ring-1 ring-primary/20'
+                        : 'card-glass blur-[1px]'
+                    }`}
+                  >
+                    {/* Certificate Image */}
+                    <div className="aspect-[4/3] overflow-hidden bg-muted/10">
+                      <img
+                        src={cert.image}
+                        alt={cert.title}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    {/* Info - only visible on active card */}
+                    {isCenter && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="p-5 text-center"
+                      >
+                        <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-muted/50 text-muted-foreground mb-3 backdrop-blur-sm border border-border/10">
+                          {cert.issuer}
+                        </span>
+                        <h3 className="font-display text-base font-semibold text-foreground leading-tight mb-2">
+                          {cert.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm font-mono mb-4">{cert.date}</p>
+                        <a
+                          href={cert.image}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-border/20 bg-muted/30 backdrop-blur-sm text-foreground font-medium text-sm hover:bg-primary hover:text-primary-foreground transition-colors"
+                        >
+                          Verify Credential <ExternalLink className="w-4 h-4" />
+                        </a>
+                      </motion.div>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Right Arrow */}
+          <button
+            onClick={next}
+            className="absolute right-2 md:right-8 z-30 p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border/20 shadow-lg hover:bg-primary hover:text-primary-foreground transition-colors"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Counter */}
+        <p className="text-center text-muted-foreground text-sm mt-6 font-mono">
+          {active + 1} / {certificates.length}
+        </p>
       </div>
     </section>
   );
