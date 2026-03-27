@@ -1,71 +1,83 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
-export default function ShutterSplash({ onComplete }: { onComplete: () => void }) {
-  const [phase, setPhase] = useState<'welcome' | 'opening' | 'done'>('welcome');
+interface Props {
+  onComplete: () => void;
+}
+
+export default function ShutterSplash({ onComplete }: Props) {
+  const [phase, setPhase] = useState<"initial" | "opening" | "done">("initial");
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase('opening'), 2500);
+    // ⏱️ Control timings here
+    const t1 = setTimeout(() => setPhase("opening"), 2500); // logo visible time
     const t2 = setTimeout(() => {
-      setPhase('done');
+      setPhase("done");
       onComplete();
-    }, 3500);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    }, 4500); // total duration
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
   }, [onComplete]);
 
   return (
     <AnimatePresence>
-      {phase !== 'done' && (
-        <div className="fixed inset-0 z-[9999] pointer-events-none">
-          {/* Top shutter */}
-          <motion.div
-            className="absolute top-0 left-0 w-full h-1/2 bg-background flex items-end justify-center"
-            style={{ borderBottom: '1px solid hsl(var(--primary) / 0.3)' }}
-            initial={{ y: 0 }}
-            animate={phase === 'opening' ? { y: '-100%' } : { y: 0 }}
-            transition={{ duration: 1.5, ease: [0.76, 0, 0.24, 1] }}
-          >
-            <motion.span
-              className="text-gradient font-display text-5xl md:text-7xl lg:text-8xl font-bold pb-2 tracking-wider select-none"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              WELCOME
-            </motion.span>
-          </motion.div>
+      {phase !== "done" && (
+        <motion.div
+          key="splash"
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
+          className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-black"
+        >
+          {/* 🌌 Background Gradient + Blur */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-95 backdrop-blur-xl"></div>
 
-          {/* Bottom shutter */}
+          {/* 💡 Glow Light */}
           <motion.div
-            className="absolute bottom-0 left-0 w-full h-1/2 bg-background flex items-start justify-center"
-            style={{ borderTop: '1px solid hsl(var(--primary) / 0.3)' }}
-            initial={{ y: 0 }}
-            animate={phase === 'opening' ? { y: '100%' } : { y: 0 }}
-            transition={{ duration: 1.5, ease: [0.76, 0, 0.24, 1] }}
-          >
-            <motion.span
-              className="text-gradient font-display text-5xl md:text-7xl lg:text-8xl font-bold pt-2 tracking-wider select-none"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              BACK
-            </motion.span>
-          </motion.div>
-
-          {/* Center glow line */}
-          <motion.div
-            className="absolute top-1/2 left-0 w-full h-[2px] -translate-y-1/2"
-            style={{ background: 'var(--gradient-primary)' }}
-            initial={{ scaleX: 0, opacity: 0 }}
-            animate={
-              phase === 'welcome'
-                ? { scaleX: 1, opacity: 1 }
-                : { scaleX: 1, opacity: 0 }
-            }
-            transition={{ duration: 0.8, delay: phase === 'welcome' ? 0.5 : 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: phase === "opening" ? 0.4 : 0 }}
+            transition={{ duration: 1 }}
+            className="absolute w-[400px] h-[400px] bg-white rounded-full blur-3xl"
           />
-        </div>
+
+          {/* 🧠 Logo Animation */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{
+              opacity: phase === "initial" ? 1 : 0,
+              scale: phase === "initial" ? 1 : 0.6,
+            }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            className="z-50 text-white text-4xl md:text-5xl font-bold tracking-widest text-center"
+          >
+            DISHU DAKSH
+          </motion.div>
+
+          {/* 🚪 Left Shutter */}
+          <motion.div
+            initial={{ x: 0 }}
+            animate={{ x: phase === "opening" ? "-100%" : 0 }}
+            transition={{
+              duration: 1.5,
+              ease: [0.83, 0, 0.17, 1], // cinematic ease
+            }}
+            className="absolute left-0 top-0 w-1/2 h-full bg-gradient-to-r from-black via-gray-900 to-black shadow-2xl"
+          />
+
+          {/* 🚪 Right Shutter */}
+          <motion.div
+            initial={{ x: 0 }}
+            animate={{ x: phase === "opening" ? "100%" : 0 }}
+            transition={{
+              duration: 1.5,
+              ease: [0.83, 0, 0.17, 1],
+            }}
+            className="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-black via-gray-900 to-black shadow-2xl"
+          />
+        </motion.div>
       )}
     </AnimatePresence>
   );
