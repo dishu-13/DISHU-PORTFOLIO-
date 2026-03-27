@@ -1,6 +1,6 @@
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useAnimation, PanInfo } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import googleAiAdsCert from '@/assets/certificates/google-ai-ads.png';
 import msElevatePowerBICourse from '@/assets/certificates/ms-elevate-powerbi-course.png';
 import msElevatePowerBIInternship from '@/assets/certificates/ms-elevate-powerbi-internship.png';
@@ -71,6 +71,14 @@ export default function Achievements() {
     return diff;
   };
 
+  const handleDragEnd = (_: any, info: PanInfo) => {
+    if (info.offset.x < -50) {
+      next();
+    } else if (info.offset.x > 50) {
+      prev();
+    }
+  };
+
   return (
     <section id="achievements" className="py-32 px-4 relative section-frost">
       <div className="container mx-auto max-w-6xl" ref={ref}>
@@ -89,16 +97,15 @@ export default function Achievements() {
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
         </motion.div>
 
-        {/* Carousel */}
-        <div className="relative flex items-center justify-center" style={{ minHeight: '520px' }}>
-          {/* Left Arrow */}
-          <button
-            onClick={prev}
-            className="absolute left-2 md:left-8 z-30 p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border/20 shadow-lg hover:bg-primary hover:text-primary-foreground transition-colors"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-
+        {/* Carousel - swipe to navigate */}
+        <motion.div
+          className="relative flex items-center justify-center cursor-grab active:cursor-grabbing"
+          style={{ minHeight: '520px', touchAction: 'pan-y' }}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.2}
+          onDragEnd={handleDragEnd}
+        >
           {/* Cards */}
           <div className="relative w-full flex items-center justify-center" style={{ height: '480px', perspective: '1200px' }}>
             {certificates.map((cert, index) => {
@@ -112,7 +119,7 @@ export default function Achievements() {
               return (
                 <motion.div
                   key={index}
-                  className="absolute cursor-pointer"
+                  className="absolute pointer-events-auto"
                   style={{
                     width: isCenter ? '360px' : '280px',
                     zIndex: 10 - absOffset,
@@ -173,20 +180,7 @@ export default function Achievements() {
               );
             })}
           </div>
-
-          {/* Right Arrow */}
-          <button
-            onClick={next}
-            className="absolute right-2 md:right-8 z-30 p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border/20 shadow-lg hover:bg-primary hover:text-primary-foreground transition-colors"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Counter */}
-        <p className="text-center text-muted-foreground text-sm mt-6 font-mono">
-          {active + 1} / {certificates.length}
-        </p>
+        </motion.div>
       </div>
     </section>
   );
