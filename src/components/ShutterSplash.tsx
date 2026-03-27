@@ -9,8 +9,8 @@ export default function ShutterSplash({ onComplete }: Props) {
   const [phase, setPhase] = useState<"initial" | "opening" | "done">("initial");
 
   useEffect(() => {
-    // ⏱️ Control timings here
-    const t1 = setTimeout(() => setPhase("opening"), 2500); // logo visible time
+    // ⏱️ Timing control
+    const t1 = setTimeout(() => setPhase("opening"), 2500); // logo time
     const t2 = setTimeout(() => {
       setPhase("done");
       onComplete();
@@ -32,42 +32,46 @@ export default function ShutterSplash({ onComplete }: Props) {
           transition={{ duration: 0.8 }}
           className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-black"
         >
-          {/* 🌌 Background Gradient + Blur */}
+          {/* 🌌 Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-95 backdrop-blur-xl"></div>
 
-          {/* 💡 Glow Light */}
+          {/* 💡 Glow behind logo */}
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: phase === "opening" ? 0.4 : 0 }}
+            animate={{ opacity: phase === "initial" ? 0.5 : 0 }}
             transition={{ duration: 1 }}
-            className="absolute w-[400px] h-[400px] bg-white rounded-full blur-3xl"
+            className="absolute w-72 h-72 bg-blue-500 rounded-full blur-3xl"
           />
 
-          {/* 🧠 Logo Animation */}
+          {/* 🧠 LOGO ANIMATION */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.7 }}
+            initial={{ opacity: 0, scale: 0.6 }}
             animate={{
               opacity: phase === "initial" ? 1 : 0,
-              scale: phase === "initial" ? 1 : 0.6,
+              scale: phase === "initial" ? 1 : 0.5,
             }}
             transition={{ duration: 1.2, ease: "easeInOut" }}
-            className="z-50 text-white text-4xl md:text-5xl font-bold tracking-widest text-center"
+            className="z-50 flex items-center justify-center"
           >
-            DISHU DAKSH
+            <img
+              src="/logo.png"
+              alt="Dishu Daksh Logo"
+              className="w-28 h-28 md:w-36 md:h-36 object-contain drop-shadow-[0_0_40px_rgba(59,130,246,0.6)]"
+            />
           </motion.div>
 
-          {/* 🚪 Left Shutter */}
+          {/* 🚪 LEFT SHUTTER */}
           <motion.div
             initial={{ x: 0 }}
             animate={{ x: phase === "opening" ? "-100%" : 0 }}
             transition={{
               duration: 1.5,
-              ease: [0.83, 0, 0.17, 1], // cinematic ease
+              ease: [0.83, 0, 0.17, 1],
             }}
             className="absolute left-0 top-0 w-1/2 h-full bg-gradient-to-r from-black via-gray-900 to-black shadow-2xl"
           />
 
-          {/* 🚪 Right Shutter */}
+          {/* 🚪 RIGHT SHUTTER */}
           <motion.div
             initial={{ x: 0 }}
             animate={{ x: phase === "opening" ? "100%" : 0 }}
@@ -77,6 +81,16 @@ export default function ShutterSplash({ onComplete }: Props) {
             }}
             className="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-black via-gray-900 to-black shadow-2xl"
           />
+
+          {/* ✨ LIGHT SWEEP EFFECT */}
+          {phase === "opening" && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 0.3, scale: 1.5 }}
+              transition={{ duration: 1.2 }}
+              className="absolute w-96 h-96 bg-white rounded-full blur-3xl"
+            />
+          )}
         </motion.div>
       )}
     </AnimatePresence>
