@@ -1,97 +1,71 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
-interface Props {
-  onComplete: () => void;
-}
-
-export default function ShutterSplash({ onComplete }: Props) {
-  const [phase, setPhase] = useState<"initial" | "opening" | "done">("initial");
+export default function ShutterSplash({ onComplete }: { onComplete: () => void }) {
+  const [phase, setPhase] = useState<'welcome' | 'opening' | 'done'>('welcome');
 
   useEffect(() => {
-    // ⏱️ Timing control
-    const t1 = setTimeout(() => setPhase("opening"), 2500); // logo time
+    const t1 = setTimeout(() => setPhase('opening'), 2500);
     const t2 = setTimeout(() => {
-      setPhase("done");
+      setPhase('done');
       onComplete();
-    }, 4500); // total duration
-
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
+    }, 3500);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [onComplete]);
 
   return (
     <AnimatePresence>
-      {phase !== "done" && (
-        <motion.div
-          key="splash"
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-black"
-        >
-          {/* 🌌 Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-95 backdrop-blur-xl"></div>
-
-          {/* 💡 Glow behind logo */}
+      {phase !== 'done' && (
+        <div className="fixed inset-0 z-[9999] pointer-events-none">
+          {/* Top shutter */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: phase === "initial" ? 0.5 : 0 }}
-            transition={{ duration: 1 }}
-            className="absolute w-72 h-72 bg-blue-500 rounded-full blur-3xl"
-          />
-
-          {/* 🧠 LOGO ANIMATION */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.6 }}
-            animate={{
-              opacity: phase === "initial" ? 1 : 0,
-              scale: phase === "initial" ? 1 : 0.5,
-            }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-            className="z-50 flex items-center justify-center"
+            className="absolute top-0 left-0 w-full h-1/2 bg-background flex items-end justify-center"
+            style={{ borderBottom: '1px solid hsl(var(--primary) / 0.3)' }}
+            initial={{ y: 0 }}
+            animate={phase === 'opening' ? { y: '-100%' } : { y: 0 }}
+            transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
           >
-            <img
-              src="/logo.png"
-              alt="Dishu Daksh Logo"
-              className="w-28 h-28 md:w-36 md:h-36 object-contain drop-shadow-[0_0_40px_rgba(59,130,246,0.6)]"
-            />
+            <motion.span
+              className="text-gradient font-display text-5xl md:text-7xl lg:text-8xl font-bold pb-2 tracking-wider select-none"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              WELCOME
+            </motion.span>
           </motion.div>
 
-          {/* 🚪 LEFT SHUTTER */}
+          {/* Bottom shutter */}
           <motion.div
-            initial={{ x: 0 }}
-            animate={{ x: phase === "opening" ? "-100%" : 0 }}
-            transition={{
-              duration: 1.5,
-              ease: [0.83, 0, 0.17, 1],
-            }}
-            className="absolute left-0 top-0 w-1/2 h-full bg-gradient-to-r from-black via-gray-900 to-black shadow-2xl"
-          />
+            className="absolute bottom-0 left-0 w-full h-1/2 bg-background flex items-start justify-center"
+            style={{ borderTop: '1px solid hsl(var(--primary) / 0.3)' }}
+            initial={{ y: 0 }}
+            animate={phase === 'opening' ? { y: '100%' } : { y: 0 }}
+            transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
+          >
+            <motion.span
+              className="text-gradient font-display text-5xl md:text-7xl lg:text-8xl font-bold pt-2 tracking-wider select-none"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              BACK
+            </motion.span>
+          </motion.div>
 
-          {/* 🚪 RIGHT SHUTTER */}
+          {/* Center glow line */}
           <motion.div
-            initial={{ x: 0 }}
-            animate={{ x: phase === "opening" ? "100%" : 0 }}
-            transition={{
-              duration: 1.5,
-              ease: [0.83, 0, 0.17, 1],
-            }}
-            className="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-black via-gray-900 to-black shadow-2xl"
+            className="absolute top-1/2 left-0 w-full h-[2px] -translate-y-1/2"
+            style={{ background: 'var(--gradient-primary)' }}
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={
+              phase === 'welcome'
+                ? { scaleX: 1, opacity: 1 }
+                : { scaleX: 1, opacity: 0 }
+            }
+            transition={{ duration: 0.8, delay: phase === 'welcome' ? 0.5 : 0 }}
           />
-
-          {/* ✨ LIGHT SWEEP EFFECT */}
-          {phase === "opening" && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 0.3, scale: 1.5 }}
-              transition={{ duration: 1.2 }}
-              className="absolute w-96 h-96 bg-white rounded-full blur-3xl"
-            />
-          )}
-        </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );
