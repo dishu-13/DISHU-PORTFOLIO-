@@ -13,8 +13,6 @@ export default function ShutterSplash({ onComplete }: { onComplete: () => void }
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [onComplete]);
 
-  if (phase === 'done') return null;
-
   return (
     <AnimatePresence>
       {phase !== 'done' && (

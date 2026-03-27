@@ -1,3 +1,4 @@
+import { useState, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -8,10 +9,18 @@ import Achievements from '@/components/Achievements';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import AnimatedBackground from '@/components/AnimatedBackground';
+import ShutterSplash from '@/components/ShutterSplash';
+import MarqueeStrip from '@/components/MarqueeStrip';
 
 const Index = () => {
+  const [splashDone, setSplashDone] = useState(false);
+  const handleSplashComplete = useCallback(() => setSplashDone(true), []);
+
   return (
     <main className="relative min-h-screen overflow-x-hidden w-full">
+      {/* Shutter Splash */}
+      {!splashDone && <ShutterSplash onComplete={handleSplashComplete} />}
+
       {/* Animated Background */}
       <AnimatedBackground />
       
@@ -20,6 +29,7 @@ const Index = () => {
       
       {/* Main Content */}
       <Hero />
+      <MarqueeStrip />
       <About />
       <Experience />
       <Skills />
