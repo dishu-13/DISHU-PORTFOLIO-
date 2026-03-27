@@ -5,11 +5,11 @@ export default function ShutterSplash({ onComplete }: { onComplete: () => void }
   const [phase, setPhase] = useState<'welcome' | 'opening' | 'done'>('welcome');
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase('opening'), 1800);
+    const t1 = setTimeout(() => setPhase('opening'), 2500);
     const t2 = setTimeout(() => {
       setPhase('done');
       onComplete();
-    }, 2800);
+    }, 3500);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [onComplete]);
 
@@ -31,7 +31,7 @@ export default function ShutterSplash({ onComplete }: { onComplete: () => void }
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              WELC
+              WELCOME
             </motion.span>
           </motion.div>
 
@@ -49,7 +49,7 @@ export default function ShutterSplash({ onComplete }: { onComplete: () => void }
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              OME
+              BACK
             </motion.span>
           </motion.div>
 
