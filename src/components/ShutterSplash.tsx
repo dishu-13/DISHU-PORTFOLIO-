@@ -23,13 +23,13 @@ export default function ShutterSplash({ onComplete }: { onComplete: () => void }
             style={{ borderBottom: '1px solid hsl(var(--primary) / 0.3)' }}
             initial={{ y: 0 }}
             animate={phase === 'opening' ? { y: '-100%' } : { y: 0 }}
-            transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
           >
             <motion.span
               className="text-gradient font-display text-5xl md:text-7xl lg:text-8xl font-bold pb-2 tracking-wider select-none"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.3 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
             >
               WELCOME
             </motion.span>
@@ -41,13 +41,13 @@ export default function ShutterSplash({ onComplete }: { onComplete: () => void }
             style={{ borderTop: '1px solid hsl(var(--primary) / 0.3)' }}
             initial={{ y: 0 }}
             animate={phase === 'opening' ? { y: '100%' } : { y: 0 }}
-            transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
           >
             <motion.span
               className="text-gradient font-display text-5xl md:text-7xl lg:text-8xl font-bold pt-2 tracking-wider select-none"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.3 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
             >
               BACK
             </motion.span>
@@ -63,7 +63,7 @@ export default function ShutterSplash({ onComplete }: { onComplete: () => void }
                 ? { scaleX: 1, opacity: 1 }
                 : { scaleX: 1, opacity: 0 }
             }
-            transition={{ duration: 0.3, delay: phase === 'welcome' ? 0.5 : 0 }}
+            transition={{ duration: 0.8, delay: phase === 'welcome' ? 0.5 : 0 }}
           />
         </div>
       )}
