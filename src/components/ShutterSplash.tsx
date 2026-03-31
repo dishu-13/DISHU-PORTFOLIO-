@@ -23,7 +23,7 @@ export default function ShutterSplash({ onComplete }: { onComplete: () => void }
             style={{ borderBottom: '1px solid hsl(var(--primary) / 0.3)' }}
             initial={{ y: 0 }}
             animate={phase === 'opening' ? { y: '-100%' } : { y: 0 }}
-            transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
           >
             <motion.span
               className="text-gradient font-display text-5xl md:text-7xl lg:text-8xl font-bold pb-2 tracking-wider select-none"
@@ -41,7 +41,7 @@ export default function ShutterSplash({ onComplete }: { onComplete: () => void }
             style={{ borderTop: '1px solid hsl(var(--primary) / 0.3)' }}
             initial={{ y: 0 }}
             animate={phase === 'opening' ? { y: '100%' } : { y: 0 }}
-            transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
           >
             <motion.span
               className="text-gradient font-display text-5xl md:text-7xl lg:text-8xl font-bold pt-2 tracking-wider select-none"
