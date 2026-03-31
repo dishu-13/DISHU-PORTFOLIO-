@@ -63,7 +63,7 @@ export default function ShutterSplash({ onComplete }: { onComplete: () => void }
                 ? { scaleX: 1, opacity: 1 }
                 : { scaleX: 1, opacity: 0 }
             }
-            transition={{ duration: 0.8, delay: phase === 'welcome' ? 0.5 : 0 }}
+            transition={{ duration: 0.3, delay: phase === 'welcome' ? 0.5 : 0 }}
           />
         </div>
       )}
