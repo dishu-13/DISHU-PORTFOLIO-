@@ -8,6 +8,7 @@ export default function AnimatedBackground() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
@@ -25,51 +26,41 @@ export default function AnimatedBackground() {
     resize();
     window.addEventListener('resize', resize);
 
-    const count = isMobile ? 25 : 60;
+    const count = isMobile ? 30 : 80;
+
     for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         z: Math.random() * 1000,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        vz: (Math.random() - 0.5) * 1.5,
-        size: Math.random() * 2 + 0.5,
-        hue: 250 + Math.random() * 60, // purple to cyan range
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        vz: (Math.random() - 0.5) * 2,
+        size: Math.random() * 2 + 1,
+        hue: 200 + Math.random() * 40,
       });
     }
 
     let mouseX = canvas.width / 2;
     let mouseY = canvas.height / 2;
-    const handleMouse = (e: MouseEvent) => { mouseX = e.clientX; mouseY = e.clientY; };
+
+    const handleMouse = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    };
     if (!isMobile) window.addEventListener('mousemove', handleMouse);
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Radial gradient orbs (background)
-      const orb1X = canvas.width * 0.2 + Math.sin(Date.now() * 0.0003) * 100;
-      const orb1Y = canvas.height * 0.3 + Math.cos(Date.now() * 0.0004) * 80;
-      const g1 = ctx.createRadialGradient(orb1X, orb1Y, 0, orb1X, orb1Y, 400);
-      g1.addColorStop(0, 'hsla(263, 70%, 58%, 0.08)');
-      g1.addColorStop(1, 'transparent');
-      ctx.fillStyle = g1;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      const orb2X = canvas.width * 0.8 + Math.cos(Date.now() * 0.0003) * 120;
-      const orb2Y = canvas.height * 0.6 + Math.sin(Date.now() * 0.0005) * 100;
-      const g2 = ctx.createRadialGradient(orb2X, orb2Y, 0, orb2X, orb2Y, 350);
-      g2.addColorStop(0, 'hsla(190, 80%, 50%, 0.06)');
-      g2.addColorStop(1, 'transparent');
-      ctx.fillStyle = g2;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+      // Sort by z for depth
       particles.sort((a, b) => b.z - a.z);
 
       for (const p of particles) {
         p.x += p.vx;
         p.y += p.vy;
         p.z += p.vz;
+
         if (p.z < 1) p.z = 1000;
         if (p.z > 1000) p.z = 1;
         if (p.x < 0) p.x = canvas.width;
@@ -77,45 +68,49 @@ export default function AnimatedBackground() {
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
 
+        // 3D perspective projection
         const perspective = 800;
         const scale = perspective / (perspective + p.z);
-        const sx = (p.x - canvas.width / 2) * scale + canvas.width / 2;
-        const sy = (p.y - canvas.height / 2) * scale + canvas.height / 2;
+        const screenX = (p.x - canvas.width / 2) * scale + canvas.width / 2;
+        const screenY = (p.y - canvas.height / 2) * scale + canvas.height / 2;
         const r = p.size * scale;
-        const alpha = Math.max(0.05, 0.5 * scale);
+
+        const alpha = Math.max(0.05, 0.6 * scale);
 
         // Glow
-        const gradient = ctx.createRadialGradient(sx, sy, 0, sx, sy, r * 10);
-        gradient.addColorStop(0, `hsla(${p.hue}, 80%, 65%, ${alpha * 0.6})`);
-        gradient.addColorStop(0.5, `hsla(${p.hue}, 70%, 55%, ${alpha * 0.15})`);
+        const gradient = ctx.createRadialGradient(screenX, screenY, 0, screenX, screenY, r * 8);
+        gradient.addColorStop(0, `hsla(${p.hue}, 80%, 65%, ${alpha})`);
+        gradient.addColorStop(0.4, `hsla(${p.hue}, 70%, 55%, ${alpha * 0.3})`);
         gradient.addColorStop(1, `hsla(${p.hue}, 60%, 50%, 0)`);
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(sx, sy, r * 10, 0, Math.PI * 2);
+        ctx.arc(screenX, screenY, r * 8, 0, Math.PI * 2);
         ctx.fill();
 
-        // Core
-        ctx.fillStyle = `hsla(${p.hue}, 90%, 75%, ${alpha * 0.8})`;
+        // Core dot
+        ctx.fillStyle = `hsla(${p.hue}, 90%, 75%, ${alpha})`;
         ctx.beginPath();
-        ctx.arc(sx, sy, r, 0, Math.PI * 2);
+        ctx.arc(screenX, screenY, r, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      // Connections (desktop only)
+      // Draw connections (desktop only)
       if (!isMobile) {
+        const maxDist = 150;
         for (let i = 0; i < particles.length; i++) {
           for (let j = i + 1; j < particles.length; j++) {
             const a = particles[i], b = particles[j];
             const dx = a.x - b.x, dy = a.y - b.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 180 && Math.abs(a.z - b.z) < 300) {
-              const sA = 800 / (800 + a.z), sB = 800 / (800 + b.z);
-              const sxA = (a.x - canvas.width / 2) * sA + canvas.width / 2;
-              const syA = (a.y - canvas.height / 2) * sA + canvas.height / 2;
-              const sxB = (b.x - canvas.width / 2) * sB + canvas.width / 2;
-              const syB = (b.y - canvas.height / 2) * sB + canvas.height / 2;
-              const lineAlpha = (1 - dist / 180) * 0.12 * Math.min(sA, sB);
-              ctx.strokeStyle = `hsla(263, 60%, 60%, ${lineAlpha})`;
+            if (dist < maxDist && Math.abs(a.z - b.z) < 300) {
+              const scaleA = 800 / (800 + a.z);
+              const scaleB = 800 / (800 + b.z);
+              const sxA = (a.x - canvas.width / 2) * scaleA + canvas.width / 2;
+              const syA = (a.y - canvas.height / 2) * scaleA + canvas.height / 2;
+              const sxB = (b.x - canvas.width / 2) * scaleB + canvas.width / 2;
+              const syB = (b.y - canvas.height / 2) * scaleB + canvas.height / 2;
+              const alpha = (1 - dist / maxDist) * 0.15 * Math.min(scaleA, scaleB);
+              ctx.strokeStyle = `hsla(215, 70%, 60%, ${alpha})`;
               ctx.lineWidth = 0.5;
               ctx.beginPath();
               ctx.moveTo(sxA, syA);
@@ -125,6 +120,7 @@ export default function AnimatedBackground() {
           }
         }
 
+        // Mouse interaction - attract nearby particles
         for (const p of particles) {
           const scale = 800 / (800 + p.z);
           const sx = (p.x - canvas.width / 2) * scale + canvas.width / 2;
@@ -132,10 +128,11 @@ export default function AnimatedBackground() {
           const dx = mouseX - sx, dy = mouseY - sy;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 200) {
-            const force = (1 - dist / 200) * 0.015;
+            const force = (1 - dist / 200) * 0.02;
             p.vx += dx * force * 0.01;
             p.vy += dy * force * 0.01;
           }
+          // Damping
           p.vx *= 0.99;
           p.vy *= 0.99;
         }
@@ -145,6 +142,7 @@ export default function AnimatedBackground() {
     };
 
     animate();
+
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', resize);
@@ -152,5 +150,11 @@ export default function AnimatedBackground() {
     };
   }, [isMobile]);
 
-  return <canvas ref={canvasRef} className="fixed inset-0 -z-10" style={{ pointerEvents: 'none' }} />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 -z-10"
+      style={{ pointerEvents: 'none' }}
+    />
+  );
 }
