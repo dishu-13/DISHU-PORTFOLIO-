@@ -17,17 +17,10 @@ const Index = () => {
   const handleSplashComplete = useCallback(() => setSplashDone(true), []);
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden w-full">
-      {/* Shutter Splash */}
+    <main className="relative min-h-screen overflow-x-hidden w-full noise-overlay">
       {!splashDone && <ShutterSplash onComplete={handleSplashComplete} />}
-
-      {/* Animated Background */}
       <AnimatedBackground />
-      
-      {/* Navigation */}
       <Navbar />
-      
-      {/* Main Content */}
       <Hero />
       <MarqueeStrip />
       <About />
