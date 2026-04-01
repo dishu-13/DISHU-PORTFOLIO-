@@ -1,104 +1,95 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Briefcase, MapPin, Calendar } from 'lucide-react';
 
-// Sorted by start date (newest first)
 const experiences = [
   {
     title: 'Microsoft Elevate Intern',
     company: 'Microsoft',
     type: 'Internship',
     period: 'Feb 2026 - Mar 2026',
-    startDate: new Date('2026-02-16'),
     location: 'Remote',
     description: [
       'Completed 4-week internship on Emerging Technologies (Power BI, Azure, AI/ML, Copilot, Cloud)',
       'Built interactive Power BI dashboards to visualize KPIs, sales trends, and performance metrics',
       'Earned 6 co-branded certificates from Microsoft & AICTE'
     ],
-    color: 'from-sky-500 to-blue-600'
+    color: 'from-neon-purple to-neon-blue'
   },
   {
     title: 'Campus Ambassador',
     company: 'eDC IIT Delhi',
     type: 'Internship',
     period: 'Dec 2025 - Jan 2026',
-    startDate: new Date('2025-12-01'),
     location: 'Remote',
     description: [
       'Represented the organization and promoted events, initiatives, and programs',
       'Coordinated with students and teams to increase participation and engagement',
       'Built communication and leadership skills through diverse outreach'
     ],
-    color: 'from-red-500 to-rose-500'
+    color: 'from-neon-pink to-neon-purple'
   },
   {
     title: 'Associate Data Analyst',
     company: 'Excelerate',
     type: 'Internship',
     period: 'Aug 2025 - Sep 2025',
-    startDate: new Date('2025-08-01'),
     location: 'Remote',
     description: [
       'Curated, cleaned, and transformed raw datasets into actionable insights',
       'Created data visualizations and dashboards in Looker Studio for stakeholders',
       'Applied storytelling techniques to present analytical findings effectively'
     ],
-    color: 'from-orange-500 to-red-500'
+    color: 'from-neon-cyan to-neon-blue'
   },
   {
     title: 'Back End Developer',
     company: 'Prodesk IT',
     type: 'Internship',
     period: 'Jun 2025 - Jul 2025',
-    startDate: new Date('2025-06-01'),
     location: 'Remote',
     description: [
       'Developed backend solutions and APIs for web applications',
       'Worked with databases and server-side technologies'
     ],
-    color: 'from-blue-500 to-cyan-500'
+    color: 'from-neon-blue to-neon-cyan'
   },
   {
     title: 'Data Analyst Intern',
     company: 'Oasis Infobyte',
     type: 'Internship',
     period: 'Mar 2025 - Apr 2025',
-    startDate: new Date('2025-03-01'),
     location: 'Remote',
     description: [
       'Worked on real-world analytics projects including retail data exploration',
       'Segmented customers, analyzed sentiment, and detected fraud patterns',
       'Built and fine-tuned ML models using regression, classification, and clustering'
     ],
-    color: 'from-green-500 to-emerald-500'
+    color: 'from-neon-cyan to-neon-purple'
   },
   {
     title: 'NCC Cadet',
     company: '78 UK BN NCC Haldwani',
     type: 'Training',
     period: 'Mar 2018 - Mar 2023',
-    startDate: new Date('2018-03-01'),
     location: 'Uttarakhand, India',
     description: [
       'Developed strong discipline, leadership, and teamwork through 5 years of training',
       'Participated in drills, leadership exercises, and organizational events'
     ],
-    color: 'from-emerald-600 to-green-700'
+    color: 'from-neon-blue to-neon-purple'
   },
   {
     title: 'Campus Ambassador',
     company: 'TRYST, IIT Delhi',
     type: 'Internship',
     period: 'Jan 2023 - Feb 2023',
-    startDate: new Date('2023-01-01'),
     location: 'On-site',
     description: [
       'Led promotional campaigns and outreach activities',
       'Developed project management and leadership skills'
     ],
-    color: 'from-purple-500 to-pink-500'
+    color: 'from-neon-pink to-neon-cyan'
   }
 ];
 
@@ -106,84 +97,63 @@ export default function Experience() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
-  const itemVariants = {
-    hidden: (index: number) => ({ 
-      opacity: 0, 
-      x: index % 2 === 0 ? -30 : 30 
-    }),
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      },
-    },
-  };
-
   return (
-    <section id="experience" className="py-16 md:py-32 px-4 relative section-frost">
-      <div className="container mx-auto max-w-6xl" ref={ref}>
+    <section id="experience" className="py-24 md:py-32 px-4 relative">
+      <div className="section-divider mb-24" />
+      <div className="container mx-auto max-w-5xl" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-center mb-10 md:mb-16"
+          transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="text-center mb-16"
         >
-          <h2 className="font-display text-3xl md:text-5xl font-medium mb-4">
+          <span className="font-mono text-sm text-primary/70 tracking-widest uppercase mb-4 block">My Journey</span>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
             Work <span className="text-gradient">Experience</span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
+          <div className="w-20 h-1 mx-auto rounded-full" style={{ background: 'var(--gradient-primary)' }} />
         </motion.div>
 
         <div className="relative">
-          {/* Timeline line - centered on desktop, left-aligned on mobile */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary" />
+          {/* Timeline line */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px"
+               style={{ background: 'linear-gradient(180deg, hsl(263 70% 58% / 0.5), hsl(190 80% 50% / 0.3), hsl(263 70% 58% / 0.1))' }} />
 
-          <div className="space-y-6 md:space-y-12">
+          <div className="space-y-8 md:space-y-12">
             {experiences.map((exp, index) => (
               <motion.div
                 key={exp.title + exp.company}
-                custom={index}
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
-                variants={itemVariants}
-                transition={{ delay: index * 0.1 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className={`relative flex flex-col md:flex-row ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 } items-start md:items-center gap-4 md:gap-8`}
               >
                 {/* Timeline dot */}
-                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 md:w-4 md:h-4 rounded-full bg-gradient-to-r from-primary to-accent z-10 mt-8 md:mt-0" />
+                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full z-10 mt-8 md:mt-0"
+                     style={{
+                       background: 'var(--gradient-primary)',
+                       boxShadow: '0 0 12px hsl(263 70% 58% / 0.5)',
+                     }} />
 
-                {/* Content card - offset on mobile for timeline */}
+                {/* Card */}
                 <div className={`w-full pl-10 md:pl-0 md:w-[calc(50%-2rem)] ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
-                  <div className="p-4 md:p-6 rounded-2xl card-glass glass-shine hover-lift">
-                    <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r ${exp.color} text-white text-xs md:text-sm mb-3 md:mb-4`}>
-                      <Briefcase className="w-3 h-3 md:w-4 md:h-4" />
+                  <div className="p-5 md:p-6 card-glow glass-shine hover-lift">
+                    <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r ${exp.color} text-white text-xs font-medium mb-3`}>
+                      <Briefcase className="w-3 h-3" />
                       {exp.type}
                     </div>
-                    
-                    <h3 className="text-lg md:text-xl font-display font-medium text-foreground mb-1">
-                      {exp.title}
-                    </h3>
-                    <p className="text-primary font-medium text-sm md:text-base mb-2 md:mb-3">{exp.company}</p>
-                    
-                    <div className="flex flex-wrap gap-3 md:gap-4 text-xs md:text-sm text-muted-foreground mb-3 md:mb-4">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-3 h-3 md:w-4 md:h-4" />
-                        {exp.period}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <MapPin className="w-3 h-3 md:w-4 md:h-4" />
-                        {exp.location}
-                      </span>
+                    <h3 className="text-lg md:text-xl font-display font-bold text-foreground mb-1">{exp.title}</h3>
+                    <p className="text-primary font-medium text-sm mb-3">{exp.company}</p>
+                    <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-3">
+                      <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{exp.period}</span>
+                      <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{exp.location}</span>
                     </div>
-                    
-                    <ul className="space-y-1.5 md:space-y-2">
+                    <ul className="space-y-1.5">
                       {exp.description.map((item, i) => (
                         <li key={i} className="text-muted-foreground text-xs md:text-sm flex items-start gap-2">
-                          <span className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-primary mt-1.5 md:mt-2 flex-shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary/60 mt-1.5 flex-shrink-0" />
                           {item}
                         </li>
                       ))}
@@ -191,7 +161,6 @@ export default function Experience() {
                   </div>
                 </div>
 
-                {/* Spacer for alternating layout */}
                 <div className="hidden md:block w-[calc(50%-2rem)]" />
               </motion.div>
             ))}
