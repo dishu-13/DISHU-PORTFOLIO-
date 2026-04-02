@@ -68,7 +68,7 @@ export default function Navbar() {
           {/* Dark mode toggle */}
           <button
             onClick={() => setIsDark(!isDark)}
-            className="text-muted-foreground hover:text-primary hover:scale-110 transition-all duration-200 ml-2"
+            className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 ml-2"
             title={isDark ? 'Light mode' : 'Dark mode'}
           >
             {isDark ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
