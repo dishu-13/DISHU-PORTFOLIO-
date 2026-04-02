@@ -39,9 +39,9 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4">
       <nav
-        className={`flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 rounded-full backdrop-blur-3xl border border-primary/30 shadow-lg transition-all duration-300 w-full max-w-[360px] sm:max-w-[520px] md:max-w-[600px] ${
+        className={`flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 rounded-full backdrop-blur-3xl border-primary/30 shadow-lg transition-all duration-300 w-full max-w-[360px] sm:max-w-[520px] md:max-w-[600px] border-0 text-primary-foreground ${
           isScrolled 
-            ? 'bg-primary/30 shadow-xl border-primary/35' 
+            ? 'bg-primary/30 shadow-xl' 
             : 'bg-primary/20'
         }`}
         style={{ boxShadow: 'var(--shadow-glass)' }}
