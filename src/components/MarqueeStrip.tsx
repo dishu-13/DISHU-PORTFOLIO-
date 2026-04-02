@@ -20,7 +20,7 @@ function ItemList() {
   return (
     <>
       {items.map((item, i) => (
-        <span key={i} className="inline-flex items-center gap-2 mx-4">
+        <span key={i} className="inline-flex items-center gap-2.5 mx-6">
           <item.icon size={16} className="text-primary/70 shrink-0" />
           <span>{item.label}</span>
         </span>
