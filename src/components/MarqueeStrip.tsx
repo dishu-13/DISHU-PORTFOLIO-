@@ -34,7 +34,7 @@ export default function MarqueeStrip() {
     <div className="w-full flex justify-center py-8 mt-4">
       <div className="w-1/2 overflow-hidden rounded-full border border-border/30 bg-card/30 backdrop-blur-sm py-3">
         <motion.div
-          className="whitespace-nowrap font-display text-sm md:text-base tracking-[0.15em] text-muted-foreground/70 font-medium uppercase flex"
+          className="whitespace-nowrap font-display text-base md:text-lg tracking-[0.15em] text-muted-foreground/70 font-medium uppercase flex"
           animate={{ x: ['0%', '-50%'] }}
           transition={{
             x: {
