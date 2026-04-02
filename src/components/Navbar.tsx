@@ -44,8 +44,8 @@ export default function Navbar() {
         }`}
       >
         {/* Logo */}
-        <a href="#home" className="text-foreground text-base sm:text-xl font-medium tracking-wider">
-          <span className="text-primary">D</span>AKSH
+        <a href="#home" className="text-white text-base sm:text-xl font-medium tracking-wider">
+          <span className="text-white">D</span>AKSH
         </a>
 
         {/* Navigation - Icons (visible on all screens) */}
