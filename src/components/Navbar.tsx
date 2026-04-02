@@ -56,8 +56,8 @@ export default function Navbar() {
               href={item.href}
               className={`relative transition-all duration-200 ${
                 activeSection === item.id
-                  ? 'text-primary scale-110'
-                  : 'text-muted-foreground hover:text-primary hover:scale-110'
+                  ? 'text-white scale-110'
+                  : 'text-white/60 hover:text-white hover:scale-110'
               }`}
               title={item.label}
             >
