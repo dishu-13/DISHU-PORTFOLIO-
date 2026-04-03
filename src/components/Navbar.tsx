@@ -39,10 +39,8 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4">
       <nav
-        className={`flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 rounded-full shadow-lg transition-all duration-300 w-full max-w-[360px] sm:max-w-[520px] md:max-w-[600px] border-0 text-white ${
-          isScrolled ? 'shadow-xl' : ''
-        }`}
-        style={{ background: 'hsl(210, 80%, 35%)', boxShadow: '0 8px 32px hsla(210, 80%, 35%, 0.4)' }}
+        className={`flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 rounded-full transition-all duration-300 w-full max-w-[360px] sm:max-w-[520px] md:max-w-[600px] border-0 text-white`}
+        style={{ background: 'hsl(210, 80%, 35%)' }}
       >
         {/* Logo */}
         <a href="#home" className="text-white text-base sm:text-xl font-medium tracking-wider">
