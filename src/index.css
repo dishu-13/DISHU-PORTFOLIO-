@@ -142,13 +142,10 @@
   }
 
   .card-glass {
-    @apply backdrop-blur-2xl border border-border/10;
-    background: linear-gradient(
-      135deg,
-      hsl(var(--card) / 0.18) 0%,
-      hsl(var(--card) / 0.08) 100%
-    );
-    box-shadow: var(--shadow-glass), 0 0 0 1px hsl(var(--border) / 0.05);
+    @apply backdrop-blur-2xl border border-border/10 rounded-2xl;
+    background: hsl(var(--card) / 0.85);
+    box-shadow: 0 4px 24px hsl(var(--foreground) / 0.06), 0 1px 4px hsl(var(--foreground) / 0.04);
+    border-bottom: 3px solid hsl(var(--primary));
   }
 
   .card-glass-strong {
