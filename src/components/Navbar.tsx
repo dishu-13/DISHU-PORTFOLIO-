@@ -42,7 +42,7 @@ export default function Navbar() {
         className={`flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 rounded-full shadow-lg transition-all duration-300 w-full max-w-[360px] sm:max-w-[520px] md:max-w-[600px] border-0 text-white ${
           isScrolled ? 'shadow-xl' : ''
         }`}
-        style={{ background: 'linear-gradient(135deg, hsl(200, 80%, 50%), hsl(180, 70%, 45%))', boxShadow: '0 8px 32px hsla(200, 80%, 50%, 0.35)' }}
+        style={{ background: 'hsl(210, 80%, 35%)', boxShadow: '0 8px 32px hsla(210, 80%, 35%, 0.4)' }}
       >
         {/* Logo */}
         <a href="#home" className="text-white text-base sm:text-xl font-medium tracking-wider">
