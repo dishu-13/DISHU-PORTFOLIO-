@@ -100,14 +100,14 @@ export default function Achievements() {
         {/* Carousel - swipe to navigate */}
         <motion.div
           className="relative flex items-center justify-center cursor-grab active:cursor-grabbing"
-          style={{ minHeight: '520px', touchAction: 'pan-y' }}
+          style={{ minHeight: 'clamp(360px, 60vw, 520px)', touchAction: 'pan-y' }}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.2}
           onDragEnd={handleDragEnd}
         >
           {/* Cards */}
-          <div className="relative w-full flex items-center justify-center" style={{ height: '480px', perspective: '1200px' }}>
+          <div className="relative w-full flex items-center justify-center" style={{ height: 'clamp(320px, 55vw, 480px)', perspective: '1200px' }}>
             {certificates.map((cert, index) => {
               const offset = getOffset(index);
               const absOffset = Math.abs(offset);
@@ -121,11 +121,11 @@ export default function Achievements() {
                   key={index}
                   className="absolute pointer-events-auto"
                   style={{
-                    width: isCenter ? '360px' : '280px',
+                    width: isCenter ? 'clamp(260px, 70vw, 360px)' : 'clamp(200px, 50vw, 280px)',
                     zIndex: 10 - absOffset,
                   }}
                   animate={{
-                    x: offset * 220,
+                    x: offset * (typeof window !== 'undefined' && window.innerWidth < 768 ? 120 : 220),
                     scale: isCenter ? 1 : 0.8 - absOffset * 0.05,
                     rotateY: offset * -8,
                     opacity: isCenter ? 1 : Math.max(0.3, 0.7 - absOffset * 0.2),
@@ -156,22 +156,22 @@ export default function Achievements() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="p-5 text-center"
+                        className="p-3 md:p-5 text-center"
                       >
-                        <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-muted/50 text-muted-foreground mb-3 backdrop-blur-sm border border-border/10">
+                        <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-muted/50 text-muted-foreground mb-2 md:mb-3 backdrop-blur-sm border border-border/10">
                           {cert.issuer}
                         </span>
-                        <h3 className="font-display text-base font-semibold text-foreground leading-tight mb-2">
+                        <h3 className="font-display text-sm md:text-base font-semibold text-foreground leading-tight mb-1 md:mb-2">
                           {cert.title}
                         </h3>
-                        <p className="text-muted-foreground text-sm font-mono mb-4">{cert.date}</p>
+                        <p className="text-muted-foreground text-xs md:text-sm font-mono mb-3 md:mb-4">{cert.date}</p>
                         <a
                           href={cert.image}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-border/20 bg-muted/30 backdrop-blur-sm text-foreground font-medium text-sm hover:bg-primary hover:text-primary-foreground transition-colors"
+                          className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-2.5 rounded-full border border-border/20 bg-muted/30 backdrop-blur-sm text-foreground font-medium text-xs md:text-sm hover:bg-primary hover:text-primary-foreground transition-colors"
                         >
-                          Verify Credential <ExternalLink className="w-4 h-4" />
+                          Verify Credential <ExternalLink className="w-3 h-3 md:w-4 md:h-4" />
                         </a>
                       </motion.div>
                     )}
