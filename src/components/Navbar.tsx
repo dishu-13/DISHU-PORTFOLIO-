@@ -83,7 +83,7 @@ export default function Navbar() {
                 key={item.label}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className="relative p-1.5 sm:p-2 rounded-full transition-all duration-300 group"
+                className="relative p-1 sm:p-2 rounded-full transition-all duration-300 group"
                 title={item.label}
               >
                 {/* Active background pill */}
