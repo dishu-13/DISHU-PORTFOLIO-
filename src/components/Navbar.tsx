@@ -75,7 +75,7 @@ export default function Navbar() {
         </a>
 
         {/* Navigation Icons */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-0.5 sm:gap-2">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
