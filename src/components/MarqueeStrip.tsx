@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { BarChart3, Code, Database, LayoutDashboard, Brain, LineChart, FileSpreadsheet, PieChart, TrendingUp, Server, FlaskConical, Lightbulb } from 'lucide-react';
 
 const items = [
@@ -18,14 +17,14 @@ const items = [
 
 function ItemList() {
   return (
-    <>
+    <div className="flex shrink-0">
       {items.map((item, i) => (
-        <span key={i} className="inline-flex items-center gap-2.5 mx-6">
+        <span key={i} className="inline-flex items-center gap-2.5 mx-6 shrink-0">
           <item.icon size={20} className="text-primary/70 shrink-0" />
           <span>{item.label}</span>
         </span>
       ))}
-    </>
+    </div>
   );
 }
 
@@ -33,21 +32,13 @@ export default function MarqueeStrip() {
   return (
     <div className="w-full flex justify-center py-8 mt-4">
       <div className="w-1/2 overflow-hidden rounded-full border border-border/30 bg-card/30 backdrop-blur-sm py-3">
-        <motion.div
-          className="whitespace-nowrap font-display text-base md:text-lg tracking-[0.15em] text-muted-foreground/70 font-medium uppercase flex"
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: 'loop',
-              duration: 8,
-              ease: 'linear',
-            },
-          }}
+        <div
+          className="whitespace-nowrap font-display text-base md:text-lg tracking-[0.15em] text-muted-foreground/70 font-medium uppercase flex animate-marquee-loop"
         >
           <ItemList />
           <ItemList />
-        </motion.div>
+          <ItemList />
+        </div>
       </div>
     </div>
   );
