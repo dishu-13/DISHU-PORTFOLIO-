@@ -26,13 +26,13 @@ const certificates = [
   },
   {
     title: 'Data Analytics Certificate',
-    issuer: 'CISCO',
+    issuer: 'Infosys',
     date: '2024',
     image: 'https://dishu-13.github.io/portfolio/certificate5.png'
   },
   {
     title: 'Techniques for Big Data Analytics',
-    issuer: 'CISCO',
+    issuer: 'Infosys',
     date: '2024',
     image: 'https://dishu-13.github.io/portfolio/certificate3.png'
   },
@@ -92,7 +92,7 @@ export default function Achievements() {
             Awards & <span className="text-gradient">Certificates</span>
           </h2>
           <p className="text-muted-foreground text-lg mb-4">
-            {certificates.length} certifications from CISCO, Microsoft & more
+            {certificates.length} certifications from Infosys, Microsoft & more
           </p>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
         </motion.div>
