@@ -37,8 +37,8 @@ const certificates = [
     image: 'https://dishu-13.github.io/portfolio/certificate3.png'
   },
   {
-    title: 'Infosys Analytics Certificate',
-    issuer: 'Infosys',
+    title: 'Data Analytics Certificate',
+    issuer: 'Google',
     date: '2024',
     image: 'https://dishu-13.github.io/portfolio/certificate1.png'
   },
