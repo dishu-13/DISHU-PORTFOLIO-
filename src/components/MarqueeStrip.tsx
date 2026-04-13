@@ -40,7 +40,7 @@ export default function MarqueeStrip() {
             x: {
               repeat: Infinity,
               repeatType: 'loop',
-              duration: 15,
+              duration: 8,
               ease: 'linear',
             },
           }}
