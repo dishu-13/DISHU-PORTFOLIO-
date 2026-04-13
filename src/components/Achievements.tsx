@@ -26,7 +26,7 @@ const certificates = [
   },
   {
     title: 'Data Analytics Essentials',
-    issuer: 'Infosys',
+    issuer: 'CISCO',
     date: '2024',
     image: 'https://dishu-13.github.io/portfolio/certificate5.png'
   },
