@@ -25,7 +25,7 @@ const certificates = [
     image: googleAiAdsCert
   },
   {
-    title: 'Data Analytics Certificate',
+    title: 'Data Analytics Essentials',
     issuer: 'Infosys',
     date: '2024',
     image: 'https://dishu-13.github.io/portfolio/certificate5.png'
