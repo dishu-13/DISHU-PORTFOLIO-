@@ -142,26 +142,35 @@ export default {
   					transform: 'rotate(360deg)'
   				}
   			},
-  			'fade-up': {
-  				'0%': {
-  					opacity: '0',
-  					transform: 'translateY(40px)'
-  				},
-  				'100%': {
-  					opacity: '1',
-  					transform: 'translateY(0)'
-  				}
-  			}
-  		},
-  		animation: {
-  			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out',
-  			'float': 'float 6s ease-in-out infinite',
-  			'float-reverse': 'float-reverse 7s ease-in-out infinite',
-  			'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
-  			'spin-slow': 'spin-slow 20s linear infinite',
-  			'fade-up': 'fade-up 0.8s ease-out forwards'
-  		}
+			'fade-up': {
+				'0%': {
+					opacity: '0',
+					transform: 'translateY(40px)'
+				},
+				'100%': {
+					opacity: '1',
+					transform: 'translateY(0)'
+				}
+			},
+			'marquee-loop': {
+				'0%': {
+					transform: 'translateX(0)'
+				},
+				'100%': {
+					transform: 'translateX(-33.333%)'
+				}
+			}
+		},
+		animation: {
+			'accordion-down': 'accordion-down 0.2s ease-out',
+			'accordion-up': 'accordion-up 0.2s ease-out',
+			'float': 'float 6s ease-in-out infinite',
+			'float-reverse': 'float-reverse 7s ease-in-out infinite',
+			'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
+			'spin-slow': 'spin-slow 20s linear infinite',
+			'fade-up': 'fade-up 0.8s ease-out forwards',
+			'marquee-loop': 'marquee-loop 8s linear infinite'
+		}
   	}
   },
   plugins: [require("tailwindcss-animate")],
