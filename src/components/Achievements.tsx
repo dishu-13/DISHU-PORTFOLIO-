@@ -20,7 +20,7 @@ const certificates = [
   },
   {
     title: 'AI-Powered Performance Ads Certification',
-    issuer: 'Infosys Ads',
+    issuer: 'Google',
     date: 'December 2025',
     image: googleAiAdsCert
   },
