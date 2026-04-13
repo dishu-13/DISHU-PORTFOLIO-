@@ -1,4 +1,4 @@
-import { BarChart3, Code, Database, LayoutDashboard, Brain, LineChart, FileSpreadsheet, PieChart, TrendingUp, Server, FlaskConical, Lightbulb } from 'lucide-react';
+import { BarChart3, Code, Database, LayoutDashboard, Brain, LineChart, FileSpreadsheet, PieChart, TrendingUp, Server, FlaskConical, Lightbulb, Search, Filter, GitBranch, Workflow, Target, Gauge, Layers, ShieldCheck } from 'lucide-react';
 
 const items = [
   { label: 'DATA ANALYTICS', icon: BarChart3 },
@@ -13,6 +13,14 @@ const items = [
   { label: 'BIG DATA', icon: Server },
   { label: 'DATA SCIENCE', icon: FlaskConical },
   { label: 'INSIGHTS', icon: Lightbulb },
+  { label: 'DATA MINING', icon: Search },
+  { label: 'ETL PIPELINES', icon: Filter },
+  { label: 'DATA MODELING', icon: GitBranch },
+  { label: 'PREDICTIVE ANALYTICS', icon: Target },
+  { label: 'DATA WRANGLING', icon: Workflow },
+  { label: 'KPI TRACKING', icon: Gauge },
+  { label: 'DATA WAREHOUSING', icon: Layers },
+  { label: 'DATA GOVERNANCE', icon: ShieldCheck },
 ];
 
 function ItemList() {
