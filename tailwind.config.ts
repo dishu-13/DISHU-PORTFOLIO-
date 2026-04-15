@@ -154,10 +154,10 @@ export default {
 			},
 			'marquee-loop': {
 				'0%': {
-					transform: 'translateX(0)'
+					transform: 'translate3d(0, 0, 0)'
 				},
 				'100%': {
-					transform: 'translateX(-33.333%)'
+					transform: 'translate3d(-50%, 0, 0)'
 				}
 			}
 		},
@@ -169,7 +169,7 @@ export default {
 			'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
 			'spin-slow': 'spin-slow 20s linear infinite',
 			'fade-up': 'fade-up 0.8s ease-out forwards',
-			'marquee-loop': 'marquee-loop 4s linear infinite'
+			'marquee-loop': 'marquee-loop 18s linear infinite'
 		}
   	}
   },

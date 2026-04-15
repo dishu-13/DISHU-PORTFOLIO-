@@ -23,11 +23,11 @@ const items = [
   { label: 'DATA GOVERNANCE', icon: ShieldCheck },
 ];
 
-function ItemList() {
+function ItemList({ duplicate = false }: { duplicate?: boolean }) {
   return (
-    <div className="flex shrink-0">
+    <div aria-hidden={duplicate} className="flex shrink-0 items-center">
       {items.map((item, i) => (
-        <span key={i} className="inline-flex items-center gap-2.5 mx-6 shrink-0">
+        <span key={`${item.label}-${i}`} className="inline-flex items-center gap-2.5 px-6 shrink-0">
           <item.icon size={20} className="text-primary/70 shrink-0" />
           <span>{item.label}</span>
         </span>
@@ -40,12 +40,9 @@ export default function MarqueeStrip() {
   return (
     <div className="w-full flex justify-center py-8 mt-4">
       <div className="w-1/2 overflow-hidden rounded-full border border-border/30 bg-card/30 backdrop-blur-sm py-3">
-        <div
-          className="whitespace-nowrap font-display text-base md:text-lg tracking-[0.15em] text-muted-foreground/70 font-medium uppercase flex animate-marquee-loop"
-        >
+        <div className="flex w-max whitespace-nowrap font-display text-base md:text-lg tracking-[0.15em] text-muted-foreground/70 font-medium uppercase animate-marquee-loop will-change-transform [transform:translate3d(0,0,0)]">
           <ItemList />
-          <ItemList />
-          <ItemList />
+          <ItemList duplicate />
         </div>
       </div>
     </div>
