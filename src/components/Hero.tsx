@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, Download, Github, Linkedin, Mail } from 'lucide-react';
+import { ChevronDown, Download, Github, Linkedin, Mail, Instagram } from 'lucide-react';
 import profileImage from '@/assets/profile.png';
 export default function Hero() {
   return <section id="home" className="relative min-h-screen flex items-center justify-center px-4 pt-20">
@@ -94,6 +94,9 @@ export default function Hero() {
               </a>
               <a href="https://www.linkedin.com/in/dishu-daksh-a52572240/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-border bg-card/30 text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 transition-all duration-300">
                 <Linkedin className="w-5 h-5" />
+              </a>
+              <a href="https://www.instagram.com/dishu_daksh18/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-border bg-card/30 text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 transition-all duration-300">
+                <Instagram className="w-5 h-5" />
               </a>
               <a href="mailto:dishudaksh44@gmail.com" className="p-3 rounded-full border border-border bg-card/30 text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 transition-all duration-300">
                 <Mail className="w-5 h-5" />
