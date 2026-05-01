@@ -159,6 +159,17 @@ export default {
 				'100%': {
 					transform: 'translate3d(-50%, 0, 0)'
 				}
+			},
+			'blob': {
+				'0%, 100%': {
+					transform: 'translate(0px, 0px) scale(1)'
+				},
+				'33%': {
+					transform: 'translate(40px, -50px) scale(1.1)'
+				},
+				'66%': {
+					transform: 'translate(-30px, 30px) scale(0.95)'
+				}
 			}
 		},
 		animation: {
@@ -169,7 +180,8 @@ export default {
 			'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
 			'spin-slow': 'spin-slow 20s linear infinite',
 			'fade-up': 'fade-up 0.8s ease-out forwards',
-			'marquee-loop': 'marquee-loop 30s linear infinite'
+			'marquee-loop': 'marquee-loop 30s linear infinite',
+			'blob': 'blob 18s ease-in-out infinite'
 		}
   	}
   },
