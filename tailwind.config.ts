@@ -169,7 +169,7 @@ export default {
 			'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
 			'spin-slow': 'spin-slow 20s linear infinite',
 			'fade-up': 'fade-up 0.8s ease-out forwards',
-			'marquee-loop': 'marquee-loop 18s linear infinite'
+			'marquee-loop': 'marquee-loop 30s linear infinite'
 		}
   	}
   },
