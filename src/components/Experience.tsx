@@ -48,19 +48,6 @@ const experiences = [
     color: 'from-orange-500 to-red-500'
   },
   {
-    title: 'Back End Developer',
-    company: 'Prodesk IT',
-    type: 'Internship',
-    period: 'Jun 2025 - Jul 2025',
-    startDate: new Date('2025-06-01'),
-    location: 'Remote',
-    description: [
-      'Developed backend solutions and APIs for web applications',
-      'Worked with databases and server-side technologies'
-    ],
-    color: 'from-blue-500 to-cyan-500'
-  },
-  {
     title: 'Data Analyst Intern',
     company: 'Oasis Infobyte',
     type: 'Internship',
