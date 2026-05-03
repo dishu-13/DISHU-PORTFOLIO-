@@ -9,7 +9,7 @@ const skillCategories = [
     icon: Code,
     color: 'from-blue-500/20 to-blue-600/20 border-blue-500/30',
     iconColor: 'text-blue-500',
-    skills: ['Python', 'SQL', 'HTML', 'CSS']
+    skills: ['Python', 'SQL', 'JavaScript', 'HTML', 'CSS']
   },
   {
     title: 'Frameworks & Libraries',
