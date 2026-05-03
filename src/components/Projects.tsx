@@ -1,9 +1,17 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { ExternalLink, Github, TrendingUp, Trash2, Home, Wine, ShieldAlert, BarChart3 } from 'lucide-react';
+import { ExternalLink, Github, TrendingUp, Trash2, Home, Wine, ShieldAlert, BarChart3, Briefcase } from 'lucide-react';
 
 const projects = [
+  {
+    title: 'AutoHire AI',
+    description: 'AI-powered job matching app that analyzes resumes, scores resume-job fit (%), aggregates listings from multiple platforms, and delivers an end-to-end workflow with 5 modules: Jobs, Resume, Tracker, Dashboard, and Settings.',
+    icon: Briefcase,
+    tags: ['Flutter', 'Dart', 'Firebase', 'REST APIs', 'Git & GitHub'],
+    color: 'from-indigo-500 to-purple-600',
+    link: 'https://github.com/dishu-13/AutoHire-AI.git',
+  },
   {
     title: 'Retail Sales Data',
     description: 'Analyzing retail sales data to identify purchasing trends, seasonal patterns, and performance metrics that assist businesses in optimizing inventory and increasing sales efficiency.',
