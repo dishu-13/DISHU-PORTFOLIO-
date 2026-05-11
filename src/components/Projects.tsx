@@ -106,7 +106,7 @@ function CircleCarousel() {
               }}
             >
               <motion.div
-                style={{ rotate: useTransform(rotate, (r) => -r) }}
+                style={{ rotate: counterRotate }}
                 className="w-full h-full rounded-2xl overflow-hidden shadow-xl ring-1 ring-border/30"
               >
                 <img
