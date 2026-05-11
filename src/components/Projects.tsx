@@ -2,12 +2,20 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ExternalLink, Github, TrendingUp, Trash2, Home, Wine, ShieldAlert, BarChart3, Briefcase } from 'lucide-react';
+import autohireImg from '@/assets/projects/autohire.jpg';
+import retailSalesImg from '@/assets/projects/retail-sales.jpg';
+import dataCleaningImg from '@/assets/projects/data-cleaning.jpg';
+import housePriceImg from '@/assets/projects/house-price.jpg';
+import wineQualityImg from '@/assets/projects/wine-quality.jpg';
+import fraudDetectionImg from '@/assets/projects/fraud-detection.jpg';
+import ecommerceDashboardImg from '@/assets/projects/ecommerce-dashboard.jpg';
 
 const projects = [
   {
     title: 'AutoHire AI',
     description: 'AI-powered job matching app that analyzes resumes, scores resume-job fit (%), aggregates listings from multiple platforms, and delivers an end-to-end workflow with 5 modules: Jobs, Resume, Tracker, Dashboard, and Settings.',
     icon: Briefcase,
+    image: autohireImg,
     tags: ['Flutter', 'Dart', 'Firebase', 'REST APIs', 'Git & GitHub'],
     color: 'from-indigo-500 to-purple-600',
     link: 'https://github.com/dishu-13/AutoHire-AI.git',
@@ -16,6 +24,7 @@ const projects = [
     title: 'Retail Sales Data',
     description: 'Analyzing retail sales data to identify purchasing trends, seasonal patterns, and performance metrics that assist businesses in optimizing inventory and increasing sales efficiency.',
     icon: TrendingUp,
+    image: retailSalesImg,
     tags: ['Python', 'Pandas', 'Data Analysis'],
     color: 'from-primary to-cyan-400',
     link: 'https://github.com/dishu-13/OIBSIP/tree/3beae94f29c5a9b3477d62fcf18702c7d1ac855f/Project%201%20(retail_sales_dataset%20)',
@@ -24,6 +33,7 @@ const projects = [
     title: 'Data Cleaning',
     description: 'Clean and preprocess raw data for accurate analysis. Handling missing values, removing duplicates, correcting data types, and standardizing inconsistent entries.',
     icon: Trash2,
+    image: dataCleaningImg,
     tags: ['Python', 'Data Preprocessing', 'ETL'],
     color: 'from-accent to-pink-400',
     link: 'https://github.com/dishu-13/OIBSIP/tree/3beae94f29c5a9b3477d62fcf18702c7d1ac855f/Project%202%20(%20Data%20cleaning%20)',
@@ -32,6 +42,7 @@ const projects = [
     title: 'House Price Prediction',
     description: 'Machine learning model to estimate house prices based on key features. Includes data cleaning, feature selection, model training using Scikit-learn and evaluation.',
     icon: Home,
+    image: housePriceImg,
     tags: ['Python', 'Scikit-learn', 'Machine Learning'],
     color: 'from-emerald-400 to-teal-500',
     link: 'https://github.com/dishu-13/OIBSIP/tree/3beae94f29c5a9b3477d62fcf18702c7d1ac855f/Project%203%20(%20%20House%20%20Prediction%20)',
@@ -40,6 +51,7 @@ const projects = [
     title: 'Wine Quality Prediction',
     description: 'Predict wine quality based on chemical properties using machine learning. Data preprocessing, feature selection, and model training with visualization.',
     icon: Wine,
+    image: wineQualityImg,
     tags: ['Python', 'NumPy', 'Matplotlib'],
     color: 'from-rose-400 to-red-500',
     link: 'https://github.com/dishu-13/OIBSIP/tree/3beae94f29c5a9b3477d62fcf18702c7d1ac855f/Project%204%20(%20Wine%20Quality%20Prediction%20)',
@@ -48,6 +60,7 @@ const projects = [
     title: 'Fraud Detection',
     description: 'Designed a machine learning model to spot fraudulent financial transactions. Tackled data challenges like imbalanced classes, leveraged Random Forest for high accuracy.',
     icon: ShieldAlert,
+    image: fraudDetectionImg,
     tags: ['Python', 'Random Forest', 'Machine Learning'],
     color: 'from-amber-400 to-orange-500',
     link: 'https://github.com/dishu-13/OIBSIP',
@@ -56,6 +69,7 @@ const projects = [
     title: 'E-Commerce Sales Dashboard',
     description: 'Interactive Power BI dashboard analyzing e-commerce sales data with dynamic visualizations, KPIs, and filters to track revenue, profit, quantity, and customer trends across regions and categories.',
     icon: BarChart3,
+    image: ecommerceDashboardImg,
     tags: ['Power BI', 'Data Visualization', 'DAX', 'ETL'],
     color: 'from-violet-400 to-purple-500',
     link: 'https://github.com/dishu-13/E-Commerce-Sales-PowerBI-Dashboard',
@@ -123,15 +137,28 @@ export default function Projects() {
               target="_blank"
               rel="noopener noreferrer"
               variants={itemVariants}
-              className="group relative p-6 md:p-8 rounded-2xl md:rounded-3xl card-glass glass-shine overflow-hidden hover-lift cursor-pointer"
+              className="group relative rounded-2xl md:rounded-3xl card-glass glass-shine overflow-hidden hover-lift cursor-pointer flex flex-col"
             >
-              {/* Gradient overlay on hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-              
-              {/* Icon */}
-              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${project.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                <project.icon className="w-7 h-7 text-white" />
+              {/* Project image */}
+              <div className="relative w-full h-48 md:h-56 overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={`${project.title} preview`}
+                  loading="lazy"
+                  width={800}
+                  height={512}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent`} />
+                {/* Icon badge */}
+                <div className={`absolute bottom-3 left-3 w-12 h-12 rounded-2xl bg-gradient-to-br ${project.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  <project.icon className="w-6 h-6 text-white" />
+                </div>
               </div>
+
+              <div className="relative p-6 md:p-8 flex-1 flex flex-col">
+              {/* Gradient overlay on hover */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none`} />
               
               {/* Content */}
               <h3 className="font-display text-2xl font-medium text-foreground mb-3 group-hover:text-primary transition-colors">
