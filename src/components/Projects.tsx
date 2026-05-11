@@ -1,7 +1,6 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { ExternalLink, Github, TrendingUp, Trash2, Home, Wine, ShieldAlert, BarChart3, Briefcase } from 'lucide-react';
+import { ExternalLink, TrendingUp, Trash2, Home, Wine, ShieldAlert, BarChart3, Briefcase } from 'lucide-react';
 import autohireImg from '@/assets/projects/autohire.jpg';
 import retailSalesImg from '@/assets/projects/retail-sales.jpg';
 import dataCleaningImg from '@/assets/projects/data-cleaning.jpg';
@@ -76,44 +75,75 @@ const projects = [
   },
 ];
 
-export default function Projects() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+function CircleCarousel() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start'],
+  });
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, 180]);
+  const scale = useTransform(scrollYProgress, [0, 0.4, 1], [0.85, 1, 0.95]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0.6]);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      },
-    },
-  };
+  const count = projects.length;
+  const radius = 150;
 
   return (
+    <div ref={containerRef} className="relative w-full flex flex-col items-center justify-center py-12 md:py-20">
+      <motion.div
+        style={{ rotate, scale, opacity }}
+        className="relative w-[340px] h-[340px] md:w-[440px] md:h-[440px]"
+      >
+        {projects.map((project, i) => {
+          const angle = (i / count) * 360;
+          return (
+            <div
+              key={project.title}
+              className="absolute top-1/2 left-1/2 w-20 h-20 md:w-28 md:h-28"
+              style={{
+                transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-${radius}px) rotate(${-angle}deg)`,
+              }}
+            >
+              <motion.div
+                style={{ rotate: useTransform(rotate, (r) => -r) }}
+                className="w-full h-full rounded-2xl overflow-hidden shadow-xl ring-1 ring-border/30"
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </motion.div>
+            </div>
+          );
+        })}
+      </motion.div>
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mt-8 text-sm md:text-base text-muted-foreground font-light tracking-wide"
+      >
+        Scroll to explore each project
+      </motion.p>
+    </div>
+  );
+}
+
+export default function Projects() {
+  return (
     <section id="projects" className="py-20 md:py-32 px-4 relative section-frost">
-      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/30 to-transparent pointer-events-none" />
-      
-      <div className="container mx-auto max-w-6xl relative" ref={ref}>
+
+      <div className="container mx-auto max-w-6xl relative">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-8 md:mb-12"
         >
           <h2 className="font-display text-4xl md:text-5xl font-medium mb-4">
             My <span className="text-gradient">Projects</span>
@@ -124,71 +154,60 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          {projects.map((project) => (
+        <CircleCarousel />
+
+        <div className="flex flex-col gap-8 md:gap-12 mt-12 md:mt-20">
+          {projects.map((project, i) => (
             <motion.a
               key={project.title}
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              variants={itemVariants}
-              className="group relative rounded-2xl md:rounded-3xl card-glass glass-shine overflow-hidden hover-lift cursor-pointer flex flex-col"
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-15% 0px -15% 0px' }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="group relative rounded-2xl md:rounded-3xl card-glass glass-shine overflow-hidden hover-lift cursor-pointer grid md:grid-cols-2 gap-0"
             >
-              {/* Project image */}
-              <div className="relative w-full h-48 md:h-56 overflow-hidden">
+              <div className={`relative w-full h-56 md:h-full min-h-[14rem] overflow-hidden ${i % 2 === 1 ? 'md:order-2' : ''}`}>
                 <img
                   src={project.image}
                   alt={`${project.title} preview`}
                   loading="lazy"
-                  width={800}
-                  height={512}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className={`absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent`} />
-                {/* Icon badge */}
+                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-card/80 via-card/20 to-transparent" />
                 <div className={`absolute bottom-3 left-3 w-12 h-12 rounded-2xl bg-gradient-to-br ${project.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                   <project.icon className="w-6 h-6 text-white" />
                 </div>
               </div>
 
-              <div className="relative p-6 md:p-8 flex-1 flex flex-col">
-              {/* Gradient overlay on hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none`} />
-              
-              {/* Content */}
-              <h3 className="font-display text-2xl font-medium text-foreground mb-3 group-hover:text-primary transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-muted-foreground mb-6 line-clamp-3">
-                {project.description}
-              </p>
-              
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.tags.map((tag) => (
-                  <span 
-                    key={tag} 
-                    className="px-3 py-1 text-sm rounded-full bg-card/50 backdrop-blur-sm text-muted-foreground border border-border/20"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              
-              {/* Link indicator */}
-              <div className="flex items-center gap-2 text-primary font-normal">
-                <span>View on GitHub</span>
-                <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </div>
+              <div className="relative p-6 md:p-10 flex flex-col justify-center">
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none`} />
+                <h3 className="font-display text-2xl md:text-3xl font-medium text-foreground mb-3 group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-muted-foreground mb-6 font-light">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 text-sm rounded-full bg-card/50 backdrop-blur-sm text-muted-foreground border border-border/20"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex items-center gap-2 text-primary font-normal">
+                  <span>View on GitHub</span>
+                  <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </div>
               </div>
             </motion.a>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
