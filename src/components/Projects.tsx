@@ -185,6 +185,7 @@ export default function Projects() {
                 <span>View on GitHub</span>
                 <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </div>
+              </div>
             </motion.a>
           ))}
         </motion.div>
