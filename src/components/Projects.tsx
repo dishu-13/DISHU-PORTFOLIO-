@@ -82,6 +82,7 @@ function CircleCarousel() {
     offset: ['start end', 'end start'],
   });
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 180]);
+  const counterRotate = useTransform(rotate, (r) => -r);
   const scale = useTransform(scrollYProgress, [0, 0.4, 1], [0.85, 1, 0.95]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0.6]);
 
