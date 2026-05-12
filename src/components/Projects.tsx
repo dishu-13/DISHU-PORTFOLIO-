@@ -157,58 +157,109 @@ export default function Projects() {
 
         <CircleCarousel />
 
-        <div className="flex flex-col gap-8 md:gap-12 mt-12 md:mt-20">
-          {projects.map((project, i) => (
-            <motion.a
-              key={project.title}
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 80 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-15% 0px -15% 0px' }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative rounded-2xl md:rounded-3xl card-glass glass-shine overflow-hidden hover-lift cursor-pointer grid md:grid-cols-2 gap-0"
-            >
-              <div className={`relative w-full h-56 md:h-full min-h-[14rem] overflow-hidden ${i % 2 === 1 ? 'md:order-2' : ''}`}>
-                <img
-                  src={project.image}
-                  alt={`${project.title} preview`}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-card/80 via-card/20 to-transparent" />
-                <div className={`absolute bottom-3 left-3 w-12 h-12 rounded-2xl bg-gradient-to-br ${project.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                  <project.icon className="w-6 h-6 text-white" />
-                </div>
-              </div>
+        <StackedProjects />
+      </div>
+    </section>
+  );
+}
 
-              <div className="relative p-6 md:p-10 flex flex-col justify-center">
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none`} />
-                <h3 className="font-display text-2xl md:text-3xl font-medium text-foreground mb-3 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground mb-6 font-light">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 text-sm rounded-full bg-card/50 backdrop-blur-sm text-muted-foreground border border-border/20"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex items-center gap-2 text-primary font-normal">
-                  <span>View on GitHub</span>
-                  <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </div>
-              </div>
-            </motion.a>
-          ))}
-        </div>
+function StackedProjects() {
+  const stackRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div ref={stackRef} className="relative mt-16 md:mt-24">
+      {projects.map((project, i) => (
+        <StackedCard key={project.title} project={project} index={i} total={projects.length} />
+      ))}
+    </div>
+  );
+}
+
+function StackedCard({
+  project,
+  index,
+  total,
+}: {
+  project: (typeof projects)[number];
+  index: number;
+  total: number;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ['start 80%', 'start 20%'],
+  });
+  // Cards behind shrink and dim slightly as next one comes over
+  const { scrollYProgress: outProgress } = useScroll({
+    target: cardRef,
+    offset: ['end 60%', 'end 10%'],
+  });
+  const scale = useTransform(outProgress, [0, 1], [1, 0.92]);
+  const opacity = useTransform(outProgress, [0, 1], [1, 0.5]);
+  const y = useTransform(scrollYProgress, [0, 1], [60, 0]);
+  const enterOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+  // Stagger sticky offset so cards stack with a small reveal
+  const topOffset = 90 + index * 14;
+
+  return (
+    <div
+      ref={cardRef}
+      className="sticky"
+      style={{ top: `${topOffset}px`, marginBottom: index === total - 1 ? 0 : '2rem', zIndex: index + 1 }}
+    >
+      <motion.a
+        href={project.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ scale, opacity, y: index === 0 ? 0 : y }}
+        className="group relative rounded-2xl md:rounded-3xl card-glass glass-shine overflow-hidden hover-lift cursor-pointer grid md:grid-cols-2 gap-0 will-change-transform block"
+      >
+        <motion.div style={{ opacity: index === 0 ? 1 : enterOpacity }} className="contents">
+          <div className={`relative w-full h-56 md:h-full min-h-[14rem] overflow-hidden ${index % 2 === 1 ? 'md:order-2' : ''}`}>
+            <img
+              src={project.image}
+              alt={`${project.title} preview`}
+              loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-card/80 via-card/20 to-transparent" />
+            <div className={`absolute bottom-3 left-3 w-12 h-12 rounded-2xl bg-gradient-to-br ${project.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+              <project.icon className="w-6 h-6 text-white" />
+            </div>
+          </div>
+
+          <div className="relative p-6 md:p-10 flex flex-col justify-center">
+            <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none`} />
+            <h3 className="font-display text-2xl md:text-3xl font-medium text-foreground mb-3 group-hover:text-primary transition-colors">
+              {project.title}
+            </h3>
+            <p className="text-muted-foreground mb-6 font-light">{project.description}</p>
+            <div className="flex flex-wrap gap-2 mb-6">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1 text-sm rounded-full bg-card/50 backdrop-blur-sm text-muted-foreground border border-border/20"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <div className="flex items-center gap-2 text-primary font-normal">
+              <span>View on GitHub</span>
+              <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </div>
+          </div>
+        </motion.div>
+      </motion.a>
+      {/* Spacer to create scroll distance per card */}
+      <div className="h-[60vh] md:h-[70vh] pointer-events-none" aria-hidden />
+    </div>
+  );
+}
+
+function ProjectsClosing() {
+  return null;
       </div>
     </section>
   );
