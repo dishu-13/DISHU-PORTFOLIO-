@@ -208,50 +208,72 @@ function StackedCard({
       className="sticky"
       style={{ top: `${topOffset}px`, marginBottom: index === total - 1 ? 0 : '2rem', zIndex: index + 1 }}
     >
-      <motion.a
-        href={project.link}
-        target="_blank"
-        rel="noopener noreferrer"
+      <motion.div
         style={{ scale, opacity, y: index === 0 ? 0 : y }}
-        className="group relative rounded-2xl md:rounded-3xl card-glass glass-shine overflow-hidden hover-lift cursor-pointer grid md:grid-cols-2 gap-0 will-change-transform block"
+        className="group relative rounded-2xl md:rounded-3xl overflow-hidden will-change-transform border border-border/40 bg-card/80 backdrop-blur-xl shadow-2xl"
       >
-        <motion.div style={{ opacity: index === 0 ? 1 : enterOpacity }} className="contents">
-          <div className={`relative w-full h-56 md:h-full min-h-[14rem] overflow-hidden ${index % 2 === 1 ? 'md:order-2' : ''}`}>
-            <img
-              src={project.image}
-              alt={`${project.title} preview`}
-              loading="lazy"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-card/80 via-card/20 to-transparent" />
-            <div className={`absolute bottom-3 left-3 w-12 h-12 rounded-2xl bg-gradient-to-br ${project.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-              <project.icon className="w-6 h-6 text-white" />
-            </div>
-          </div>
+        {/* macOS window chrome */}
+        <div className="absolute top-4 right-4 md:top-5 md:right-5 z-20 flex items-center gap-1.5">
+          <span className="w-3 h-3 rounded-full bg-[hsl(var(--destructive))]/80" />
+          <span className="w-3 h-3 rounded-full bg-amber-400/80" />
+          <span className="w-3 h-3 rounded-full bg-emerald-400/80" />
+        </div>
 
-          <div className="relative p-6 md:p-10 flex flex-col justify-center">
-            <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none`} />
-            <h3 className="font-display text-2xl md:text-3xl font-medium text-foreground mb-3 group-hover:text-primary transition-colors">
+        <motion.div style={{ opacity: index === 0 ? 1 : enterOpacity }} className="grid md:grid-cols-2 gap-0">
+          {/* Left: content */}
+          <div className="relative p-6 md:p-10 flex flex-col justify-center order-2 md:order-1">
+            <div className="text-[11px] md:text-xs font-normal tracking-[0.2em] uppercase text-primary mb-4">
+              {project.tags.slice(0, 4).join(' · ')}
+            </div>
+            <h3 className="font-display text-3xl md:text-4xl font-medium text-foreground mb-4 leading-tight">
               {project.title}
             </h3>
-            <p className="text-muted-foreground mb-6 font-light">{project.description}</p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              {project.tags.map((tag) => (
+            <p className="text-muted-foreground mb-6 font-light text-sm md:text-base leading-relaxed max-w-md">
+              {project.description}
+            </p>
+            <div className="flex flex-wrap gap-2 mb-8">
+              {project.tags.slice(0, 3).map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 text-sm rounded-full bg-card/50 backdrop-blur-sm text-muted-foreground border border-border/20"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-full bg-background/60 backdrop-blur-sm text-foreground/80 border border-border/40"
                 >
+                  <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${project.color}`} />
                   {tag}
                 </span>
               ))}
             </div>
-            <div className="flex items-center gap-2 text-primary font-normal">
-              <span>View on GitHub</span>
-              <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-fit items-center gap-2 px-5 py-2.5 rounded-full border border-border/60 bg-background/40 hover:bg-background/70 hover:border-primary/60 text-sm font-light text-foreground transition-all duration-300"
+            >
+              <span>View Case Study</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
+
+          {/* Right: image inside mini browser frame */}
+          <div className="relative p-6 md:p-8 md:pl-0 flex items-center justify-center order-1 md:order-2">
+            <div className="relative w-full rounded-xl overflow-hidden border border-border/50 bg-background/60 shadow-xl">
+              <div className="flex items-center gap-1.5 px-3 py-2 bg-background/80 border-b border-border/40">
+                <span className="w-2.5 h-2.5 rounded-full bg-[hsl(var(--destructive))]/70" />
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-400/70" />
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/70" />
+              </div>
+              <div className="aspect-[16/10] overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={`${project.title} preview`}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
             </div>
+            <div className={`absolute -inset-2 -z-10 bg-gradient-to-br ${project.color} opacity-20 blur-3xl rounded-full pointer-events-none`} />
           </div>
         </motion.div>
-      </motion.a>
+      </motion.div>
       {/* Spacer to create scroll distance per card */}
       <div className="h-[60vh] md:h-[70vh] pointer-events-none" aria-hidden />
     </div>
