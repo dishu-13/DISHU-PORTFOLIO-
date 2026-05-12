@@ -258,9 +258,3 @@ function StackedCard({
   );
 }
 
-function ProjectsClosing() {
-  return null;
-      </div>
-    </section>
-  );
-}
