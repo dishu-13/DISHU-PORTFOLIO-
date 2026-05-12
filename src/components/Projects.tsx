@@ -205,9 +205,10 @@ function StackedCard({
   return (
     <div
       ref={cardRef}
-      className="sticky"
-      style={{ top: `${topOffset}px`, marginBottom: index === total - 1 ? 0 : '2rem', zIndex: index + 1 }}
+      className="relative h-[90vh] md:h-[100vh]"
+      style={{ zIndex: index + 1 }}
     >
+      <div className="sticky" style={{ top: `${topOffset}px` }}>
       <motion.div
         style={{ scale, opacity, y: index === 0 ? 0 : y }}
         className="group relative rounded-2xl md:rounded-3xl overflow-hidden will-change-transform border border-border/40 bg-card/80 backdrop-blur-xl shadow-2xl"
@@ -274,9 +275,9 @@ function StackedCard({
           </div>
         </motion.div>
       </motion.div>
-      {/* Spacer to create scroll distance per card */}
-      <div className="h-[60vh] md:h-[70vh] pointer-events-none" aria-hidden />
+      </div>
     </div>
   );
 }
+
 
