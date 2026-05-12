@@ -275,9 +275,9 @@ function StackedCard({
           </div>
         </motion.div>
       </motion.div>
-      {/* Spacer to create scroll distance per card */}
-      <div className="h-[60vh] md:h-[70vh] pointer-events-none" aria-hidden />
+      </div>
     </div>
   );
 }
+
 
