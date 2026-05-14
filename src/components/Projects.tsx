@@ -300,7 +300,7 @@ function StackedCard({
             </div>
             <div className={`absolute -inset-2 -z-10 bg-gradient-to-br ${project.color} opacity-20 blur-3xl rounded-full pointer-events-none`} />
           </div>
-        </motion.div>
+        </div>
       </motion.div>
       </div>
     </div>
