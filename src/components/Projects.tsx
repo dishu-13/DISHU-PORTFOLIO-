@@ -226,19 +226,19 @@ function StackedCard({
   const y = useTransform(scrollYProgress, [0, 1], [60, 0]);
   const enterOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
-  // Stagger sticky offset so cards stack with a small reveal
-  const topOffset = 90 + index * 14;
+  // All cards share the same sticky top so each new card fully covers the previous one
+  const topOffset = 100;
 
   return (
     <div
       ref={cardRef}
-      className="relative h-[90vh] md:h-[100vh]"
+      className="relative h-[100vh]"
       style={{ zIndex: index + 1 }}
     >
       <div className="sticky" style={{ top: `${topOffset}px` }}>
       <motion.div
         style={{ scale, opacity, y: index === 0 ? 0 : y }}
-        className="group relative rounded-2xl md:rounded-3xl overflow-hidden will-change-transform border border-border/40 bg-card/80 backdrop-blur-xl shadow-2xl"
+        className="group relative rounded-2xl md:rounded-3xl overflow-hidden will-change-transform border border-border/40 bg-card/95 backdrop-blur-xl shadow-2xl"
       >
         {/* macOS window chrome */}
         <div className="absolute top-4 right-4 md:top-5 md:right-5 z-20 flex items-center gap-1.5">
@@ -247,7 +247,7 @@ function StackedCard({
           <span className="w-3 h-3 rounded-full bg-emerald-400/80" />
         </div>
 
-        <motion.div style={{ opacity: index === 0 ? 1 : enterOpacity }} className="grid md:grid-cols-2 gap-0">
+        <div className="grid md:grid-cols-2 gap-0">
           {/* Left: content */}
           <div className="relative p-6 md:p-10 flex flex-col justify-center order-2 md:order-1">
             <div className="text-[11px] md:text-xs font-normal tracking-[0.2em] uppercase text-primary mb-4">
