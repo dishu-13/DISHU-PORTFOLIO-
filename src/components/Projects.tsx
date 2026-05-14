@@ -223,8 +223,7 @@ function StackedCard({
   });
   const scale = useTransform(outProgress, [0, 1], [1, 0.92]);
   const opacity = useTransform(outProgress, [0, 1], [1, 0.5]);
-  const y = useTransform(scrollYProgress, [0, 1], [60, 0]);
-  const enterOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], [200, 0]);
 
   // All cards share the same sticky top so each new card fully covers the previous one
   const topOffset = 100;
