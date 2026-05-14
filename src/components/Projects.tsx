@@ -81,45 +81,72 @@ function CircleCarousel() {
     target: containerRef,
     offset: ['start end', 'end start'],
   });
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 180]);
-  const counterRotate = useTransform(rotate, (r) => -r);
+  const rotateY = useTransform(scrollYProgress, [0, 1], [0, 360]);
   const scale = useTransform(scrollYProgress, [0, 0.4, 1], [0.85, 1, 0.95]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0.6]);
 
   const count = projects.length;
-  const radius = 150;
+  const radius = 260;
 
   return (
-    <div ref={containerRef} className="relative w-full flex flex-col items-center justify-center py-12 md:py-20">
-      <motion.div
-        style={{ rotate, scale, opacity }}
-        className="relative w-[340px] h-[340px] md:w-[440px] md:h-[440px]"
+    <div ref={containerRef} className="relative w-full flex flex-col items-center justify-center py-16 md:py-24">
+      {/* Reflective floor */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 bottom-10 md:bottom-16 h-40 md:h-56 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse at center, hsl(var(--primary) / 0.18), transparent 60%)',
+          filter: 'blur(20px)',
+        }}
+      />
+      <div
+        className="relative"
+        style={{ perspective: '1400px', perspectiveOrigin: '50% 30%' }}
       >
-        {projects.map((project, i) => {
-          const angle = (i / count) * 360;
-          return (
-            <div
-              key={project.title}
-              className="absolute top-1/2 left-1/2 w-20 h-20 md:w-28 md:h-28"
-              style={{
-                transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-${radius}px) rotate(${-angle}deg)`,
-              }}
-            >
-              <motion.div
-                style={{ rotate: counterRotate }}
-                className="w-full h-full rounded-2xl overflow-hidden shadow-xl ring-1 ring-border/30"
+        <motion.div
+          style={{
+            rotateY,
+            scale,
+            opacity,
+            transformStyle: 'preserve-3d',
+            rotateX: 18,
+          }}
+          className="relative w-[320px] h-[320px] md:w-[460px] md:h-[460px]"
+        >
+          {projects.map((project, i) => {
+            const angle = (i / count) * 360;
+            return (
+              <div
+                key={project.title}
+                className="absolute top-1/2 left-1/2 w-24 h-28 md:w-36 md:h-44 -ml-12 -mt-14 md:-ml-[72px] md:-mt-[88px]"
+                style={{
+                  transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                  transformStyle: 'preserve-3d',
+                }}
               >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </motion.div>
-            </div>
-          );
-        })}
-      </motion.div>
+                <div className="relative w-full h-full rounded-xl overflow-hidden shadow-[0_20px_50px_-15px_hsl(var(--primary)/0.5)] ring-1 ring-white/10 bg-card">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+                </div>
+                {/* mirrored reflection */}
+                <div
+                  aria-hidden
+                  className="absolute left-0 right-0 top-full mt-1 h-full rounded-xl overflow-hidden opacity-30"
+                  style={{ transform: 'scaleY(-1)', maskImage: 'linear-gradient(to bottom, black, transparent 70%)', WebkitMaskImage: 'linear-gradient(to bottom, black, transparent 70%)' }}
+                >
+                  <img src={project.image} alt="" className="w-full h-full object-cover" />
+                </div>
+              </div>
+            );
+          })}
+        </motion.div>
+      </div>
       <motion.p
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
