@@ -81,45 +81,72 @@ function CircleCarousel() {
     target: containerRef,
     offset: ['start end', 'end start'],
   });
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 180]);
-  const counterRotate = useTransform(rotate, (r) => -r);
+  const rotateY = useTransform(scrollYProgress, [0, 1], [0, 360]);
   const scale = useTransform(scrollYProgress, [0, 0.4, 1], [0.85, 1, 0.95]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0.6]);
 
   const count = projects.length;
-  const radius = 150;
+  const radius = 260;
 
   return (
-    <div ref={containerRef} className="relative w-full flex flex-col items-center justify-center py-12 md:py-20">
-      <motion.div
-        style={{ rotate, scale, opacity }}
-        className="relative w-[340px] h-[340px] md:w-[440px] md:h-[440px]"
+    <div ref={containerRef} className="relative w-full flex flex-col items-center justify-center py-16 md:py-24">
+      {/* Reflective floor */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 bottom-10 md:bottom-16 h-40 md:h-56 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse at center, hsl(var(--primary) / 0.18), transparent 60%)',
+          filter: 'blur(20px)',
+        }}
+      />
+      <div
+        className="relative"
+        style={{ perspective: '1400px', perspectiveOrigin: '50% 30%' }}
       >
-        {projects.map((project, i) => {
-          const angle = (i / count) * 360;
-          return (
-            <div
-              key={project.title}
-              className="absolute top-1/2 left-1/2 w-20 h-20 md:w-28 md:h-28"
-              style={{
-                transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-${radius}px) rotate(${-angle}deg)`,
-              }}
-            >
-              <motion.div
-                style={{ rotate: counterRotate }}
-                className="w-full h-full rounded-2xl overflow-hidden shadow-xl ring-1 ring-border/30"
+        <motion.div
+          style={{
+            rotateY,
+            scale,
+            opacity,
+            transformStyle: 'preserve-3d',
+            rotateX: 18,
+          }}
+          className="relative w-[320px] h-[320px] md:w-[460px] md:h-[460px]"
+        >
+          {projects.map((project, i) => {
+            const angle = (i / count) * 360;
+            return (
+              <div
+                key={project.title}
+                className="absolute top-1/2 left-1/2 w-24 h-28 md:w-36 md:h-44 -ml-12 -mt-14 md:-ml-[72px] md:-mt-[88px]"
+                style={{
+                  transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                  transformStyle: 'preserve-3d',
+                }}
               >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </motion.div>
-            </div>
-          );
-        })}
-      </motion.div>
+                <div className="relative w-full h-full rounded-xl overflow-hidden shadow-[0_20px_50px_-15px_hsl(var(--primary)/0.5)] ring-1 ring-white/10 bg-card">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+                </div>
+                {/* mirrored reflection */}
+                <div
+                  aria-hidden
+                  className="absolute left-0 right-0 top-full mt-1 h-full rounded-xl overflow-hidden opacity-30"
+                  style={{ transform: 'scaleY(-1)', maskImage: 'linear-gradient(to bottom, black, transparent 70%)', WebkitMaskImage: 'linear-gradient(to bottom, black, transparent 70%)' }}
+                >
+                  <img src={project.image} alt="" className="w-full h-full object-cover" />
+                </div>
+              </div>
+            );
+          })}
+        </motion.div>
+      </div>
       <motion.p
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -196,22 +223,21 @@ function StackedCard({
   });
   const scale = useTransform(outProgress, [0, 1], [1, 0.92]);
   const opacity = useTransform(outProgress, [0, 1], [1, 0.5]);
-  const y = useTransform(scrollYProgress, [0, 1], [60, 0]);
-  const enterOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], [200, 0]);
 
-  // Stagger sticky offset so cards stack with a small reveal
-  const topOffset = 90 + index * 14;
+  // All cards share the same sticky top so each new card fully covers the previous one
+  const topOffset = 100;
 
   return (
     <div
       ref={cardRef}
-      className="relative h-[90vh] md:h-[100vh]"
+      className="relative h-[100vh]"
       style={{ zIndex: index + 1 }}
     >
       <div className="sticky" style={{ top: `${topOffset}px` }}>
       <motion.div
         style={{ scale, opacity, y: index === 0 ? 0 : y }}
-        className="group relative rounded-2xl md:rounded-3xl overflow-hidden will-change-transform border border-border/40 bg-card/80 backdrop-blur-xl shadow-2xl"
+        className="group relative rounded-2xl md:rounded-3xl overflow-hidden will-change-transform border border-border/40 bg-card/95 backdrop-blur-xl shadow-2xl"
       >
         {/* macOS window chrome */}
         <div className="absolute top-4 right-4 md:top-5 md:right-5 z-20 flex items-center gap-1.5">
@@ -220,7 +246,7 @@ function StackedCard({
           <span className="w-3 h-3 rounded-full bg-emerald-400/80" />
         </div>
 
-        <motion.div style={{ opacity: index === 0 ? 1 : enterOpacity }} className="grid md:grid-cols-2 gap-0">
+        <div className="grid md:grid-cols-2 gap-0">
           {/* Left: content */}
           <div className="relative p-6 md:p-10 flex flex-col justify-center order-2 md:order-1">
             <div className="text-[11px] md:text-xs font-normal tracking-[0.2em] uppercase text-primary mb-4">
@@ -273,7 +299,7 @@ function StackedCard({
             </div>
             <div className={`absolute -inset-2 -z-10 bg-gradient-to-br ${project.color} opacity-20 blur-3xl rounded-full pointer-events-none`} />
           </div>
-        </motion.div>
+        </div>
       </motion.div>
       </div>
     </div>
