@@ -194,7 +194,7 @@ function StackedProjects() {
   const stackRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div ref={stackRef} className="relative mt-16 md:mt-24">
+    <div ref={stackRef} className="relative mt-16 md:mt-24 pb-[18vh] md:pb-[24vh]">
       {projects.map((project, i) => (
         <StackedCard key={project.title} project={project} index={i} total={projects.length} />
       ))}
@@ -231,13 +231,13 @@ function StackedCard({
   return (
     <div
       ref={cardRef}
-      className="relative h-[100vh]"
+      className="relative h-[128vh] first:mt-0 -mt-[56vh] md:h-[138vh] md:-mt-[62vh]"
       style={{ zIndex: index + 1 }}
     >
       <div className="sticky" style={{ top: `${topOffset}px` }}>
       <motion.div
         style={{ scale, opacity, y: index === 0 ? 0 : y }}
-        className="group relative rounded-2xl md:rounded-3xl overflow-hidden will-change-transform border border-border/40 bg-card/95 backdrop-blur-xl shadow-2xl"
+        className="group relative min-h-[72vh] rounded-2xl md:min-h-[76vh] md:rounded-3xl overflow-hidden will-change-transform border border-border/40 bg-card/95 backdrop-blur-xl shadow-2xl"
       >
         {/* macOS window chrome */}
         <div className="absolute top-4 right-4 md:top-5 md:right-5 z-20 flex items-center gap-1.5">
