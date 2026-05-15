@@ -292,7 +292,6 @@ function StackedCard({
           </div>
         </div>
       </motion.div>
-      </div>
     </div>
   );
 }
