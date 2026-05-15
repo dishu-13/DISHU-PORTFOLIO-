@@ -191,10 +191,8 @@ export default function Projects() {
 }
 
 function StackedProjects() {
-  const stackRef = useRef<HTMLDivElement>(null);
-
   return (
-    <div ref={stackRef} className="relative mt-16 md:mt-24 pb-[18vh] md:pb-[24vh]">
+    <div className="relative mt-16 md:mt-24">
       {projects.map((project, i) => (
         <StackedCard key={project.title} project={project} index={i} total={projects.length} />
       ))}
@@ -211,33 +209,26 @@ function StackedCard({
   index: number;
   total: number;
 }) {
-  const cardRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  // Subtle scale/opacity on the previous card as the next one slides over it
   const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ['start 80%', 'start 20%'],
+    target: trackRef,
+    offset: ['start start', 'end start'],
   });
-  // Cards behind shrink and dim slightly as next one comes over
-  const { scrollYProgress: outProgress } = useScroll({
-    target: cardRef,
-    offset: ['end 60%', 'end 10%'],
-  });
-  const scale = useTransform(outProgress, [0, 1], [1, 0.92]);
-  const opacity = useTransform(outProgress, [0, 1], [1, 0.5]);
-  const y = useTransform(scrollYProgress, [0, 1], [200, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.55]);
 
-  // All cards share the same sticky top so each new card fully covers the previous one
-  const topOffset = 100;
+  const isLast = index === total - 1;
 
   return (
     <div
-      ref={cardRef}
-      className="relative h-[128vh] first:mt-0 -mt-[56vh] md:h-[138vh] md:-mt-[62vh]"
-      style={{ zIndex: index + 1 }}
+      ref={trackRef}
+      className="sticky top-0 h-screen w-full"
+      style={{ zIndex: index + 1, paddingTop: '96px', paddingBottom: '24px' }}
     >
-      <div className="sticky" style={{ top: `${topOffset}px` }}>
       <motion.div
-        style={{ scale, opacity, y: index === 0 ? 0 : y }}
-        className="group relative min-h-[72vh] rounded-2xl md:min-h-[76vh] md:rounded-3xl overflow-hidden will-change-transform border border-border/40 bg-card/95 backdrop-blur-xl shadow-2xl"
+        style={isLast ? undefined : { scale, opacity }}
+        className="group relative h-full w-full rounded-2xl md:rounded-3xl overflow-hidden will-change-transform border border-border/40 bg-card/95 backdrop-blur-xl shadow-2xl"
       >
         {/* macOS window chrome */}
         <div className="absolute top-4 right-4 md:top-5 md:right-5 z-20 flex items-center gap-1.5">
