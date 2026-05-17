@@ -192,13 +192,16 @@ export default function Projects() {
 
 function StackedProjects() {
   return (
-    <div className="relative mt-16 md:mt-24 pb-[28vh] md:pb-[34vh]">
+    <div className="relative mt-16 md:mt-24">
       {projects.map((project, i) => (
         <StackedCard key={project.title} project={project} index={i} total={projects.length} />
       ))}
+      <div className="h-[40vh]" />
     </div>
   );
 }
+
+const COLLAPSED_PX = 64;
 
 function StackedCard({
   project,
@@ -209,85 +212,121 @@ function StackedCard({
   index: number;
   total: number;
 }) {
-  const baseTop = 96;
-  const stagger = 18;
-  const topOffset = baseTop + index * stagger;
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const stagger = 14;
+  const topOffset = 96 + index * stagger;
+  const isLast = index === total - 1;
+
+  const { scrollYProgress } = useScroll({
+    target: wrapperRef,
+    offset: ['start end', 'start start'],
+  });
+
+  const height = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [`${COLLAPSED_PX}px`, '82vh']
+  );
+  const contentOpacity = useTransform(scrollYProgress, [0.55, 0.95], [0, 1]);
+  const collapsedOpacity = useTransform(scrollYProgress, [0.4, 0.85], [1, 0]);
 
   return (
     <div
-      className="sticky w-full first:mt-0 -mt-[68vh] md:-mt-[72vh]"
+      ref={wrapperRef}
       style={{
-        top: `${topOffset}px`,
-        zIndex: index + 1,
+        height: '85vh',
+        marginTop: index === 0 ? 0 : `calc(-85vh + ${COLLAPSED_PX + stagger}px)`,
       }}
     >
       <div
-        className="group relative w-full min-h-[78vh] md:min-h-[82vh] rounded-2xl md:rounded-3xl overflow-hidden will-change-transform border border-border/40 bg-card/95 backdrop-blur-xl shadow-[0_30px_80px_-20px_hsl(var(--primary)/0.35)]"
+        className="sticky w-full"
+        style={{ top: `${topOffset}px`, zIndex: index + 1 }}
       >
-        {/* macOS window chrome */}
-        <div className="absolute top-4 right-4 md:top-5 md:right-5 z-20 flex items-center gap-1.5">
-          <span className="w-3 h-3 rounded-full bg-[hsl(var(--destructive))]/80" />
-          <span className="w-3 h-3 rounded-full bg-amber-400/80" />
-          <span className="w-3 h-3 rounded-full bg-emerald-400/80" />
-        </div>
+        <motion.div
+          style={{ height: isLast ? '82vh' : height }}
+          className="group relative w-full rounded-2xl md:rounded-3xl overflow-hidden will-change-[height] border border-border/40 bg-card/95 backdrop-blur-xl shadow-[0_30px_80px_-20px_hsl(var(--primary)/0.35)]"
+        >
+          {/* macOS window chrome */}
+          <div className="absolute top-4 right-4 md:top-5 md:right-5 z-20 flex items-center gap-1.5">
+            <span className="w-3 h-3 rounded-full bg-[hsl(var(--destructive))]/80" />
+            <span className="w-3 h-3 rounded-full bg-amber-400/80" />
+            <span className="w-3 h-3 rounded-full bg-emerald-400/80" />
+          </div>
 
-        <div className="grid md:grid-cols-2 gap-0">
-          {/* Left: content */}
-          <div className="relative p-6 md:p-10 flex flex-col justify-center order-2 md:order-1">
-            <div className="text-[11px] md:text-xs font-normal tracking-[0.2em] uppercase text-primary mb-4">
-              {project.tags.slice(0, 4).join(' · ')}
-            </div>
-            <h3 className="font-display text-3xl md:text-4xl font-medium text-foreground mb-4 leading-tight">
-              {project.title}
-            </h3>
-            <p className="text-muted-foreground mb-6 font-light text-sm md:text-base leading-relaxed max-w-md">
-              {project.description}
-            </p>
-            <div className="flex flex-wrap gap-2 mb-8">
-              {project.tags.slice(0, 3).map((tag) => (
-                <span
-                  key={tag}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-full bg-background/60 backdrop-blur-sm text-foreground/80 border border-border/40"
-                >
-                  <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${project.color}`} />
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-fit items-center gap-2 px-5 py-2.5 rounded-full border border-border/60 bg-background/40 hover:bg-background/70 hover:border-primary/60 text-sm font-light text-foreground transition-all duration-300"
+          {/* Collapsed state: tag line on the left, visible when card is in collapsed strip */}
+          {!isLast && (
+            <motion.div
+              style={{ opacity: collapsedOpacity }}
+              className="absolute top-0 left-0 right-0 h-[64px] flex items-center px-6 md:px-10 pointer-events-none"
             >
-              <span>View Case Study</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          </div>
+              <div className="text-[11px] md:text-xs font-normal tracking-[0.2em] uppercase text-primary">
+                {project.tags.slice(0, 4).join(' · ')}
+              </div>
+            </motion.div>
+          )}
 
-          {/* Right: image inside mini browser frame */}
-          <div className="relative p-6 md:p-8 md:pl-0 flex items-center justify-center order-1 md:order-2">
-            <div className="relative w-full rounded-xl overflow-hidden border border-border/50 bg-background/60 shadow-xl">
-              <div className="flex items-center gap-1.5 px-3 py-2 bg-background/80 border-b border-border/40">
-                <span className="w-2.5 h-2.5 rounded-full bg-[hsl(var(--destructive))]/70" />
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-400/70" />
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/70" />
+          <motion.div
+            style={{ opacity: isLast ? 1 : contentOpacity }}
+            className="grid md:grid-cols-2 gap-0 h-full"
+          >
+            {/* Left: content */}
+            <div className="relative p-6 md:p-10 flex flex-col justify-center order-2 md:order-1">
+              <div className="text-[11px] md:text-xs font-normal tracking-[0.2em] uppercase text-primary mb-4">
+                {project.tags.slice(0, 4).join(' · ')}
               </div>
-              <div className="aspect-[16/10] overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={`${project.title} preview`}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+              <h3 className="font-display text-3xl md:text-4xl font-medium text-foreground mb-4 leading-tight">
+                {project.title}
+              </h3>
+              <p className="text-muted-foreground mb-6 font-light text-sm md:text-base leading-relaxed max-w-md">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap gap-2 mb-8">
+                {project.tags.slice(0, 3).map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-full bg-background/60 backdrop-blur-sm text-foreground/80 border border-border/40"
+                  >
+                    <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${project.color}`} />
+                    {tag}
+                  </span>
+                ))}
               </div>
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-fit items-center gap-2 px-5 py-2.5 rounded-full border border-border/60 bg-background/40 hover:bg-background/70 hover:border-primary/60 text-sm font-light text-foreground transition-all duration-300"
+              >
+                <span>View Case Study</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
             </div>
-            <div className={`absolute -inset-2 -z-10 bg-gradient-to-br ${project.color} opacity-20 blur-3xl rounded-full pointer-events-none`} />
-          </div>
-        </div>
+
+            {/* Right: image inside mini browser frame */}
+            <div className="relative p-6 md:p-8 md:pl-0 flex items-center justify-center order-1 md:order-2">
+              <div className="relative w-full rounded-xl overflow-hidden border border-border/50 bg-background/60 shadow-xl">
+                <div className="flex items-center gap-1.5 px-3 py-2 bg-background/80 border-b border-border/40">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[hsl(var(--destructive))]/70" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-400/70" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/70" />
+                </div>
+                <div className="aspect-[16/10] overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+              </div>
+              <div className={`absolute -inset-2 -z-10 bg-gradient-to-br ${project.color} opacity-20 blur-3xl rounded-full pointer-events-none`} />
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );
 }
+
 
 
