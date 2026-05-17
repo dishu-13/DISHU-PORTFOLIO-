@@ -209,26 +209,25 @@ function StackedCard({
   index: number;
   total: number;
 }) {
-  const trackRef = useRef<HTMLDivElement>(null);
-  // Subtle scale/opacity on the previous card as the next one slides over it
-  const { scrollYProgress } = useScroll({
-    target: trackRef,
-    offset: ['start start', 'end start'],
-  });
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.55]);
-
-  const isLast = index === total - 1;
+  // Each card sticks slightly lower than the previous → previous card's top edge
+  // (with the traffic-light dots) peeks out, forming a stacked-deck effect.
+  const baseTop = 96; // clears navbar
+  const stagger = 22; // px between stacked tops
+  const topOffset = baseTop + index * stagger;
 
   return (
     <div
-      ref={trackRef}
-      className="sticky top-0 h-screen w-full"
-      style={{ zIndex: index + 1, paddingTop: '96px', paddingBottom: '24px' }}
+      className="sticky w-full"
+      style={{
+        top: `${topOffset}px`,
+        zIndex: index + 1,
+        // Each section is a viewport tall so the next card scrolls up over it.
+        // The wrapper itself is not sticky; the inner card is.
+      }}
     >
-      <motion.div
-        style={isLast ? undefined : { scale, opacity }}
-        className="group relative h-full w-full rounded-2xl md:rounded-3xl overflow-hidden will-change-transform border border-border/40 bg-card/95 backdrop-blur-xl shadow-2xl"
+      <div
+        className="group relative w-full rounded-2xl md:rounded-3xl overflow-hidden will-change-transform border border-border/40 bg-card/95 backdrop-blur-xl shadow-[0_30px_80px_-20px_hsl(var(--primary)/0.35)]"
+        style={{ marginBottom: `calc(100vh - ${topOffset}px - 80px)` }}
       >
         {/* macOS window chrome */}
         <div className="absolute top-4 right-4 md:top-5 md:right-5 z-20 flex items-center gap-1.5">
