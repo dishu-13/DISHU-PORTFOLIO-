@@ -192,13 +192,16 @@ export default function Projects() {
 
 function StackedProjects() {
   return (
-    <div className="relative mt-16 md:mt-24 pb-[28vh] md:pb-[34vh]">
+    <div className="relative mt-16 md:mt-24">
       {projects.map((project, i) => (
         <StackedCard key={project.title} project={project} index={i} total={projects.length} />
       ))}
+      <div className="h-[40vh]" />
     </div>
   );
 }
+
+const COLLAPSED_PX = 64;
 
 function StackedCard({
   project,
@@ -209,20 +212,37 @@ function StackedCard({
   index: number;
   total: number;
 }) {
-  const baseTop = 96;
-  const stagger = 18;
-  const topOffset = baseTop + index * stagger;
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const stagger = 14;
+  const topOffset = 96 + index * stagger;
+  const isLast = index === total - 1;
+
+  const { scrollYProgress } = useScroll({
+    target: wrapperRef,
+    offset: ['start end', 'start start'],
+  });
+
+  // Card grows from collapsed strip to full height as it scrolls into place
+  const height = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [`${COLLAPSED_PX}px`, '82vh']
+  );
+  const contentOpacity = useTransform(scrollYProgress, [0.55, 0.95], [0, 1]);
 
   return (
     <div
-      className="sticky w-full first:mt-0 -mt-[68vh] md:-mt-[72vh]"
+      ref={wrapperRef}
+      className="sticky w-full"
       style={{
         top: `${topOffset}px`,
         zIndex: index + 1,
+        marginBottom: index === 0 ? 0 : `-${COLLAPSED_PX - stagger}px`,
       }}
     >
-      <div
-        className="group relative w-full min-h-[78vh] md:min-h-[82vh] rounded-2xl md:rounded-3xl overflow-hidden will-change-transform border border-border/40 bg-card/95 backdrop-blur-xl shadow-[0_30px_80px_-20px_hsl(var(--primary)/0.35)]"
+      <motion.div
+        style={{ height: isLast ? '82vh' : height }}
+        className="group relative w-full rounded-2xl md:rounded-3xl overflow-hidden will-change-[height] border border-border/40 bg-card/95 backdrop-blur-xl shadow-[0_30px_80px_-20px_hsl(var(--primary)/0.35)]"
       >
         {/* macOS window chrome */}
         <div className="absolute top-4 right-4 md:top-5 md:right-5 z-20 flex items-center gap-1.5">
