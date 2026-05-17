@@ -192,7 +192,7 @@ export default function Projects() {
 
 function StackedProjects() {
   return (
-    <div className="relative mt-16 md:mt-24">
+    <div className="relative mt-16 md:mt-24 pb-[28vh] md:pb-[34vh]">
       {projects.map((project, i) => (
         <StackedCard key={project.title} project={project} index={i} total={projects.length} />
       ))}
@@ -209,25 +209,20 @@ function StackedCard({
   index: number;
   total: number;
 }) {
-  // Each card sticks slightly lower than the previous → previous card's top edge
-  // (with the traffic-light dots) peeks out, forming a stacked-deck effect.
-  const baseTop = 96; // clears navbar
-  const stagger = 22; // px between stacked tops
+  const baseTop = 96;
+  const stagger = 18;
   const topOffset = baseTop + index * stagger;
 
   return (
     <div
-      className="sticky w-full"
+      className="sticky w-full first:mt-0 -mt-[68vh] md:-mt-[72vh]"
       style={{
         top: `${topOffset}px`,
         zIndex: index + 1,
-        // Each section is a viewport tall so the next card scrolls up over it.
-        // The wrapper itself is not sticky; the inner card is.
       }}
     >
       <div
-        className="group relative w-full rounded-2xl md:rounded-3xl overflow-hidden will-change-transform border border-border/40 bg-card/95 backdrop-blur-xl shadow-[0_30px_80px_-20px_hsl(var(--primary)/0.35)]"
-        style={{ marginBottom: `calc(100vh - ${topOffset}px - 80px)` }}
+        className="group relative w-full min-h-[78vh] md:min-h-[82vh] rounded-2xl md:rounded-3xl overflow-hidden will-change-transform border border-border/40 bg-card/95 backdrop-blur-xl shadow-[0_30px_80px_-20px_hsl(var(--primary)/0.35)]"
       >
         {/* macOS window chrome */}
         <div className="absolute top-4 right-4 md:top-5 md:right-5 z-20 flex items-center gap-1.5">
