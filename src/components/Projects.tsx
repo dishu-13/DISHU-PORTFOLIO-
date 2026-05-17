@@ -235,7 +235,7 @@ function StackedCard({
       ref={wrapperRef}
       style={{
         height: '85vh',
-        marginTop: index === 0 ? 0 : `-${85 - (COLLAPSED_PX / window.innerHeight) * 100 - 2}vh`,
+        marginTop: index === 0 ? 0 : `calc(-85vh + ${COLLAPSED_PX + stagger}px)`,
       }}
     >
       <div
