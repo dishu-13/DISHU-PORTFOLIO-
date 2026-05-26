@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, Download, Github, Linkedin, Mail } from 'lucide-react';
+import { ChevronDown, Download, Github, Linkedin, Mail, Instagram } from 'lucide-react';
 import profileImage from '@/assets/profile.png';
 export default function Hero() {
-  return <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 pt-20">
+  return <section id="home" className="relative min-h-screen flex items-center justify-center px-4 pt-20">
       {/* Gradient orbs */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-pulse-glow" style={{
@@ -95,6 +95,9 @@ export default function Hero() {
               <a href="https://www.linkedin.com/in/dishu-daksh-a52572240/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-border bg-card/30 text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 transition-all duration-300">
                 <Linkedin className="w-5 h-5" />
               </a>
+              <a href="https://www.instagram.com/dishu_daksh18/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-border bg-card/30 text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 transition-all duration-300">
+                <Instagram className="w-5 h-5" />
+              </a>
               <a href="mailto:dishudaksh44@gmail.com" className="p-3 rounded-full border border-border bg-card/30 text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 transition-all duration-300">
                 <Mail className="w-5 h-5" />
               </a>
@@ -117,7 +120,7 @@ export default function Hero() {
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-accent to-primary animate-spin-slow opacity-30 blur-xl" />
               
               {/* Image container */}
-              <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg">
+              <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-primary/30" style={{ boxShadow: '0 0 30px hsla(210, 80%, 50%, 0.3), 0 0 60px hsla(210, 80%, 50%, 0.15)' }}>
                 <img src={profileImage} alt="Dishu Daksh - Data Analyst" className="w-full h-full object-cover" />
               </div>
             </div>

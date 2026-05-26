@@ -13,21 +13,29 @@ export default function Contact() {
     email: '',
     message: ''
   });
+  const encode = (data: Record<string, string>) =>
+    Object.keys(data)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
     try {
-      await fetch('/', {
+      const response = await fetch('/', {
         method: 'POST',
-        body: data
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({
+          'form-name': 'contact',
+          'bot-field': '',
+          subject: 'New Contact Form Submission from Portfolio',
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
       });
+      if (!response.ok) throw new Error('Network response was not ok');
       toast.success('Message sent successfully! I will get back to you soon.');
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
-      });
+      setFormData({ name: '', email: '', message: '' });
     } catch (error) {
       toast.error('Failed to send message. Please try again.');
     }
@@ -166,7 +174,7 @@ export default function Contact() {
               })} className="w-full px-4 py-3 rounded-xl bg-card/30 backdrop-blur-sm border border-border/20 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all resize-none" placeholder="Tell me about your project..." />
               </div>
               
-              <button type="submit" className="w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02]">
+              <button type="submit" className="w-full flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[hsl(210,80%,45%)] to-[hsl(190,70%,50%)] text-white font-semibold text-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 hover:brightness-110 hover:scale-[1.02] active:scale-[0.98]">
                 <Send className="w-5 h-5" />
                 Send Message
               </button>

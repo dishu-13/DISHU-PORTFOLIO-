@@ -29,7 +29,7 @@ export default function ShutterSplash({ onComplete }: { onComplete: () => void }
               className="text-gradient font-display text-5xl md:text-7xl lg:text-8xl font-bold pb-2 tracking-wider select-none"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
             >
               WELCOME
             </motion.span>
@@ -47,7 +47,7 @@ export default function ShutterSplash({ onComplete }: { onComplete: () => void }
               className="text-gradient font-display text-5xl md:text-7xl lg:text-8xl font-bold pt-2 tracking-wider select-none"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
             >
               BACK
             </motion.span>

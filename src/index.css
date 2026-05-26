@@ -110,6 +110,7 @@
     scroll-behavior: smooth;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    scroll-padding-top: 80px;
   }
 
   body {
@@ -136,19 +137,28 @@
 }
 
 @layer components {
+  /* Navbar glass styles */
+  .navbar-glass {
+    background: linear-gradient(to right, hsl(215 85% 28%) 0%, hsl(195 75% 40%) 100%);
+    border: none;
+    box-shadow: 0 4px 20px hsl(215 85% 28% / 0.4);
+  }
+
+  .navbar-glass-scrolled {
+    background: linear-gradient(to right, hsl(215 85% 22%) 0%, hsl(195 75% 35%) 100%);
+    border: none;
+    box-shadow: 0 6px 30px hsl(215 85% 22% / 0.5);
+  }
   .text-gradient {
     @apply bg-clip-text text-transparent;
     background-image: var(--gradient-primary);
   }
 
   .card-glass {
-    @apply backdrop-blur-2xl border border-border/10;
-    background: linear-gradient(
-      135deg,
-      hsl(var(--card) / 0.18) 0%,
-      hsl(var(--card) / 0.08) 100%
-    );
-    box-shadow: var(--shadow-glass), 0 0 0 1px hsl(var(--border) / 0.05);
+    @apply backdrop-blur-2xl border border-border/10 rounded-2xl;
+    background: hsl(var(--card) / 0.85);
+    box-shadow: 0 4px 24px hsl(var(--foreground) / 0.06), 0 1px 4px hsl(var(--foreground) / 0.04);
+    border-bottom: 3px solid hsl(var(--primary));
   }
 
   .card-glass-strong {
