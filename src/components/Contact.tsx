@@ -1,9 +1,10 @@
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Mail, Phone, MapPin, Send, Linkedin } from 'lucide-react';
 import { toast } from 'sonner';
 export default function Contact() {
-  const ref = useRef<HTMLElement | null>(null);
+  const ref = useRef(null);
   const isInView = useInView(ref, {
     once: true,
     margin: "-100px"
@@ -13,29 +14,21 @@ export default function Contact() {
     email: '',
     message: ''
   });
-  const encode = (data: Record<string, string>) =>
-    Object.keys(data)
-      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-      .join('&');
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
     try {
-      const response = await fetch('/', {
+      await fetch('/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({
-          'form-name': 'contact',
-          'bot-field': '',
-          subject: 'New Contact Form Submission from Portfolio',
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        }),
+        body: data
       });
-      if (!response.ok) throw new Error('Network response was not ok');
       toast.success('Message sent successfully! I will get back to you soon.');
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
     } catch (error) {
       toast.error('Failed to send message. Please try again.');
     }
