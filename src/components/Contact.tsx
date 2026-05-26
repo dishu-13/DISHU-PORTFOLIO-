@@ -1,10 +1,9 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Mail, Phone, MapPin, Send, Linkedin } from 'lucide-react';
 import { toast } from 'sonner';
 export default function Contact() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement | null>(null);
   const isInView = useInView(ref, {
     once: true,
     margin: "-100px"
