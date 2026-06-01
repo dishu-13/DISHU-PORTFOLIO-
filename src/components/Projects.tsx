@@ -1,267 +1,150 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import {
     FaExternalLinkAlt,
     FaShoppingCart,
-    FaBrain,
-    FaExchangeAlt,
-    FaGlobe,
-    FaCode,
-    FaRobot,
-    FaInfinity,
+    FaChartLine,
+    FaCloudSun,
+    FaCogs,
     FaMobileAlt,
-    FaJava,
-    FaBoxOpen,
-    FaTerminal
+    FaRobot,
 } from 'react-icons/fa';
-import {
-    SiJavascript,
-    SiReact,
-    SiPostman,
-    SiSelenium,
-    SiMongodb,
-    SiAppium
-} from 'react-icons/si';
 
-import onecartImg from '../assets/projects/onecart.png';
-import weatherImg from '../assets/projects/weather.png';
-import apiTestingImg from '../assets/projects/api_testing.png';
-import mobileTestingImg from '../assets/projects/mobile_testing.png';
-import webAutomationImg from '../assets/projects/web_automation.png';
-
-const getTagIcon = (tag: string) => {
-    const iconSize = 14;
-    switch (tag.toUpperCase()) {
-        case 'MERN': return <div className="flex -space-x-1"><SiMongodb size={iconSize} className="text-[#47A248]" /><SiReact size={iconSize} className="text-[#61DAFB]" /></div>;
-        case 'AI INTEGRATION': return <FaBrain size={iconSize} className="text-pink-400" />;
-        case 'E-COMMERCE': return <FaShoppingCart size={iconSize} className="text-orange-400" />;
-        case 'JAVASCRIPT': return <SiJavascript size={iconSize} className="text-[#F7DF1E]" />;
-        case 'API INTEGRATION': return <FaExchangeAlt size={iconSize} className="text-blue-400" />;
-        case 'WEB DEV': return <FaGlobe size={iconSize} className="text-sky-400" />;
-        case 'API TESTING': return <SiPostman size={iconSize} className="text-[#FF6C37]" />;
-        case 'AUTOMATION': return <FaRobot size={iconSize} className="text-purple-400" />;
-        case 'CI/CD': return <FaInfinity size={iconSize} className="text-emerald-400" />;
-        case 'MOBILE TESTING': return <FaMobileAlt size={iconSize} className="text-cyan-400" />;
-        case 'APPIUM': return <SiAppium size={iconSize} className="text-[#61DAFB]" />;
-        case 'JAVA': return <FaJava size={iconSize} className="text-[#ED8B00]" />;
-        case 'WEB TESTING': return <FaCode size={iconSize} className="text-indigo-400" />;
-        case 'SELENIUM': return <SiSelenium size={iconSize} className="text-[#43B02A]" />;
-        case 'FRAMEWORK': return <FaBoxOpen size={iconSize} className="text-amber-400" />;
-        default: return <FaTerminal size={iconSize} className="text-gray-400" />;
-    }
-};
-
-interface ProjectCardProps {
-    project: any;
-    index: number;
-    progress: MotionValue<number>;
-    range: [number, number];
-    targetScale: number;
-    isLast: boolean;
+interface Project {
+    title: string;
+    tech: string;
+    description: string;
+    tags: string[];
+    link: string;
+    gradient: string;
+    Icon: React.ComponentType<{ className?: string }>;
 }
 
-const ProjectCard = ({ project, index, progress, range, targetScale, isLast }: ProjectCardProps) => {
-    const container = useRef(null);
+const projects: Project[] = [
+    {
+        title: "ONECART - AI E-Commerce",
+        tech: "MERN Stack, AI, Redux, JWT",
+        description: "Full-stack AI-powered e-commerce platform with personalized recommendations. Features secure payments via Razorpay, Google Auth, and a comprehensive Admin Dashboard.",
+        tags: ["MERN", "AI Integration", "E-commerce", "Redux", "JWT"],
+        link: "https://github.com/KISHOR403/AI-Powered-E-Commerce-Website-built-using-MERN-Stack",
+        gradient: "from-violet-500 to-indigo-600",
+        Icon: FaShoppingCart,
+    },
+    {
+        title: "Weather App",
+        tech: "HTML, CSS, JavaScript, Weather API",
+        description: "Real-time weather dashboard fetching live data based on user location or input. Features dynamic UI updates and detailed weather conditions.",
+        tags: ["JavaScript", "API Integration", "Web Dev"],
+        link: "https://github.com/KISHOR403/Weather-App",
+        gradient: "from-sky-400 to-blue-600",
+        Icon: FaCloudSun,
+    },
+    {
+        title: "API Automation Testing",
+        tech: "Postman, Rest Assured",
+        description: "Comprehensive API automation suite for REST endpoints. Dynamic environment variables, full CRUD workflows, and Newman reporting for CI/CD pipelines.",
+        tags: ["API Testing", "Automation", "CI/CD"],
+        link: "#",
+        gradient: "from-fuchsia-500 to-pink-500",
+        Icon: FaCogs,
+    },
+    {
+        title: "Mobile App Testing",
+        tech: "Appium, Java, TestNG",
+        description: "End-to-end automation of an Android Weather Forecast app. Validated GPS-based forecasting and structured test logic using the Page Object Model (POM).",
+        tags: ["Mobile Testing", "Appium", "Java"],
+        link: "#",
+        gradient: "from-emerald-400 to-teal-600",
+        Icon: FaMobileAlt,
+    },
+    {
+        title: "Web Automation Framework",
+        tech: "Selenium WebDriver, Java, TestNG",
+        description: "Scalable web automation framework using Selenium. Covers e-commerce flows like authentication and cart operations with data-driven TestNG suites.",
+        tags: ["Web Testing", "Selenium", "Framework"],
+        link: "https://github.com/KISHOR403/Web-Automation-Framework-Selenium-WebDriver-Java-TestNG-POM",
+        gradient: "from-amber-400 to-orange-600",
+        Icon: FaRobot,
+    },
+    {
+        title: "Retail Sales Analytics",
+        tech: "Python, Pandas, Data Analysis",
+        description: "Analyzing retail sales data to identify purchasing trends, seasonal patterns, and performance metrics that help businesses optimize inventory and increase sales.",
+        tags: ["Python", "Pandas", "Data Analysis"],
+        link: "#",
+        gradient: "from-cyan-400 to-blue-500",
+        Icon: FaChartLine,
+    },
+];
 
-    const scale = useTransform(progress, range, [1, isLast ? 1 : targetScale]);
-    const overlayOpacity = useTransform(progress, range, [0, isLast ? 0 : 0.6]);
-
-    const stickyTop = 80 + (index * 40);
-
+const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
+    const { Icon } = project;
     return (
-        <div ref={container} className="h-[85vh] flex items-center justify-center sticky" style={{ top: `${stickyTop}px`, zIndex: index + 1 }}>
-            <motion.div
-                style={{ scale }}
-                className="relative w-full max-w-5xl h-[85vh] md:h-[75vh] lg:h-[70vh] rounded-[2.5rem] overflow-hidden"
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: index * 0.05 }}
+            className="section-frost glass-shine group relative flex flex-col rounded-2xl border border-white/40 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl p-6 md:p-7 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_-15px_rgba(59,130,246,0.25)] hover:border-accent/40 transition-all duration-500 hover:-translate-y-1 overflow-hidden"
+        >
+            <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${project.gradient} flex items-center justify-center shadow-lg mb-5`}>
+                <Icon className="text-white text-2xl" />
+            </div>
+
+            <h3 className="text-xl md:text-2xl font-normal text-dark dark:text-white mb-3 tracking-tight">
+                {project.title}
+            </h3>
+
+            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed font-light mb-5 line-clamp-3">
+                {project.description}
+            </p>
+
+            <div className="flex flex-wrap gap-2 mb-6">
+                {project.tags.map((tag, i) => (
+                    <span
+                        key={i}
+                        className="px-3 py-1 text-[11px] font-light tracking-wide text-gray-600 dark:text-gray-300 rounded-full border border-gray-200 dark:border-white/10 bg-white/60 dark:bg-white/5"
+                    >
+                        {tag}
+                    </span>
+                ))}
+            </div>
+
+            <a
+                href={project.link}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-auto inline-flex items-center gap-2 text-accent text-sm font-normal hover:gap-3 transition-all"
             >
-                <div className="h-full rounded-[2.5rem] border border-gray-200 dark:border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] p-6 md:p-8 lg:p-10 flex flex-col md:flex-row gap-6 md:gap-8 bg-white dark:bg-gray-900 backdrop-blur-3xl overflow-hidden relative">
-                    <div className="absolute top-6 right-8 flex gap-2 z-30 opacity-40 md:opacity-100">
-                        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#ff5f56] shadow-sm border border-black/10" />
-                        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#ffbd2e] shadow-sm border border-black/10" />
-                        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#27c93f] shadow-sm border border-black/10" />
-                    </div>
+                View on GitHub <FaExternalLinkAlt size={11} />
+            </a>
 
-                    <motion.div
-                        style={{ opacity: overlayOpacity }}
-                        className="absolute inset-0 bg-black z-20 pointer-events-none"
-                    />
-
-                    <div className="flex-[1.2] flex flex-col justify-between relative z-10 py-1">
-                        <div>
-                            <div className="mb-3 md:mb-4 lg:mb-6">
-                                <motion.span
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    className="text-accent font-mono text-[10px] md:text-xs mb-1.5 md:mb-2 block uppercase tracking-widest font-bold"
-                                >
-                                    {project.tech}
-                                </motion.span>
-                                <h3 className="text-xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-dark dark:text-white mb-2 md:mb-3 leading-tight tracking-tight">
-                                    {project.title}
-                                </h3>
-                            </div>
-                            <p className="text-gray-600 dark:text-gray-300 text-[12px] md:text-base lg:text-lg leading-relaxed mb-4 md:mb-6 max-w-2xl line-clamp-3 md:line-clamp-4 lg:line-clamp-none">
-                                {project.description}
-                            </p>
-                            <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
-                                {project.tags.map((tag: string, i: number) => (
-                                    <span key={i} className="flex items-center gap-1.5 md:gap-2 px-2.5 py-0.5 md:px-3 md:py-1 bg-gray-50 dark:bg-white/5 text-[8.5px] md:text-[10px] lg:text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 rounded-full border border-gray-100 dark:border-white/10 uppercase transition-all duration-300 hover:border-accent/40 hover:bg-white dark:hover:bg-white/10 shadow-sm">
-                                        {getTagIcon(tag)}
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="flex items-center mt-auto">
-                            <a
-                                href={project.link}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="group relative inline-flex items-center justify-center gap-2 md:gap-3 px-6 md:px-8 lg:px-10 py-2.5 md:py-3.5 rounded-full text-[11px] md:text-sm lg:text-base font-bold transition-all duration-500 text-gray-900 dark:text-white bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/30 backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.05)] dark:shadow-[0_0_20px_rgba(0,0,0,0.1)] hover:shadow-[0_0_40px_-10px_var(--project-glow)] hover:-translate-y-2 hover:scale-[1.03] active:scale-95 border-2 border-gray-200 dark:border-white/20 hover:border-[var(--project-color)] overflow-hidden"
-                                style={{
-                                    ['--project-color' as any]: project.glowColor,
-                                    ['--project-glow' as any]: project.glowRgba
-                                }}
-                            >
-                                <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${project.color}`} />
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out" />
-                                <span className="relative z-10 flex items-center gap-2 tracking-tight transition-colors duration-300 dark:drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
-                                    View Case Study
-                                    <FaExternalLinkAlt size={12} className="md:w-[14px] md:h-[14px] transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:rotate-12" />
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div className="flex-1 flex flex-col justify-center relative mt-2 md:mt-0">
-                        <div className="w-full relative group/image">
-                            <div className="relative bg-gray-100 dark:bg-gray-800 rounded-t-xl md:rounded-t-2xl border-t border-x border-gray-200 dark:border-white/10 p-2 md:p-3 flex items-center gap-2">
-                                <div className="flex gap-1.5">
-                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-red-400/80" />
-                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-amber-400/80" />
-                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-emerald-400/80" />
-                                </div>
-                                <div className="flex-1 bg-white/50 dark:bg-white/5 rounded-md h-4 md:h-6 flex items-center px-3 mx-2">
-                                    <div className="text-[7px] md:text-[10px] text-gray-400 truncate opacity-60 font-mono">
-                                        {project.link.replace('https://', '').replace('http://', '')}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="w-full aspect-[4/3] md:aspect-video rounded-b-xl md:rounded-b-2xl overflow-hidden border-b border-x border-gray-200 dark:border-white/10 shadow-2xl relative">
-                                <motion.img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover/image:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300" />
-                                <div className="absolute bottom-4 left-4 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 text-[10px] text-white font-mono opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
-                                    0{index + 1}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </motion.div>
-        </div>
+            <div className="absolute bottom-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        </motion.div>
     );
 };
 
 const Projects = () => {
-    const container = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: container,
-        offset: ['start start', 'end end']
-    });
-
-    const projects = [
-        {
-            title: "ONECART - AI E-Commerce",
-            tech: "MERN Stack, AI, Redux, JWT",
-            description: "Full-stack AI-powered e-commerce platform with personalized recommendations. Features secure payments via Razorpay, Google Auth, and a comprehensive Admin Dashboard.",
-            tags: ["MERN", "AI Integration", "E-commerce"],
-            link: "https://github.com/KISHOR403/AI-Powered-E-Commerce-Website-built-using-MERN-Stack",
-            color: "from-orange-500 to-rose-500",
-            glowColor: "#f97316",
-            glowRgba: "rgba(249, 115, 22, 0.4)",
-            image: onecartImg
-        },
-        {
-            title: "Weather App",
-            tech: "HTML, CSS, JavaScript, Weather API",
-            description: "Real-time weather dashboard fetching live data based on user location or input. Features dynamic UI updates and detailed weather conditions.",
-            tags: ["JavaScript", "API Integration", "Web Dev"],
-            link: "https://github.com/KISHOR403/Weather-App",
-            color: "from-blue-500 to-indigo-600",
-            glowColor: "#3b82f6",
-            glowRgba: "rgba(59, 130, 246, 0.4)",
-            image: weatherImg
-        },
-        {
-            title: "API Automation Testing",
-            tech: "Postman, Rest Assured",
-            description: "Designed a comprehensive API automation suite for REST endpoints. Configured dynamic environment variables, verified full CRUD workflows, and leveraged Newman for reporting.",
-            tags: ["API Testing", "Automation", "CI/CD"],
-            link: "#",
-            color: "from-purple-500 to-violet-600",
-            glowColor: "#a855f7",
-            glowRgba: "rgba(168, 85, 247, 0.4)",
-            image: apiTestingImg
-        },
-        {
-            title: "Mobile App Testing",
-            tech: "Appium, Java, TestNG",
-            description: "Executed end-to-end automation of a generic Weather Forecast Android application. Validated core features including GPS-based forecasting and structured test logic with Page Object Model (POM).",
-            tags: ["Mobile Testing", "Appium", "Java"],
-            link: "#",
-            color: "from-sky-500 to-blue-600",
-            glowColor: "#0ea5e9",
-            glowRgba: "rgba(14, 165, 233, 0.4)",
-            image: mobileTestingImg
-        },
-        {
-            title: "Web Automation Framework",
-            tech: "Selenium WebDriver, Java, TestNG",
-            description: "Engineered a scalable web automation framework using Selenium. Covered major e-commerce flows like authentication and cart operations. Utilized data-driven TestNG suites.",
-            tags: ["Web Testing", "Selenium", "Framework"],
-            link: "https://github.com/KISHOR403/Web-Automation-Framework-Selenium-WebDriver-Java-TestNG-POM",
-            color: "from-emerald-500 to-teal-600",
-            glowColor: "#10b981",
-            glowRgba: "rgba(16, 185, 129, 0.4)",
-            image: webAutomationImg
-        }
-    ];
-
     return (
-        <section id="projects" ref={container} className="relative z-10 pb-[5vh]">
-            <div className="h-[15vh] flex flex-col items-center justify-center text-center">
-                <div className="relative inline-block p-[3px] rounded-full overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(255,255,255,0.1)] mb-4">
-                    <div className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_80%,#000_100%)] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_80%,#ffffff_100%)] drop-shadow-[0_0_10px_rgba(0,0,0,0.5)] dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.8)] opacity-100"></div>
-                    <div className="relative z-10 bg-white dark:bg-gray-800 px-8 py-2 rounded-full shadow-sm text-dark dark:text-white font-mono font-bold text-xl md:text-2xl">
-                        Featured Projects
-                    </div>
-                </div>
-                <p className="text-gray-500 dark:text-gray-400 font-mono text-xs max-w-md px-4">
-                    Scroll down to explore some of my best work, presented in a stacking case-study format.
-                </p>
-            </div>
-
+        <section id="projects" className="relative z-10 py-20 md:py-28">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {projects.map((project, index) => {
-                    const targetScale = 1 - ((projects.length - index) * 0.05);
-                    return (
-                        <ProjectCard
-                            key={`p_${index}`}
-                            index={index}
-                            project={project}
-                            progress={scrollYProgress}
-                            range={[index * 0.2, 1]}
-                            targetScale={targetScale}
-                            isLast={index === projects.length - 1}
-                        />
-                    );
-                })}
+                <div className="flex flex-col items-center justify-center text-center mb-12 md:mb-16">
+                    <div className="relative inline-block p-[3px] rounded-full overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(255,255,255,0.1)] mb-4">
+                        <div className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_80%,#000_100%)] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_80%,#ffffff_100%)]"></div>
+                        <div className="relative z-10 bg-white dark:bg-gray-800 px-8 py-2 rounded-full shadow-sm text-dark dark:text-white font-mono font-bold text-xl md:text-2xl">
+                            Featured Projects
+                        </div>
+                    </div>
+                    <p className="text-gray-500 dark:text-gray-400 font-mono text-xs max-w-md px-4">
+                        A selection of projects across development, automation, and data analytics.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                    {projects.map((project, index) => (
+                        <ProjectCard key={index} project={project} index={index} />
+                    ))}
+                </div>
             </div>
         </section>
     );
