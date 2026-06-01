@@ -1,332 +1,270 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-import { ExternalLink, TrendingUp, Trash2, Home, Wine, ShieldAlert, BarChart3, Briefcase } from 'lucide-react';
-import autohireImg from '@/assets/projects/autohire.jpg';
-import retailSalesImg from '@/assets/projects/retail-sales.jpg';
-import dataCleaningImg from '@/assets/projects/data-cleaning.jpg';
-import housePriceImg from '@/assets/projects/house-price.jpg';
-import wineQualityImg from '@/assets/projects/wine-quality.jpg';
-import fraudDetectionImg from '@/assets/projects/fraud-detection.jpg';
-import ecommerceDashboardImg from '@/assets/projects/ecommerce-dashboard.jpg';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import {
+    FaExternalLinkAlt,
+    FaShoppingCart,
+    FaBrain,
+    FaExchangeAlt,
+    FaGlobe,
+    FaCode,
+    FaRobot,
+    FaInfinity,
+    FaMobileAlt,
+    FaJava,
+    FaBoxOpen,
+    FaTerminal
+} from 'react-icons/fa';
+import {
+    SiJavascript,
+    SiReact,
+    SiPostman,
+    SiSelenium,
+    SiMongodb,
+    SiAppium
+} from 'react-icons/si';
 
-const projects = [
-  {
-    title: 'AutoHire AI',
-    description: 'AI-powered job matching app that analyzes resumes, scores resume-job fit (%), aggregates listings from multiple platforms, and delivers an end-to-end workflow with 5 modules: Jobs, Resume, Tracker, Dashboard, and Settings.',
-    icon: Briefcase,
-    image: autohireImg,
-    tags: ['Flutter', 'Dart', 'Firebase', 'REST APIs', 'Git & GitHub'],
-    color: 'from-indigo-500 to-purple-600',
-    link: 'https://github.com/dishu-13/AutoHire-AI.git',
-  },
-  {
-    title: 'Retail Sales Data',
-    description: 'Analyzing retail sales data to identify purchasing trends, seasonal patterns, and performance metrics that assist businesses in optimizing inventory and increasing sales efficiency.',
-    icon: TrendingUp,
-    image: retailSalesImg,
-    tags: ['Python', 'Pandas', 'Data Analysis'],
-    color: 'from-primary to-cyan-400',
-    link: 'https://github.com/dishu-13/OIBSIP/tree/3beae94f29c5a9b3477d62fcf18702c7d1ac855f/Project%201%20(retail_sales_dataset%20)',
-  },
-  {
-    title: 'Data Cleaning',
-    description: 'Clean and preprocess raw data for accurate analysis. Handling missing values, removing duplicates, correcting data types, and standardizing inconsistent entries.',
-    icon: Trash2,
-    image: dataCleaningImg,
-    tags: ['Python', 'Data Preprocessing', 'ETL'],
-    color: 'from-accent to-pink-400',
-    link: 'https://github.com/dishu-13/OIBSIP/tree/3beae94f29c5a9b3477d62fcf18702c7d1ac855f/Project%202%20(%20Data%20cleaning%20)',
-  },
-  {
-    title: 'House Price Prediction',
-    description: 'Machine learning model to estimate house prices based on key features. Includes data cleaning, feature selection, model training using Scikit-learn and evaluation.',
-    icon: Home,
-    image: housePriceImg,
-    tags: ['Python', 'Scikit-learn', 'Machine Learning'],
-    color: 'from-emerald-400 to-teal-500',
-    link: 'https://github.com/dishu-13/OIBSIP/tree/3beae94f29c5a9b3477d62fcf18702c7d1ac855f/Project%203%20(%20%20House%20%20Prediction%20)',
-  },
-  {
-    title: 'Wine Quality Prediction',
-    description: 'Predict wine quality based on chemical properties using machine learning. Data preprocessing, feature selection, and model training with visualization.',
-    icon: Wine,
-    image: wineQualityImg,
-    tags: ['Python', 'NumPy', 'Matplotlib'],
-    color: 'from-rose-400 to-red-500',
-    link: 'https://github.com/dishu-13/OIBSIP/tree/3beae94f29c5a9b3477d62fcf18702c7d1ac855f/Project%204%20(%20Wine%20Quality%20Prediction%20)',
-  },
-  {
-    title: 'Fraud Detection',
-    description: 'Designed a machine learning model to spot fraudulent financial transactions. Tackled data challenges like imbalanced classes, leveraged Random Forest for high accuracy.',
-    icon: ShieldAlert,
-    image: fraudDetectionImg,
-    tags: ['Python', 'Random Forest', 'Machine Learning'],
-    color: 'from-amber-400 to-orange-500',
-    link: 'https://github.com/dishu-13/OIBSIP',
-  },
-  {
-    title: 'E-Commerce Sales Dashboard',
-    description: 'Interactive Power BI dashboard analyzing e-commerce sales data with dynamic visualizations, KPIs, and filters to track revenue, profit, quantity, and customer trends across regions and categories.',
-    icon: BarChart3,
-    image: ecommerceDashboardImg,
-    tags: ['Power BI', 'Data Visualization', 'DAX', 'ETL'],
-    color: 'from-violet-400 to-purple-500',
-    link: 'https://github.com/dishu-13/E-Commerce-Sales-PowerBI-Dashboard',
-  },
-];
+import onecartImg from '../assets/projects/onecart.png';
+import weatherImg from '../assets/projects/weather.png';
+import apiTestingImg from '../assets/projects/api_testing.png';
+import mobileTestingImg from '../assets/projects/mobile_testing.png';
+import webAutomationImg from '../assets/projects/web_automation.png';
 
-function CircleCarousel() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start'],
-  });
-  const rotateY = useTransform(scrollYProgress, [0, 1], [0, 360]);
-  const scale = useTransform(scrollYProgress, [0, 0.4, 1], [0.85, 1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0.6]);
+const getTagIcon = (tag: string) => {
+    const iconSize = 14;
+    switch (tag.toUpperCase()) {
+        case 'MERN': return <div className="flex -space-x-1"><SiMongodb size={iconSize} className="text-[#47A248]" /><SiReact size={iconSize} className="text-[#61DAFB]" /></div>;
+        case 'AI INTEGRATION': return <FaBrain size={iconSize} className="text-pink-400" />;
+        case 'E-COMMERCE': return <FaShoppingCart size={iconSize} className="text-orange-400" />;
+        case 'JAVASCRIPT': return <SiJavascript size={iconSize} className="text-[#F7DF1E]" />;
+        case 'API INTEGRATION': return <FaExchangeAlt size={iconSize} className="text-blue-400" />;
+        case 'WEB DEV': return <FaGlobe size={iconSize} className="text-sky-400" />;
+        case 'API TESTING': return <SiPostman size={iconSize} className="text-[#FF6C37]" />;
+        case 'AUTOMATION': return <FaRobot size={iconSize} className="text-purple-400" />;
+        case 'CI/CD': return <FaInfinity size={iconSize} className="text-emerald-400" />;
+        case 'MOBILE TESTING': return <FaMobileAlt size={iconSize} className="text-cyan-400" />;
+        case 'APPIUM': return <SiAppium size={iconSize} className="text-[#61DAFB]" />;
+        case 'JAVA': return <FaJava size={iconSize} className="text-[#ED8B00]" />;
+        case 'WEB TESTING': return <FaCode size={iconSize} className="text-indigo-400" />;
+        case 'SELENIUM': return <SiSelenium size={iconSize} className="text-[#43B02A]" />;
+        case 'FRAMEWORK': return <FaBoxOpen size={iconSize} className="text-amber-400" />;
+        default: return <FaTerminal size={iconSize} className="text-gray-400" />;
+    }
+};
 
-  const count = projects.length;
-  const radius = 260;
-
-  return (
-    <div ref={containerRef} className="relative w-full flex flex-col items-center justify-center py-16 md:py-24">
-      {/* Reflective floor */}
-      <div
-        aria-hidden
-        className="absolute inset-x-0 bottom-10 md:bottom-16 h-40 md:h-56 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse at center, hsl(var(--primary) / 0.18), transparent 60%)',
-          filter: 'blur(20px)',
-        }}
-      />
-      <div
-        className="relative"
-        style={{ perspective: '1400px', perspectiveOrigin: '50% 30%' }}
-      >
-        <motion.div
-          style={{
-            rotateY,
-            scale,
-            opacity,
-            transformStyle: 'preserve-3d',
-            rotateX: 18,
-          }}
-          className="relative w-[320px] h-[320px] md:w-[460px] md:h-[460px]"
-        >
-          {projects.map((project, i) => {
-            const angle = (i / count) * 360;
-            return (
-              <div
-                key={project.title}
-                className="absolute top-1/2 left-1/2 w-24 h-28 md:w-36 md:h-44 -ml-12 -mt-14 md:-ml-[72px] md:-mt-[88px]"
-                style={{
-                  transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
-                  transformStyle: 'preserve-3d',
-                }}
-              >
-                <div className="relative w-full h-full rounded-xl overflow-hidden shadow-[0_20px_50px_-15px_hsl(var(--primary)/0.5)] ring-1 ring-white/10 bg-card">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
-                </div>
-                {/* mirrored reflection */}
-                <div
-                  aria-hidden
-                  className="absolute left-0 right-0 top-full mt-1 h-full rounded-xl overflow-hidden opacity-30"
-                  style={{ transform: 'scaleY(-1)', maskImage: 'linear-gradient(to bottom, black, transparent 70%)', WebkitMaskImage: 'linear-gradient(to bottom, black, transparent 70%)' }}
-                >
-                  <img src={project.image} alt="" className="w-full h-full object-cover" />
-                </div>
-              </div>
-            );
-          })}
-        </motion.div>
-      </div>
-      <motion.p
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mt-8 text-sm md:text-base text-muted-foreground font-light tracking-wide"
-      >
-        Scroll to explore each project
-      </motion.p>
-    </div>
-  );
+interface ProjectCardProps {
+    project: any;
+    index: number;
+    progress: MotionValue<number>;
+    range: [number, number];
+    targetScale: number;
+    isLast: boolean;
 }
 
-export default function Projects() {
-  return (
-    <section id="projects" className="py-20 md:py-32 px-4 relative section-frost">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/30 to-transparent pointer-events-none" />
+const ProjectCard = ({ project, index, progress, range, targetScale, isLast }: ProjectCardProps) => {
+    const container = useRef(null);
 
-      <div className="container mx-auto max-w-6xl relative">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-center mb-8 md:mb-12"
-        >
-          <h2 className="font-display text-4xl md:text-5xl font-medium mb-4">
-            My <span className="text-gradient">Projects</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6" />
-          <p className="text-muted-foreground font-light max-w-2xl mx-auto">
-            Explore my data analysis and machine learning projects that demonstrate my ability to extract insights and build predictive models.
-          </p>
-        </motion.div>
+    const scale = useTransform(progress, range, [1, isLast ? 1 : targetScale]);
+    const overlayOpacity = useTransform(progress, range, [0, isLast ? 0 : 0.6]);
 
-        <CircleCarousel />
+    const stickyTop = 80 + (index * 40);
 
-        <StackedProjects />
-      </div>
-    </section>
-  );
-}
-
-function StackedProjects() {
-  return (
-    <div className="relative mt-16 md:mt-24">
-      {projects.map((project, i) => (
-        <StackedCard key={project.title} project={project} index={i} total={projects.length} />
-      ))}
-      <div className="h-[40vh]" />
-    </div>
-  );
-}
-
-const COLLAPSED_PX = 64;
-
-function StackedCard({
-  project,
-  index,
-  total,
-}: {
-  project: (typeof projects)[number];
-  index: number;
-  total: number;
-}) {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const stagger = 14;
-  const topOffset = 96 + index * stagger;
-  const isLast = index === total - 1;
-
-  const { scrollYProgress } = useScroll({
-    target: wrapperRef,
-    offset: ['start end', 'start start'],
-  });
-
-  const height = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [`${COLLAPSED_PX}px`, '82vh']
-  );
-  const contentOpacity = useTransform(scrollYProgress, [0.55, 0.95], [0, 1]);
-  const collapsedOpacity = useTransform(scrollYProgress, [0.4, 0.85], [1, 0]);
-
-  return (
-    <div
-      ref={wrapperRef}
-      style={{
-        height: '85vh',
-        marginTop: index === 0 ? 0 : `calc(-85vh + ${COLLAPSED_PX + stagger}px)`,
-      }}
-    >
-      <div
-        className="sticky w-full"
-        style={{ top: `${topOffset}px`, zIndex: index + 1 }}
-      >
-        <motion.div
-          style={{ height: isLast ? '82vh' : height }}
-          className="group relative w-full rounded-2xl md:rounded-3xl overflow-hidden will-change-[height] border border-border/40 bg-card/95 backdrop-blur-xl shadow-[0_30px_80px_-20px_hsl(var(--primary)/0.35)]"
-        >
-          {/* macOS window chrome */}
-          <div className="absolute top-4 right-4 md:top-5 md:right-5 z-20 flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-full bg-[hsl(var(--destructive))]/80" />
-            <span className="w-3 h-3 rounded-full bg-amber-400/80" />
-            <span className="w-3 h-3 rounded-full bg-emerald-400/80" />
-          </div>
-
-          {/* Collapsed state: tag line on the left, visible when card is in collapsed strip */}
-          {!isLast && (
+    return (
+        <div ref={container} className="h-[85vh] flex items-center justify-center sticky" style={{ top: `${stickyTop}px`, zIndex: index + 1 }}>
             <motion.div
-              style={{ opacity: collapsedOpacity }}
-              className="absolute top-0 left-0 right-0 h-[64px] flex items-center px-6 md:px-10 pointer-events-none"
+                style={{ scale }}
+                className="relative w-full max-w-5xl h-[85vh] md:h-[75vh] lg:h-[70vh] rounded-[2.5rem] overflow-hidden"
             >
-              <div className="text-[11px] md:text-xs font-normal tracking-[0.2em] uppercase text-primary">
-                {project.tags.slice(0, 4).join(' · ')}
-              </div>
+                <div className="h-full rounded-[2.5rem] border border-gray-200 dark:border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] p-6 md:p-8 lg:p-10 flex flex-col md:flex-row gap-6 md:gap-8 bg-white dark:bg-gray-900 backdrop-blur-3xl overflow-hidden relative">
+                    <div className="absolute top-6 right-8 flex gap-2 z-30 opacity-40 md:opacity-100">
+                        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#ff5f56] shadow-sm border border-black/10" />
+                        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#ffbd2e] shadow-sm border border-black/10" />
+                        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#27c93f] shadow-sm border border-black/10" />
+                    </div>
+
+                    <motion.div
+                        style={{ opacity: overlayOpacity }}
+                        className="absolute inset-0 bg-black z-20 pointer-events-none"
+                    />
+
+                    <div className="flex-[1.2] flex flex-col justify-between relative z-10 py-1">
+                        <div>
+                            <div className="mb-3 md:mb-4 lg:mb-6">
+                                <motion.span
+                                    initial={{ opacity: 0, x: -20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    className="text-accent font-mono text-[10px] md:text-xs mb-1.5 md:mb-2 block uppercase tracking-widest font-bold"
+                                >
+                                    {project.tech}
+                                </motion.span>
+                                <h3 className="text-xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-dark dark:text-white mb-2 md:mb-3 leading-tight tracking-tight">
+                                    {project.title}
+                                </h3>
+                            </div>
+                            <p className="text-gray-600 dark:text-gray-300 text-[12px] md:text-base lg:text-lg leading-relaxed mb-4 md:mb-6 max-w-2xl line-clamp-3 md:line-clamp-4 lg:line-clamp-none">
+                                {project.description}
+                            </p>
+                            <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
+                                {project.tags.map((tag: string, i: number) => (
+                                    <span key={i} className="flex items-center gap-1.5 md:gap-2 px-2.5 py-0.5 md:px-3 md:py-1 bg-gray-50 dark:bg-white/5 text-[8.5px] md:text-[10px] lg:text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 rounded-full border border-gray-100 dark:border-white/10 uppercase transition-all duration-300 hover:border-accent/40 hover:bg-white dark:hover:bg-white/10 shadow-sm">
+                                        {getTagIcon(tag)}
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="flex items-center mt-auto">
+                            <a
+                                href={project.link}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="group relative inline-flex items-center justify-center gap-2 md:gap-3 px-6 md:px-8 lg:px-10 py-2.5 md:py-3.5 rounded-full text-[11px] md:text-sm lg:text-base font-bold transition-all duration-500 text-gray-900 dark:text-white bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/30 backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.05)] dark:shadow-[0_0_20px_rgba(0,0,0,0.1)] hover:shadow-[0_0_40px_-10px_var(--project-glow)] hover:-translate-y-2 hover:scale-[1.03] active:scale-95 border-2 border-gray-200 dark:border-white/20 hover:border-[var(--project-color)] overflow-hidden"
+                                style={{
+                                    ['--project-color' as any]: project.glowColor,
+                                    ['--project-glow' as any]: project.glowRgba
+                                }}
+                            >
+                                <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${project.color}`} />
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out" />
+                                <span className="relative z-10 flex items-center gap-2 tracking-tight transition-colors duration-300 dark:drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+                                    View Case Study
+                                    <FaExternalLinkAlt size={12} className="md:w-[14px] md:h-[14px] transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:rotate-12" />
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div className="flex-1 flex flex-col justify-center relative mt-2 md:mt-0">
+                        <div className="w-full relative group/image">
+                            <div className="relative bg-gray-100 dark:bg-gray-800 rounded-t-xl md:rounded-t-2xl border-t border-x border-gray-200 dark:border-white/10 p-2 md:p-3 flex items-center gap-2">
+                                <div className="flex gap-1.5">
+                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-red-400/80" />
+                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-amber-400/80" />
+                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-emerald-400/80" />
+                                </div>
+                                <div className="flex-1 bg-white/50 dark:bg-white/5 rounded-md h-4 md:h-6 flex items-center px-3 mx-2">
+                                    <div className="text-[7px] md:text-[10px] text-gray-400 truncate opacity-60 font-mono">
+                                        {project.link.replace('https://', '').replace('http://', '')}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="w-full aspect-[4/3] md:aspect-video rounded-b-xl md:rounded-b-2xl overflow-hidden border-b border-x border-gray-200 dark:border-white/10 shadow-2xl relative">
+                                <motion.img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover/image:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300" />
+                                <div className="absolute bottom-4 left-4 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 text-[10px] text-white font-mono opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
+                                    0{index + 1}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </motion.div>
-          )}
+        </div>
+    );
+};
 
-          <motion.div
-            style={{ opacity: isLast ? 1 : contentOpacity }}
-            className="grid md:grid-cols-2 gap-0 h-full"
-          >
-            {/* Left: content */}
-            <div className="relative p-6 md:p-10 flex flex-col justify-center order-2 md:order-1">
-              <div className="text-[11px] md:text-xs font-normal tracking-[0.2em] uppercase text-primary mb-4">
-                {project.tags.slice(0, 4).join(' · ')}
-              </div>
-              <h3 className="font-display text-3xl md:text-4xl font-medium text-foreground mb-4 leading-tight">
-                {project.title}
-              </h3>
-              <p className="text-muted-foreground mb-6 font-light text-sm md:text-base leading-relaxed max-w-md">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-8">
-                {project.tags.slice(0, 3).map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-full bg-background/60 backdrop-blur-sm text-foreground/80 border border-border/40"
-                  >
-                    <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${project.color}`} />
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex w-fit items-center gap-2 px-5 py-2.5 rounded-full border border-border/60 bg-background/40 hover:bg-background/70 hover:border-primary/60 text-sm font-light text-foreground transition-all duration-300"
-              >
-                <span>View Case Study</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
+const Projects = () => {
+    const container = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: container,
+        offset: ['start start', 'end end']
+    });
+
+    const projects = [
+        {
+            title: "ONECART - AI E-Commerce",
+            tech: "MERN Stack, AI, Redux, JWT",
+            description: "Full-stack AI-powered e-commerce platform with personalized recommendations. Features secure payments via Razorpay, Google Auth, and a comprehensive Admin Dashboard.",
+            tags: ["MERN", "AI Integration", "E-commerce"],
+            link: "https://github.com/KISHOR403/AI-Powered-E-Commerce-Website-built-using-MERN-Stack",
+            color: "from-orange-500 to-rose-500",
+            glowColor: "#f97316",
+            glowRgba: "rgba(249, 115, 22, 0.4)",
+            image: onecartImg
+        },
+        {
+            title: "Weather App",
+            tech: "HTML, CSS, JavaScript, Weather API",
+            description: "Real-time weather dashboard fetching live data based on user location or input. Features dynamic UI updates and detailed weather conditions.",
+            tags: ["JavaScript", "API Integration", "Web Dev"],
+            link: "https://github.com/KISHOR403/Weather-App",
+            color: "from-blue-500 to-indigo-600",
+            glowColor: "#3b82f6",
+            glowRgba: "rgba(59, 130, 246, 0.4)",
+            image: weatherImg
+        },
+        {
+            title: "API Automation Testing",
+            tech: "Postman, Rest Assured",
+            description: "Designed a comprehensive API automation suite for REST endpoints. Configured dynamic environment variables, verified full CRUD workflows, and leveraged Newman for reporting.",
+            tags: ["API Testing", "Automation", "CI/CD"],
+            link: "#",
+            color: "from-purple-500 to-violet-600",
+            glowColor: "#a855f7",
+            glowRgba: "rgba(168, 85, 247, 0.4)",
+            image: apiTestingImg
+        },
+        {
+            title: "Mobile App Testing",
+            tech: "Appium, Java, TestNG",
+            description: "Executed end-to-end automation of a generic Weather Forecast Android application. Validated core features including GPS-based forecasting and structured test logic with Page Object Model (POM).",
+            tags: ["Mobile Testing", "Appium", "Java"],
+            link: "#",
+            color: "from-sky-500 to-blue-600",
+            glowColor: "#0ea5e9",
+            glowRgba: "rgba(14, 165, 233, 0.4)",
+            image: mobileTestingImg
+        },
+        {
+            title: "Web Automation Framework",
+            tech: "Selenium WebDriver, Java, TestNG",
+            description: "Engineered a scalable web automation framework using Selenium. Covered major e-commerce flows like authentication and cart operations. Utilized data-driven TestNG suites.",
+            tags: ["Web Testing", "Selenium", "Framework"],
+            link: "https://github.com/KISHOR403/Web-Automation-Framework-Selenium-WebDriver-Java-TestNG-POM",
+            color: "from-emerald-500 to-teal-600",
+            glowColor: "#10b981",
+            glowRgba: "rgba(16, 185, 129, 0.4)",
+            image: webAutomationImg
+        }
+    ];
+
+    return (
+        <section id="projects" ref={container} className="relative z-10 pb-[5vh]">
+            <div className="h-[15vh] flex flex-col items-center justify-center text-center">
+                <div className="relative inline-block p-[3px] rounded-full overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(255,255,255,0.1)] mb-4">
+                    <div className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_80%,#000_100%)] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_80%,#ffffff_100%)] drop-shadow-[0_0_10px_rgba(0,0,0,0.5)] dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.8)] opacity-100"></div>
+                    <div className="relative z-10 bg-white dark:bg-gray-800 px-8 py-2 rounded-full shadow-sm text-dark dark:text-white font-mono font-bold text-xl md:text-2xl">
+                        Featured Projects
+                    </div>
+                </div>
+                <p className="text-gray-500 dark:text-gray-400 font-mono text-xs max-w-md px-4">
+                    Scroll down to explore some of my best work, presented in a stacking case-study format.
+                </p>
             </div>
 
-            {/* Right: image inside mini browser frame */}
-            <div className="relative p-6 md:p-8 md:pl-0 flex items-center justify-center order-1 md:order-2">
-              <div className="relative w-full rounded-xl overflow-hidden border border-border/50 bg-background/60 shadow-xl">
-                <div className="flex items-center gap-1.5 px-3 py-2 bg-background/80 border-b border-border/40">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[hsl(var(--destructive))]/70" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-400/70" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/70" />
-                </div>
-                <div className="aspect-[16/10] overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={`${project.title} preview`}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-              </div>
-              <div className={`absolute -inset-2 -z-10 bg-gradient-to-br ${project.color} opacity-20 blur-3xl rounded-full pointer-events-none`} />
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {projects.map((project, index) => {
+                    const targetScale = 1 - ((projects.length - index) * 0.05);
+                    return (
+                        <ProjectCard
+                            key={`p_${index}`}
+                            index={index}
+                            project={project}
+                            progress={scrollYProgress}
+                            range={[index * 0.2, 1]}
+                            targetScale={targetScale}
+                            isLast={index === projects.length - 1}
+                        />
+                    );
+                })}
             </div>
-          </motion.div>
-        </motion.div>
-      </div>
-    </div>
-  );
-}
+        </section>
+    );
+};
 
-
-
+export default Projects;
