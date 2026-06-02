@@ -2,11 +2,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import {
     FaExternalLinkAlt,
-    FaShoppingCart,
     FaChartLine,
-    FaCloudSun,
-    FaCogs,
-    FaMobileAlt,
+    FaBroom,
+    FaHome,
+    FaWineGlassAlt,
+    FaShieldAlt,
+    FaShoppingBag,
     FaRobot,
 } from 'react-icons/fa';
 
@@ -22,58 +23,67 @@ interface Project {
 
 const projects: Project[] = [
     {
-        title: "ONECART - AI E-Commerce",
-        tech: "MERN Stack, AI, Redux, JWT",
-        description: "Full-stack AI-powered e-commerce platform with personalized recommendations. Features secure payments via Razorpay, Google Auth, and a comprehensive Admin Dashboard.",
-        tags: ["MERN", "AI Integration", "E-commerce", "Redux", "JWT"],
-        link: "https://github.com/KISHOR403/AI-Powered-E-Commerce-Website-built-using-MERN-Stack",
+        title: "AutoHire AI",
+        tech: "Flutter, Dart, Firebase, REST APIs",
+        description: "AI-powered job matching app that analyzes resumes, scores resume-job fit (%), aggregates listings from multiple platforms, and delivers an end-to-end workflow with 5 modules: Jobs, Resume, Tracker, Dashboard, and Settings.",
+        tags: ["Flutter", "Dart", "Firebase", "REST APIs", "Git & GitHub"],
+        link: "https://github.com/dishu-13/AutoHire-AI.git",
         gradient: "from-violet-500 to-indigo-600",
-        Icon: FaShoppingCart,
-    },
-    {
-        title: "Weather App",
-        tech: "HTML, CSS, JavaScript, Weather API",
-        description: "Real-time weather dashboard fetching live data based on user location or input. Features dynamic UI updates and detailed weather conditions.",
-        tags: ["JavaScript", "API Integration", "Web Dev"],
-        link: "https://github.com/KISHOR403/Weather-App",
-        gradient: "from-sky-400 to-blue-600",
-        Icon: FaCloudSun,
-    },
-    {
-        title: "API Automation Testing",
-        tech: "Postman, Rest Assured",
-        description: "Comprehensive API automation suite for REST endpoints. Dynamic environment variables, full CRUD workflows, and Newman reporting for CI/CD pipelines.",
-        tags: ["API Testing", "Automation", "CI/CD"],
-        link: "#",
-        gradient: "from-fuchsia-500 to-pink-500",
-        Icon: FaCogs,
-    },
-    {
-        title: "Mobile App Testing",
-        tech: "Appium, Java, TestNG",
-        description: "End-to-end automation of an Android Weather Forecast app. Validated GPS-based forecasting and structured test logic using the Page Object Model (POM).",
-        tags: ["Mobile Testing", "Appium", "Java"],
-        link: "#",
-        gradient: "from-emerald-400 to-teal-600",
-        Icon: FaMobileAlt,
-    },
-    {
-        title: "Web Automation Framework",
-        tech: "Selenium WebDriver, Java, TestNG",
-        description: "Scalable web automation framework using Selenium. Covers e-commerce flows like authentication and cart operations with data-driven TestNG suites.",
-        tags: ["Web Testing", "Selenium", "Framework"],
-        link: "https://github.com/KISHOR403/Web-Automation-Framework-Selenium-WebDriver-Java-TestNG-POM",
-        gradient: "from-amber-400 to-orange-600",
         Icon: FaRobot,
     },
     {
-        title: "Retail Sales Analytics",
+        title: "Retail Sales Data",
         tech: "Python, Pandas, Data Analysis",
-        description: "Analyzing retail sales data to identify purchasing trends, seasonal patterns, and performance metrics that help businesses optimize inventory and increase sales.",
+        description: "Analyzing retail sales data to identify purchasing trends, seasonal patterns, and performance metrics that assist businesses in optimizing inventory and increasing sales efficiency.",
         tags: ["Python", "Pandas", "Data Analysis"],
-        link: "#",
+        link: "https://github.com/dishu-13/OIBSIP/tree/3beae94f29c5a9b3477d62fcf18702c7d1ac855f/Project%201%20(retail_sales_dataset%20)",
         gradient: "from-cyan-400 to-blue-500",
         Icon: FaChartLine,
+    },
+    {
+        title: "Data Cleaning",
+        tech: "Python, Data Preprocessing, ETL",
+        description: "Clean and preprocess raw data for accurate analysis. Handling missing values, removing duplicates, correcting data types, and standardizing inconsistent entries.",
+        tags: ["Python", "Data Preprocessing", "ETL"],
+        link: "https://github.com/dishu-13/OIBSIP/tree/3beae94f29c5a9b3477d62fcf18702c7d1ac855f/Project%202%20(%20Data%20cleaning%20)",
+        gradient: "from-emerald-400 to-teal-600",
+        Icon: FaBroom,
+    },
+    {
+        title: "House Price Prediction",
+        tech: "Python, Scikit-learn, Machine Learning",
+        description: "Machine learning model to estimate house prices based on key features. Includes data cleaning, feature selection, model training using Scikit-learn and evaluation.",
+        tags: ["Python", "Scikit-learn", "Machine Learning"],
+        link: "https://github.com/dishu-13/OIBSIP/tree/3beae94f29c5a9b3477d62fcf18702c7d1ac855f/Project%203%20(%20%20House%20%20Prediction%20)",
+        gradient: "from-amber-400 to-orange-600",
+        Icon: FaHome,
+    },
+    {
+        title: "Wine Quality Prediction",
+        tech: "Python, NumPy, Matplotlib",
+        description: "Predict wine quality based on chemical properties using machine learning. Data preprocessing, feature selection, and model training with visualization.",
+        tags: ["Python", "NumPy", "Matplotlib"],
+        link: "https://github.com/dishu-13/OIBSIP/tree/3beae94f29c5a9b3477d62fcf18702c7d1ac855f/Project%204%20(%20Wine%20Quality%20Prediction%20)",
+        gradient: "from-fuchsia-500 to-pink-500",
+        Icon: FaWineGlassAlt,
+    },
+    {
+        title: "Fraud Detection",
+        tech: "Python, Random Forest, Machine Learning",
+        description: "Designed a machine learning model to spot fraudulent financial transactions. Tackled data challenges like imbalanced classes, leveraged Random Forest for high accuracy.",
+        tags: ["Python", "Random Forest", "Machine Learning"],
+        link: "https://github.com/dishu-13/OIBSIP",
+        gradient: "from-rose-500 to-red-600",
+        Icon: FaShieldAlt,
+    },
+    {
+        title: "E-Commerce Sales Dashboard",
+        tech: "Power BI, DAX, ETL",
+        description: "Interactive Power BI dashboard analyzing e-commerce sales data with dynamic visualizations, KPIs, and filters to track revenue, profit, quantity, and customer trends across regions and categories.",
+        tags: ["Power BI", "Data Visualization", "DAX", "ETL"],
+        link: "https://github.com/dishu-13/E-Commerce-Sales-PowerBI-Dashboard",
+        gradient: "from-sky-400 to-blue-600",
+        Icon: FaShoppingBag,
     },
 ];
 
@@ -132,15 +142,15 @@ const Projects = () => {
                     <div className="relative inline-block p-[3px] rounded-full overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(255,255,255,0.1)] mb-4">
                         <div className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_80%,#000_100%)] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_80%,#ffffff_100%)]"></div>
                         <div className="relative z-10 bg-white dark:bg-gray-800 px-8 py-2 rounded-full shadow-sm text-dark dark:text-white font-mono font-bold text-xl md:text-2xl">
-                            Featured Projects
+                            My Projects
                         </div>
                     </div>
-                    <p className="text-gray-500 dark:text-gray-400 font-mono text-xs max-w-md px-4">
-                        A selection of projects across development, automation, and data analytics.
+                    <p className="text-gray-500 dark:text-gray-400 font-mono text-xs max-w-xl px-4">
+                        Explore my data analysis and machine learning projects that demonstrate my ability to extract insights and build predictive models.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     {projects.map((project, index) => (
                         <ProjectCard key={index} project={project} index={index} />
                     ))}
