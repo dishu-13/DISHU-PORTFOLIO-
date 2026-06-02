@@ -11,10 +11,13 @@ import Footer from '@/components/Footer';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import ShutterSplash from '@/components/ShutterSplash';
 import MarqueeStrip from '@/components/MarqueeStrip';
+import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 const Index = () => {
   const [splashDone, setSplashDone] = useState(false);
   const handleSplashComplete = useCallback(() => setSplashDone(true), []);
+  useSmoothScroll();
+
 
   return (
     <main className="relative min-h-screen overflow-x-hidden w-full">
