@@ -142,15 +142,15 @@ const Projects = () => {
                     <div className="relative inline-block p-[3px] rounded-full overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(255,255,255,0.1)] mb-4">
                         <div className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_80%,#000_100%)] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_80%,#ffffff_100%)]"></div>
                         <div className="relative z-10 bg-white dark:bg-gray-800 px-8 py-2 rounded-full shadow-sm text-dark dark:text-white font-mono font-bold text-xl md:text-2xl">
-                            Featured Projects
+                            My Projects
                         </div>
                     </div>
-                    <p className="text-gray-500 dark:text-gray-400 font-mono text-xs max-w-md px-4">
-                        A selection of projects across development, automation, and data analytics.
+                    <p className="text-gray-500 dark:text-gray-400 font-mono text-xs max-w-xl px-4">
+                        Explore my data analysis and machine learning projects that demonstrate my ability to extract insights and build predictive models.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     {projects.map((project, index) => (
                         <ProjectCard key={index} project={project} index={index} />
                     ))}
