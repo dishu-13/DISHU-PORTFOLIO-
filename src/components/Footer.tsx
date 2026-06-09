@@ -10,7 +10,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="relative pt-20 pb-8 px-4 overflow-hidden border-t border-border/20 backdrop-blur-xl bg-card/20">
+    <footer className="relative pt-20 pb-8 px-4 overflow-hidden border-t border-border/10 backdrop-blur-2xl bg-background/20">
       {/* Decorative gradient orbs */}
       <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-primary/20 blur-3xl pointer-events-none" />
       <div className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-accent/20 blur-3xl pointer-events-none" />
