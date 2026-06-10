@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { TrendingUp, Database, BarChart3, Brain } from 'lucide-react';
+import CodeProfileCard from '@/components/CodeProfileCard';
 const highlights = [{
   icon: TrendingUp,
   label: 'Data Analysis',
@@ -60,7 +61,8 @@ export default function About() {
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4 md:mb-6 text-justify">
               Adept at designing interactive dashboards, conducting statistical analyses, and deriving actionable insights to support data-driven decision-making. <span className="text-primary">Certified by Google and Microsoft</span> in data analytics, Power BI, Azure, AI/ML, and Google Ads. Currently an Intern at Microsoft Elevate. Passionate about leveraging data to solve real-world problems and delivering impactful solutions.
             </p>
-            
+
+            <CodeProfileCard />
           </motion.div>
 
           {/* Highlights Grid */}
