@@ -11,6 +11,8 @@ import Footer from '@/components/Footer';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import ShutterSplash from '@/components/ShutterSplash';
 import MarqueeStrip from '@/components/MarqueeStrip';
+import ScrollProgress from '@/components/ScrollProgress';
+import StatsStrip from '@/components/StatsStrip';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 const Index = () => {
@@ -26,6 +28,9 @@ const Index = () => {
 
       {/* Animated Background */}
       <AnimatedBackground />
+
+      {/* Scroll Progress Bar */}
+      <ScrollProgress />
       
       {/* Navigation */}
       <Navbar />
@@ -33,6 +38,7 @@ const Index = () => {
       {/* Main Content */}
       <Hero />
       <MarqueeStrip />
+      <StatsStrip />
       <About />
       <Experience />
       <Skills />
