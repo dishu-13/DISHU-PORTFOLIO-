@@ -11,7 +11,7 @@ interface Stat {
 
 const stats: Stat[] = [
   { value: 7, suffix: '+', label: 'Projects Completed', Icon: FolderGit2 },
-  { value: 5, suffix: '+', label: 'Certifications', Icon: Award },
+  { value: 8, suffix: '', label: 'Certifications', Icon: Award },
   { value: 2, suffix: '+', label: 'Internships', Icon: Briefcase },
   { value: 10, suffix: '+', label: 'Tools & Technologies', Icon: Wrench },
 ];
