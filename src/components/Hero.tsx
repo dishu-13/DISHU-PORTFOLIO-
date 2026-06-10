@@ -23,6 +23,24 @@ export default function Hero() {
           duration: 0.8,
           ease: "easeOut"
         }}>
+            <motion.div initial={{
+            opacity: 0,
+            y: 20
+          }} animate={{
+            opacity: 1,
+            y: 0
+          }} transition={{
+            delay: 0.2
+          }} className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border border-border/40 bg-card/50 backdrop-blur-sm">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-60 animate-ping" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
+              </span>
+              <span className="text-sm text-muted-foreground font-light tracking-wide">
+                Open to opportunities
+              </span>
+            </motion.div>
+            
             
             
             <motion.h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-medium mb-6" initial={{

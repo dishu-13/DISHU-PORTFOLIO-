@@ -13,6 +13,8 @@ import ShutterSplash from '@/components/ShutterSplash';
 import MarqueeStrip from '@/components/MarqueeStrip';
 import ScrollProgress from '@/components/ScrollProgress';
 import StatsStrip from '@/components/StatsStrip';
+import CursorGlow from '@/components/CursorGlow';
+import BackToTop from '@/components/BackToTop';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 const Index = () => {
