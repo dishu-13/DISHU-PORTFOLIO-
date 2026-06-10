@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, Download, Github, Linkedin, Mail, Instagram } from 'lucide-react';
 import profileImage from '@/assets/profile.png';
+import TypewriterText from '@/components/TypewriterText';
 export default function Hero() {
   return <section id="home" className="relative min-h-screen flex items-center justify-center px-4 pt-20">
       {/* Gradient orbs */}
@@ -47,8 +48,8 @@ export default function Hero() {
             delay: 0.5
           }}>
               <div className="h-[2px] w-12 bg-gradient-to-r from-primary to-accent" />
-              <p className="text-xl md:text-2xl text-muted-foreground font-light tracking-wider">
-                DATA ANALYST
+              <p className="text-xl md:text-2xl text-muted-foreground font-light tracking-wider min-h-[1.5em]">
+                <TypewriterText />
               </p>
             </motion.div>
             
