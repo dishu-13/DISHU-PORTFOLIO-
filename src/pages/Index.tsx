@@ -29,7 +29,7 @@ const Index = () => {
       {!splashDone && <ShutterSplash onComplete={handleSplashComplete} />}
 
       {/* Animated Background */}
-      <AnimatedBackground />
+      <ParallaxBackground />
 
       {/* Cursor Glow (desktop only) */}
       <CursorGlow />
