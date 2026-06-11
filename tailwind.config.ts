@@ -14,11 +14,42 @@ export default {
   	},
   	extend: {
   		fontFamily: {
-  			display: ['JetBrains Mono', 'ui-monospace', 'monospace'],
-  			body: ['Work Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-  			sans: ['Work Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-  			mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
-  			serif: ['ui-serif', 'Georgia', 'serif']
+  			display: [
+  				'Poppins',
+  				'sans-serif'
+  			],
+  			body: [
+  				'Poppins',
+  				'sans-serif'
+  			],
+  			sans: [
+  				'Source Sans Pro',
+  				'ui-sans-serif',
+  				'system-ui',
+  				'sans-serif',
+  				'Apple Color Emoji',
+  				'Segoe UI Emoji',
+  				'Segoe UI Symbol',
+  				'Noto Color Emoji'
+  			],
+  			serif: [
+  				'ui-serif',
+  				'Georgia',
+  				'Cambria',
+  				'Times New Roman',
+  				'Times',
+  				'serif'
+  			],
+  			mono: [
+  				'ui-monospace',
+  				'SFMono-Regular',
+  				'Menlo',
+  				'Monaco',
+  				'Consolas',
+  				'Liberation Mono',
+  				'Courier New',
+  				'monospace'
+  			]
   		},
   		colors: {
   			border: 'hsl(var(--border))',

@@ -8,7 +8,7 @@ import Projects from '@/components/Projects';
 import Achievements from '@/components/Achievements';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import ParallaxBackground from '@/components/ParallaxBackground';
+import AnimatedBackground from '@/components/AnimatedBackground';
 import ShutterSplash from '@/components/ShutterSplash';
 import MarqueeStrip from '@/components/MarqueeStrip';
 
@@ -29,7 +29,7 @@ const Index = () => {
       {!splashDone && <ShutterSplash onComplete={handleSplashComplete} />}
 
       {/* Animated Background */}
-      <ParallaxBackground />
+      <AnimatedBackground />
 
       {/* Cursor Glow (desktop only) */}
       <CursorGlow />
