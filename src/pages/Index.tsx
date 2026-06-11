@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import ShutterSplash from '@/components/ShutterSplash';
 import MarqueeStrip from '@/components/MarqueeStrip';
-import ScrollProgress from '@/components/ScrollProgress';
+
 import StatsStrip from '@/components/StatsStrip';
 import CursorGlow from '@/components/CursorGlow';
 import BackToTop from '@/components/BackToTop';
@@ -34,8 +34,8 @@ const Index = () => {
       {/* Cursor Glow (desktop only) */}
       <CursorGlow />
 
-      {/* Scroll Progress Bar */}
-      <ScrollProgress />
+
+
 
       {/* Back to Top */}
       <BackToTop />
