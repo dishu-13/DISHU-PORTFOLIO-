@@ -26,7 +26,7 @@ export default function AnimatedBackground() {
     resize();
     window.addEventListener('resize', resize);
 
-    const count = isMobile ? 30 : 80;
+    const count = isMobile ? 18 : 45;
 
     for (let i = 0; i < count; i++) {
       particles.push({
