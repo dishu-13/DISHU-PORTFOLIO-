@@ -34,8 +34,8 @@ const Index = () => {
       {/* Cursor Glow (desktop only) */}
       <CursorGlow />
 
-      {/* Scroll Progress Bar */}
-      <ScrollProgress />
+
+
 
       {/* Back to Top */}
       <BackToTop />
