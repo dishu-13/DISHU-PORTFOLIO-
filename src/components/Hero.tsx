@@ -139,7 +139,7 @@ export default function Hero() {
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-accent to-primary animate-spin-slow opacity-30 blur-xl" />
               
               {/* Image container */}
-              <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-primary/30" style={{ boxShadow: '0 0 30px hsla(210, 80%, 50%, 0.3), 0 0 60px hsla(210, 80%, 50%, 0.15)' }}>
+              <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-primary/40" style={{ boxShadow: '0 0 60px hsl(244 76% 59% / 0.55), 0 0 120px hsl(280 80% 65% / 0.25)' }}>
                 <img src={profileImage} alt="Dishu Daksh - Data Analyst" className="w-full h-full object-cover" />
               </div>
             </div>
