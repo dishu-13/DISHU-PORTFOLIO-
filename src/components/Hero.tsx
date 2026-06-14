@@ -147,13 +147,12 @@ export default function Hero() {
               <motion.a
                 href="mailto:dishudaksh44@gmail.com"
                 aria-label="Email"
-                whileHover={{ y: -4, scale: 1.05 }}
+                whileHover={{ y: -4, scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: 'spring', stiffness: 300 }}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-border/40 bg-card/40 backdrop-blur-sm text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/20 transition-colors"
+                className="p-3 rounded-full border border-border/40 bg-card/40 backdrop-blur-sm text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/20 transition-colors"
               >
                 <Mail className="w-5 h-5" />
-                <span className="text-sm font-medium">dishudaksh44@gmail.com</span>
               </motion.a>
             </motion.div>
           </motion.div>
