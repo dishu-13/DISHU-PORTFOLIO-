@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, Download, Github, Linkedin, Mail, Instagram } from 'lucide-react';
+import { Download, Github, Linkedin, Mail, Instagram } from 'lucide-react';
 import profileImage from '@/assets/profile.png';
 import TypewriterText from '@/components/TypewriterText';
 export default function Hero() {
