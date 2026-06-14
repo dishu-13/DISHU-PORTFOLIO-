@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, Download, Github, Linkedin, Mail, Instagram } from 'lucide-react';
+import { Download, Github, Linkedin, Mail, Instagram } from 'lucide-react';
 import profileImage from '@/assets/profile.png';
 import TypewriterText from '@/components/TypewriterText';
 export default function Hero() {
@@ -108,18 +108,52 @@ export default function Hero() {
           }} transition={{
             delay: 0.8
           }}>
-              <a href="https://github.com/dishu-13" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-border bg-card/30 text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 transition-all duration-300">
+              <motion.a
+                href="https://github.com/dishu-13"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                whileHover={{ y: -4, scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+                className="p-3 rounded-full border border-border/40 bg-card/40 backdrop-blur-sm text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/20 transition-colors"
+              >
                 <Github className="w-5 h-5" />
-              </a>
-              <a href="https://www.linkedin.com/in/dishu-daksh-a52572240/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-border bg-card/30 text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 transition-all duration-300">
+              </motion.a>
+              <motion.a
+                href="https://www.linkedin.com/in/dishu-daksh-a52572240/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                whileHover={{ y: -4, scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+                className="p-3 rounded-full border border-border/40 bg-card/40 backdrop-blur-sm text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/20 transition-colors"
+              >
                 <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="https://www.instagram.com/dishu_daksh18/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-border bg-card/30 text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 transition-all duration-300">
+              </motion.a>
+              <motion.a
+                href="https://www.instagram.com/dishu_daksh18/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                whileHover={{ y: -4, scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+                className="p-3 rounded-full border border-border/40 bg-card/40 backdrop-blur-sm text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/20 transition-colors"
+              >
                 <Instagram className="w-5 h-5" />
-              </a>
-              <a href="mailto:dishudaksh44@gmail.com" className="p-3 rounded-full border border-border bg-card/30 text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 transition-all duration-300">
+              </motion.a>
+              <motion.a
+                href="mailto:dishudaksh44@gmail.com"
+                aria-label="Email"
+                whileHover={{ y: -4, scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+                className="p-3 rounded-full border border-border/40 bg-card/40 backdrop-blur-sm text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/20 transition-colors"
+              >
                 <Mail className="w-5 h-5" />
-              </a>
+              </motion.a>
             </motion.div>
           </motion.div>
           
