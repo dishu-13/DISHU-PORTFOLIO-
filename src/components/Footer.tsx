@@ -45,7 +45,7 @@ export default function Footer() {
             <h4 className="font-display text-sm uppercase tracking-widest text-foreground/80 mb-4">
               Connect
             </h4>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               {socials.map((s) => (
                 <motion.a
                   key={s.label}
@@ -61,6 +61,17 @@ export default function Footer() {
                   <s.icon className="w-4 h-4" />
                 </motion.a>
               ))}
+              <motion.a
+                href={email.href}
+                aria-label={email.label}
+                whileHover={{ y: -4, scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-border/40 bg-card/40 backdrop-blur-sm text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/20 transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                <span className="text-sm font-medium">{email.text}</span>
+              </motion.a>
             </div>
           </motion.div>
         </div>
