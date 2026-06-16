@@ -5,7 +5,7 @@ const socials = [
   { icon: Github, href: 'https://github.com/dishu-13', label: 'GitHub' },
   { icon: Linkedin, href: 'https://www.linkedin.com/in/dishu-daksh-a52572240/', label: 'LinkedIn' },
   { icon: Instagram, href: 'https://www.instagram.com/dishu_daksh18/', label: 'Instagram' },
-  { icon: Mail, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=dishudaksh44@gmail.com', label: 'Email' },
+  { icon: Mail, href: 'mailto:dishudaksh44@gmail.com', label: 'Email' },
 ];
 
 export default function Footer() {

@@ -145,7 +145,7 @@ export default function Hero() {
                 <Instagram className="w-5 h-5" />
               </motion.a>
               <motion.a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=dishudaksh44@gmail.com"
+                href="mailto:dishudaksh44@gmail.com"
                 aria-label="Email"
                 whileHover={{ y: -4, scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
