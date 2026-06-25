@@ -37,7 +37,7 @@ export default function Contact() {
     icon: Mail,
     label: 'Email',
     value: 'dishudaksh44@gmail.com',
-    href: 'https://mail.google.com/mail/?view=cm&fs=1&to=dishudaksh44@gmail.com'
+    href: 'https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=dishudaksh44%40gmail.com'
   }, {
     icon: Phone,
     label: 'Phone',
